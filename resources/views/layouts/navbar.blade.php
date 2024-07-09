@@ -9,8 +9,11 @@
 
         @auth
             <div class="dropdown d-flex align-items-center">
-                <a class="dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img class="user pe-2" src="{{ asset('assets/img/user.png') }}" alt="User">
+                <a class="dropdown-toggle d-flex align-items-center" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="d-flex align-items-center">
+                        <span class="user-name pe-2">{{ Auth::user()->name }}</span>
+                        <img class="user pe-2" src="{{ asset('assets/img/user.png') }}" alt="User">
+                    </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item" href="#">Perfil</a></li>
