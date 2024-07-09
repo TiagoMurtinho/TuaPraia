@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Attribute;
 use App\Models\District;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -14,7 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(RegionSeeder::class);
-        $this->call(DistrictSeeder::class);
+        //$this->call(RegionSeeder::class);
+        //$this->call(DistrictSeeder::class);
+        $this->call(AttributeSeeder::class);
+        //$this->call(LocalSeeder::class);
+        //$this->call(LocalAttributeSeeder::class);
     }
 }

@@ -18,8 +18,13 @@ class Region extends Model
         'name' => 'string'
     ];
 
-    public function districts(): HasMany
+    public function district(): HasMany
     {
         return $this->HasMany(District::class, "regions_id");
+    }
+
+    public function local(): HasMany
+    {
+        return $this->HasMany(Local::class, 'regions_id');
     }
 }
