@@ -37,8 +37,8 @@
                     <img class="user pe-2" src="{{ asset('assets/img/user.png') }}" alt="User">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="guestDropdown">
-                    <li><a class="dropdown-item" href="{{ route('login') }}">Sign In</a></li>
-                    <li><a class="dropdown-item" href="{{ route('register') }}">Sign Up</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Sign In</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</a></li>
                 </ul>
             </div>
         @endauth
@@ -76,4 +76,6 @@
             </div>
         </div>
     </div>
+    @include('auth.login')
+    @include('auth.register')
 </nav>
