@@ -29,4 +29,23 @@
     display: none !important;
 }
 
+nav {
+    background-image: url("../assets/img/foto-mar-navbar.jpg");
+}
+.custom-btn-sucess {
+    background-image: url("../assets/img/foto-mar-navbar.jpg");
+    color: black !important;
+}
 
+.custom-btn-sucess:hover {
+    color: white !important;
+}
+
+.custom-body-bg,
+.offcanvas-body-bg {
+    background-color: #fcf6e4 !important;
+}
+
+/*.offcanvas-body-bg {
+    background-color: #ffffe3 !important;
+}*/

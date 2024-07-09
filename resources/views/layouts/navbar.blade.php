@@ -42,9 +42,9 @@
                 </ul>
             </div>
         @endauth
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbarLight" aria-labelledby="offcanvasNavbarLightLabel">
+        <div class="offcanvas offcanvas-start offcanvas-body-bg" tabindex="-1" id="offcanvasNavbarLight" aria-labelledby="offcanvasNavbarLightLabel">
             <div class="offcanvas-header">
-                <img class="offcanvas-title logotipo-sidebar" id="offcanvasNavbarLightLabel" src="{{asset('assets/img/logotipo.png')}}">
+                <img class="offcanvas-title logotipo-sidebar"  id="offcanvasNavbarLightLabel" src="{{asset('assets/img/logotipo.png')}}">
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -71,7 +71,7 @@
                 </ul>
                 <form class="d-flex mt-3" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <button class="btn btn-outline-success custom-btn-sucess" type="submit">Search</button>
                 </form>
             </div>
         </div>

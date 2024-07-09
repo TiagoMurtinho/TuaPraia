@@ -4,7 +4,7 @@
 <head>
     @include('layouts/head')
 </head>
-    <body>
+    <body class="custom-body-bg">
 
     @if(!isset($navbar) || $navbar != false)
         <header id="header" class="header">
