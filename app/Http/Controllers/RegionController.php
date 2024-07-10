@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Region;
-use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
-use JetBrains\PhpStorm\NoReturn;
 
 class RegionController extends Controller
 {
@@ -20,7 +18,7 @@ class RegionController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
 
         $validated = $request->validate([
@@ -30,7 +28,7 @@ class RegionController extends Controller
         $region = new Region();
         $region->name = $validated['name'];
 
-        $saved = $region->save();
+        $region->save();
 
         return redirect()->route('regions.index')->with('success', 'Região adicionada com sucesso!');
 
@@ -45,7 +43,7 @@ class RegionController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): RedirectResponse
     {
         $validated = $request->validate([
             'name' => 'required|string|max:45',
@@ -62,7 +60,7 @@ class RegionController extends Controller
     {
         $region->delete();
 
-        return redirect(route('regions.index'));
+        return redirect(route('regions.index'))->with('success', 'Região excluída com sucesso!');
     }
 
 }

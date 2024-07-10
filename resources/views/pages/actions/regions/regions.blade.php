@@ -31,13 +31,9 @@
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#editRegionModal{{ $region->id }}">
                                         <i class="ph ph-pencil-simple edit-pencil me-1"></i>
                                     </a>
-                                    <form action="{{ route('regions.destroy', $region->id) }}" method="POST" style="display: inline-block;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="" onclick="return confirm('Tem certeza que deseja excluir esta região?')">
-                                            <i class="ph ph-trash delete-trash me-1"></i>
-                                        </button>
-                                    </form>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#deleteRegionModal" onclick="confirmDelete('{{ route('regions.destroy', $region->id) }}')">
+                                        <i class="ph ph-trash delete-trash me-1"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -45,6 +41,7 @@
                     </table>
                     @include('pages.actions.regions.modals.regions-add-modal')
                     @include('pages.actions.regions.modals.regions-edit-modal', ["id" => $region->id, "name" => $region->name])
+                    @include('pages.actions.regions.modals.regions-delete-modal')
                 </div>
             </div>
         </div>
