@@ -1,0 +1,51 @@
+.user {
+    width: 50px;
+    height: 40px;
+}
+
+.user-name {
+    font-size: 1.2rem;
+}
+
+.logotipo {
+    max-width: 200px;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+
+.logotipo-sidebar {
+    max-width: 130px;
+    height: auto;
+}
+
+.logotipo-container {
+    display: flex;
+    align-items: center;
+}
+
+#userDropdown::after,
+#guestDropdown::after {
+    display: none !important;
+}
+
+nav {
+    background-image: url("../assets/img/foto-mar-navbar.jpg");
+}
+.custom-btn-sucess {
+    background-image: url("../assets/img/foto-mar-navbar.jpg");
+    color: black !important;
+}
+
+.custom-btn-sucess:hover {
+    color: white !important;
+}
+
+.custom-body-bg,
+.offcanvas-body-bg {
+    background-color: #fcf6e4 !important;
+}
+
+/*.offcanvas-body-bg {
+    background-color: #ffffe3 !important;
+}*/
