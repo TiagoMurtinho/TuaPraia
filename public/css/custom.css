@@ -1,6 +1,6 @@
 .user {
-    width: 50px;
-    height: 40px;
+    font-size: 50px;
+    margin-left: 8px;
 }
 
 .user-name {
@@ -10,8 +10,7 @@
 .logotipo {
     max-width: 200px;
     height: auto;
-    padding: 0;
-    margin: 0;
+    padding: 15px;
 }
 
 .logotipo-sidebar {
@@ -20,8 +19,9 @@
 }
 
 .logotipo-container {
-    display: flex;
-    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-55%);
 }
 
 #userDropdown::after,
@@ -46,6 +46,14 @@ nav {
     background-color: #fcf6e4 !important;
 }
 
-/*.offcanvas-body-bg {
-    background-color: #ffffe3 !important;
-}*/
+.navbar .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

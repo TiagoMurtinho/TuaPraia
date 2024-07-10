@@ -10,3 +10,4 @@
 
 <!-- Scripts -->
 @vite(['resources/css/app.css', 'resources/js/app.js'])
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
