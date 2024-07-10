@@ -51,3 +51,24 @@ nav {
     justify-content: space-between;
     align-items: center;
 }
+
+.plus {
+    font-size: 30px;
+}
+
+.edit-pencil {
+    font-size: 30px;
+}
+
+.delete-trash {
+    font-size: 30px;
+}
+
+.align-middle {
+    vertical-align: middle!important;
+}
+
+.card-header {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
