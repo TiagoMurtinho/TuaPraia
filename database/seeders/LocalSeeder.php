@@ -19,6 +19,8 @@ class LocalSeeder extends Seeder
                 'description' => 'Beautiful.',
                 'coordinates' => '123ABC',
                 'type' => 'beach',
+                'districts_id' => 2,
+                'regions_id' => 2,
             ],
 
             [
@@ -26,6 +28,8 @@ class LocalSeeder extends Seeder
                 'description' => 'Not beautiful.',
                 'coordinates' => 'ABC123',
                 'type' => 'cascade',
+                'districts_id' => 1,
+                'regions_id' => 2,
             ],
 
             [
@@ -33,6 +37,8 @@ class LocalSeeder extends Seeder
                 'description' => 'Amazing place.',
                 'coordinates' => '987XYZ',
                 'type' => 'fluvial',
+                'districts_id' => 2,
+                'regions_id' => 1,
             ]
         ];
 

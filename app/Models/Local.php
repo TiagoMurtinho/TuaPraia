@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use http\Exception\InvalidArgumentException;
+//use http\Exception\InvalidArgumentException;
+use InvalidArgumentException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,7 +32,7 @@ class Local extends Model
 
     public function attribute(): BelongsToMany
     {
-        return $this->belongsToMany(Local::class, 'locals_has_attributes')->using(LocalAttribute::class);
+        return $this->belongsToMany(Attribute::class, 'locals_has_attributes')->using(LocalAttribute::class);
     }
 
     public function district(): BelongsTo

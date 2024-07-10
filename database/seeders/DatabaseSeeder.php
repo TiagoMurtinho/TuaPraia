@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //$this->call(RegionSeeder::class);
-        //$this->call(DistrictSeeder::class);
+        $this->call(RegionSeeder::class);
+        $this->call(DistrictSeeder::class);
         $this->call(AttributeSeeder::class);
-        //$this->call(LocalSeeder::class);
-        //$this->call(LocalAttributeSeeder::class);
+        $this->call(LocalSeeder::class);
+        $this->call(LocalAttributeSeeder::class);
     }
 }

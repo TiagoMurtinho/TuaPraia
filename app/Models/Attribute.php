@@ -12,7 +12,9 @@ class Attribute extends Model
 
     protected $table = 'attributes';
 
-    protected $primaryKey = [
+    protected $primaryKey = 'id';
+
+    protected $fillable = [
         'name' => 'string',
     ];
 

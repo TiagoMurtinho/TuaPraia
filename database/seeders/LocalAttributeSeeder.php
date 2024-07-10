@@ -31,7 +31,7 @@ class LocalAttributeSeeder extends Seeder
 
             [
                 'locals_id' => 1,
-                'attributes' => 2,
+                'attributes_id' => 2,
             ]
         ];
 
