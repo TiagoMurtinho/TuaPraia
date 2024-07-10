@@ -35,7 +35,7 @@
             @else
                 <div class="dropdown">
                     <a class="dropdown-toggle d-flex align-items-center" href="#" role="button" id="guestDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="ph ph-user-circle user"></i>
+                            <i class="ph ph-user-circle user"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="guestDropdown">
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Sign In</a></li>
@@ -60,10 +60,10 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
+                        Actions
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="{{url('/regions')}}">Regions</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li>
                             <hr class="dropdown-divider">
@@ -78,6 +78,4 @@
             </form>
         </div>
     </div>
-    @include('auth.login')
-    @include('auth.register')
 </nav>
