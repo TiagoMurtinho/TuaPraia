@@ -51,9 +51,3 @@ nav {
     justify-content: space-between;
     align-items: center;
 }
-
-.navbar .container-fluid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
