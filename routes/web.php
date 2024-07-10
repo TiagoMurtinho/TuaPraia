@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegionController;
@@ -22,3 +23,6 @@ Route::resource('regions', RegionController::class)
     ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
+
+Route::resource('attributes', AttributeController::class)
+    ->middleware(['auth', 'verified']);
