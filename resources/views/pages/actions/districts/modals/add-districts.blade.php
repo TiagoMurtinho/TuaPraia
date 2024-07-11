@@ -18,7 +18,12 @@
                     </div>
 
                     <div>
-
+                        <label for="region" class="form-label">{{ __('district.region') }}</label>
+                        <select name="regions_id" id="region" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            @foreach($regions as $region)
+                                <option value="{{$region->id}}">{{$region->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="d-flex justify-content-end mt-4">

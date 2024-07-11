@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\District;
+use App\Models\Region;
 use Illuminate\Http\Request;
 
 class DistrictController extends Controller
@@ -13,7 +14,8 @@ class DistrictController extends Controller
     public function index()
     {
         $districts = District::all();
-        return view('pages.actions.districts.districts', compact('districts'));
+        $regions = Region::all();
+        return view('pages.actions.districts.districts', compact('districts', 'regions'));
     }
 
     /**
@@ -21,7 +23,8 @@ class DistrictController extends Controller
      */
     public function create()
     {
-        //
+        $regions = Region::all();
+        return view('pages.actions.districts.modals.add-districts', compact('regions'));
     }
 
     /**
