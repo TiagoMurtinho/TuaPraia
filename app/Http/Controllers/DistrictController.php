@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\District;
 use App\Models\Region;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class DistrictController extends Controller
@@ -82,8 +83,10 @@ class DistrictController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(District $district):RedirectResponse
     {
-        //
+        $district->delete();
+
+        return redirect()->route('districts.index')->with('success', 'District deleted successfully!');
     }
 }
