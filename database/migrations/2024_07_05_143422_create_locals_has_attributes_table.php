@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('locals_has_attributes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('attributes_id')->constrained('attributes', 'id');
-            $table->foreignId('locals_id')->constrained('locals', 'id');
+            $table->foreignId('attributes_id')->constrained('attributes', 'id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('locals_id')->constrained('locals', 'id')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

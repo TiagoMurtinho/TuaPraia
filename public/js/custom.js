@@ -1,6 +1,3 @@
-function confirmDelete(url) {
-DEV-7
-    document.getElementById('deleteAttributeForm').action = url;
-    document.getElementById('deleteRegionForm').action = url;
-master
+function confirmDelete(formId, url) {
+    document.getElementById(formId).action = url;
 }

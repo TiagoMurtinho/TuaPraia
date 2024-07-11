@@ -63,10 +63,8 @@
                         Actions
                     </a>
                     <ul class="dropdown-menu">
- DEV-7
                         <li><a class="dropdown-item" href="{{route('attributes.index')}}">Attributes</a></li>
-                        <li><a class="dropdown-item" href="{{url('/regions')}}">Regions</a></li>
-master
+                        <li><a class="dropdown-item" href="{{route('regions.index')}}">Regions</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li>
                             <hr class="dropdown-divider">
