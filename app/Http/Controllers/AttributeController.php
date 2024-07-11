@@ -24,7 +24,7 @@ class AttributeController extends Controller
      */
     public function create()
     {
-        return view('pages.actions.attributes.modals.add-attributes');
+
     }
 
     /**
@@ -33,12 +33,15 @@ class AttributeController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|max:45'
+            'name' => 'required|string|max:45'
         ]);
 
-        if ($request->fails()) {
-            return Redirect::to('pages.actions.attributes.modals.add-attributes') ->withErrors('Error: Information invalid. Please fill in the fields with valid data.')->withInput();
-        }
+        $attribute = new Attribute();
+        $attribute->name = $validated['name'];
+
+        $attribute->save();
+
+        return redirect()->route('attributes.index')->with('success', 'Attribute added successfully!');
     }
 
     /**
@@ -63,13 +66,13 @@ class AttributeController extends Controller
     public function update(Request $request, int $id)
     {
         $validated = $request->validate([
-            'name' => 'required|max:45'
+            'name' => 'required|string|max:45'
         ]);
 
         $attribute = Attribute::findorfail($id);
-        $attribute->name = $request->input('name');
+        $attribute->name = $validated['name'];
         $attribute->save();
-        return redirect('pages.actions.attributes.attributes')->with('success', 'Attribute created successfully!');
+        return redirect()->route('attributes.index')->with('success', 'Attribute created successfully!');
     }
 
     /**
@@ -77,6 +80,7 @@ class AttributeController extends Controller
      */
     public function destroy(Attribute $attribute):RedirectResponse
     {
+
         $attribute->delete();
 
         return redirect()->route('attributes.index')->with('success', 'Attribute deleted successfully!');
