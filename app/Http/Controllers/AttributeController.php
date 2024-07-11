@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attribute;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -74,9 +75,8 @@ class AttributeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(Attribute $attribute):RedirectResponse
     {
-        $attribute = Attribute::findOrFail($id);
         $attribute->delete();
 
         return redirect()->route('attributes.index')->with('success', 'Attribute deleted successfully!');
