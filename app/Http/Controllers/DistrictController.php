@@ -13,7 +13,7 @@ class DistrictController extends Controller
      */
     public function index()
     {
-        $districts = District::all();
+        $districts = District::with('region')->get(); //Uses eager loading that loads all related classes on a same query
         $regions = Region::all();
         return view('pages.actions.districts.districts', compact('districts', 'regions'));
     }
@@ -32,7 +32,18 @@ class DistrictController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:45',
+            'regions_id' => 'required|exists:regions,id'
+        ]);
+
+        $district = new District();
+        $district->name = $validated['name'];
+        $district->regions_id = $validated['regions_id'];
+
+        $district->save();
+
+        return redirect()->route('districts.index')->with('success', 'Attribute added successfully!');
     }
 
     /**
@@ -56,7 +67,16 @@ class DistrictController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:45',
+            'regions_id' => 'required|exists:regions,id'
+        ]);
+
+        $district = District::findorfail($id);
+        $district->name = $validated['name'];
+        $district->regions_id = $validated['regions_id'];
+        $district->save();
+        return redirect()->route('districts.index')->with('success', 'Distrit updated successfully!');
     }
 
     /**

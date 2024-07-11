@@ -16,7 +16,7 @@
                             <thead>
                             <tr>
                                 <th scope="col" class="text-center">{{ __('district.name') }}</th>
-                                <th scope="col" class="text-center">{{ __('district.regions_id') }}</th>
+                                <th scope="col" class="text-center">{{ __('district.region') }}</th>
                                 <th scope="col" class="text-center">{{ __('district.created_at') }}</th>
                                 <th scope="col" class="text-center">{{ __('district.updated_at') }}</th>
                                 <th></th>
@@ -26,11 +26,11 @@
                             @foreach($districts as $district)
                                 <tr>
                                     <td class="align-middle text-center">{{ $district->name }}</td>
-                                    <td class="align-middle text-center">{{ $district->regions_id }}</td>
+                                    <td class="align-middle text-center">{{ $district->region->name }}</td>
                                     <td class="align-middle text-center">{{ $district->created_at }}</td>
                                     <td class="align-middle text-center">{{ $district->updated_at }}</td>
                                     <td class="align-middle">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#editAttributeModal{{ $district->id }}">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#editDistrictModal{{ $district->id }}">
                                             <i class="ph ph-pencil-simple edit-pencil me-1"></i>
                                         </a>
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#deleteAttributeModal" onclick="confirmDelete('deleteAttributeForm', '{{ route('attributes.destroy', $district->id) }}')">
