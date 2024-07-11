@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 45);
             $table->timestamps();
-            $table->foreignId('regions_id')->constrained('regions', 'id');
+            $table->foreignId('regions_id')->constrained('regions', 'id')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

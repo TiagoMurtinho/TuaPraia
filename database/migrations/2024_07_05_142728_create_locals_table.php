@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('coordinates', 45);
             $table->enum('type', ['beach', 'fluvial', 'cascade']);
             $table->timestamps();
-            $table->foreignId('districts_id')->constrained('districts', 'id');
-            $table->foreignId('regions_id')->constrained('regions', 'id');
+            $table->foreignId('districts_id')->constrained('districts', 'id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('regions_id')->constrained('regions', 'id')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
