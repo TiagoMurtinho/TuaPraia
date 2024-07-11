@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header d-flex align-items-center">
                     <h5 class="mb-0 ms-2">{{ __('attribute.title') }}</h5>
-                    <button type="button" class="align-items-center" data-bs-toggle="modal" data-bs-target="#addRegionModal">
+                    <button type="button" class="align-items-center" data-bs-toggle="modal" data-bs-target="#addAttributeModal">
                         <i class="ph ph-plus-circle plus align-middle ms-1"></i>
                     </button>
                 </div>
@@ -28,7 +28,7 @@
                                     <td class="align-middle text-center">{{ $attribute->created_at }}</td>
                                     <td class="align-middle text-center">{{ $attribute->updated_at }}</td>
                                     <td class="align-middle">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#editRegionModal{{ $attribute->id }}">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#editAttributeModal{{ $attribute->id }}">
                                             <i class="ph ph-pencil-simple edit-pencil me-1"></i>
                                         </a>
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#deleteAttributeModal" onclick="confirmDelete('{{ route('attributes.destroy', $attribute->id) }}')">

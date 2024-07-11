@@ -22,7 +22,9 @@ Route::middleware('auth')->group(function () {
 Route::resource('regions', RegionController::class)
     ->middleware(['auth', 'verified']);
 
-require __DIR__.'/auth.php';
-
 Route::resource('attributes', AttributeController::class)
     ->middleware(['auth', 'verified']);
+
+require __DIR__.'/auth.php';
+
+
