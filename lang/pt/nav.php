@@ -9,5 +9,6 @@ return [
     'actions' => 'Ações',
     'attributes' => 'Atributos',
     'regions' => 'Regiões',
-    'exit' => 'Sair'
+    'exit' => 'Sair',
+    'locals' => 'Locais'
 ];

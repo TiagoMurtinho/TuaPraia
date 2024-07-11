@@ -24,6 +24,9 @@ Route::middleware('auth')->group(function () {
 Route::resource('regions', RegionController::class)
     ->middleware(['auth', 'verified']);
 
+Route::resource('locals', \App\Http\Controllers\LocalController::class)
+    ->middleware(['auth', 'verified']);
+
 /*Route::resource('attributes', AttributeController::class)
     ->middleware('auth');*/
 //'verified' serve para quando o user faz a verificação de email

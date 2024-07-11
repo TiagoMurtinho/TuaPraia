@@ -11,7 +11,7 @@ class RegionController extends Controller
 {
     public function index(): View
     {
-        $regions = Region::get();
+        $regions = Region::all();
 
         return view('pages.actions.regions.regions', [
             'regions' => $regions

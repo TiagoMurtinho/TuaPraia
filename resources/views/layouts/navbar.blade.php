@@ -65,7 +65,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{route('attributes.index')}}">{{__('nav.attributes')}}</a></li>
                         <li><a class="dropdown-item" href="{{route('regions.index')}}">{{__('nav.regions')}}</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="{{route('locals.index')}}">{{__('nav.locals')}}</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
