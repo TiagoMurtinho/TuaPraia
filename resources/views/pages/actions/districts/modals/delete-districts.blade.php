@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>{{ __('district.Are_you_sure_you_want_to_delete_this_attribute?')}}</p>
+                {{ __('district.sure_to_delete')}} "{{$district->name}}"?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('district.cancel') }}</button>
