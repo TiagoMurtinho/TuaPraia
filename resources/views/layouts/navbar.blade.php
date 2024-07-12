@@ -18,15 +18,15 @@
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="#">Perfil</a></li>
-                        <li><a class="dropdown-item" href="#">Configurações</a></li>
+                        <li><a class="dropdown-item" href="#">{{__('nav.profile')}}</a></li>
+                        <li><a class="dropdown-item" href="#">{{__('nav.config')}}</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault(); this.closest('form').submit();">
-                                    Sair
+                                    {{__('nav.exit')}}
                                 </a>
                             </form>
                         </li>
@@ -38,8 +38,8 @@
                             <i class="ph ph-user-circle user"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="guestDropdown">
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Sign In</a></li>
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">{{__('nav.sign_in')}}</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">{{__('nav.sign_up')}}</a></li>
                     </ul>
                 </div>
             @endauth
@@ -53,20 +53,20 @@
         <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="#">{{__('nav.home')}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Actions
+                        {{__('nav.actions')}}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{route('attributes.index')}}">Attributes</a></li>
-                        <li><a class="dropdown-item" href="{{route('regions.index')}}">Regions</a></li>
-                        <li><a class="dropdown-item" href="{{route('districts.index')}}">Districts</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="{{route('attributes.index')}}">{{__('nav.attributes')}}</a></li>
+                        <li><a class="dropdown-item" href="{{route('regions.index')}}">{{__('nav.regions')}}</a></li>
+                        <li><a class="dropdown-item" href="{{route('districts.index')}}">{{__('nav.districts)}}</a></li>
+                        <li><a class="dropdown-item" href="{{route('locals.index')}}">{{__('nav.locals')}}</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>

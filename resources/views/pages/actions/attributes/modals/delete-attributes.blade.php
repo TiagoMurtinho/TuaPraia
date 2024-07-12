@@ -2,18 +2,18 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteAttributeModalLabel">Delete attribute</h5>
+                <h5 class="modal-title" id="deleteAttributeModalLabel">{{__('attribute.attribute_delete')}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to delete this attribute??</p>
+                {{__('attribute.sure_to_delete')}} "{{ $attribute->name }}" ?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('attribute.cancel')}}</button>
                 <form id="deleteAttributeForm" method="POST" action="">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger">{{__('attribute.delete')}}</button>
                 </form>
             </div>
         </div>

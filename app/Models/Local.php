@@ -21,7 +21,9 @@ class Local extends Model
         'name',
         'description',
         'coordinates',
-        'type'
+        'type',
+        'districts_id',
+        'regions_id',
     ];
 
     public const LOCALTYPES = [
@@ -37,12 +39,12 @@ class Local extends Model
 
     public function district(): BelongsTo
     {
-        return $this->belongsTo(District::class, 'districts_id');
+        return $this->belongsTo(District::class, 'districts_id', 'id');
     }
 
     public function region(): BelongsTo
     {
-        return $this->belongsTo(Region::class, 'regions_id');
+        return $this->belongsTo(Region::class, 'regions_id', 'id');
     }
 
     //Puts an exception if we use a different type.

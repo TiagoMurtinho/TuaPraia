@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card">
                 <div class="card-header d-flex align-items-center">
-                    <h5 class="mb-0 ms-2">Regiões</h5>
+                    <h5 class="mb-0 ms-2">{{ __('region.regions') }}</h5>
                     <button type="button" class="align-items-center" data-bs-toggle="modal" data-bs-target="#addRegionModal">
                         <i class="ph ph-plus-circle plus align-middle ms-1"></i>
                     </button>
