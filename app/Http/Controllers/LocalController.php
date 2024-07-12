@@ -14,9 +14,9 @@ class LocalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
-        $locals = Local::all();
+        $locals = Local::with('media')->get();
         $modalData = $this->addLocalModalData();
 
         return view('pages.actions.locals.locals', [
@@ -39,26 +39,23 @@ class LocalController extends Controller
      */
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:45',
-            'description' => 'nullable|string|max:255',
-            'coordinates' => 'nullable|string|max:45',
-            'type' => ['nullable', 'string', 'max:45', Rule::in(Local::LOCALTYPES)],
-            'districts_id' => 'required|exists:districts,id',
-            'regions_id' => 'required|exists:regions,id',
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'coordinates' => 'required|string',
+            'type' => 'required|string',
+            'districts_id' => 'required|integer',
+            'regions_id' => 'required|integer',
+            'media' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $local = new Local();
-        $local->name = $validated['name'];
-        $local->description = $validated['description'];
-        $local->coordinates = $validated['coordinates'];
-        $local->type = $validated['type'];
-        $local->districts_id = $validated['districts_id'];
-        $local->regions_id = $validated['regions_id'];
+        $local = Local::create($request->all());
 
-        $local->save();
+        if ($request->hasFile('media')) {
+            $local->addMediaFromRequest('media')->toMediaCollection('locals');
+        }
 
-        return redirect()->route('locals.index')->with('success', 'Local adicionado com sucesso!');
+        return redirect()->route('locals.index')->with('success', 'Local created successfully!');
     }
 
     /**
@@ -96,11 +93,15 @@ class LocalController extends Controller
             'type' => ['nullable', 'string', 'max:45', Rule::in(Local::LOCALTYPES)],
             'districts_id' => 'required|exists:districts,id',
             'regions_id' => 'required|exists:regions,id',
+            'media' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $local->update($validated);
 
-        $local->save();
+        if ($request->hasFile('media')) {
+
+            $local->addMediaFromRequest('media')->toMediaCollection('locals');
+        }
 
         return redirect()->route('locals.index')->with('success', 'Local atualizado com sucesso!');
     }
@@ -125,4 +126,5 @@ class LocalController extends Controller
             'districts' => $districts,
         ];
     }
+
 }

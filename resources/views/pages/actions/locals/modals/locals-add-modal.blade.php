@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('locals.store') }}">
+                <form method="POST" action="{{ route('locals.store') }}" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">
@@ -67,6 +67,11 @@
                         @error('regions_id')
                         <div class="text-danger mt-2">{{ $message }}</div>
                         @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="media">Upload de Imagem</label>
+                        <input type="file" class="form-control" id="media" name="media" required>
                     </div>
 
                     <div class="d-flex justify-content-end mt-4">

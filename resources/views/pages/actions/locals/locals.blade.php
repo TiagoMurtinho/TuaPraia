@@ -17,6 +17,7 @@
                         <table class="table table-hover table-transparent align-middle">
                             <thead>
                             <tr>
+                                <th scope="col" class="text-center">{{ __('local.imagem') }}</th>
                                 <th scope="col" class="text-center">{{ __('local.name') }}</th>
                                 <th scope="col" class="text-center">{{ __('local.description') }}</th>
                                 <th scope="col" class="text-center">{{ __('local.coordinates') }}</th>
@@ -31,6 +32,16 @@
                             <tbody>
                             @foreach($locals as $local)
                                 <tr>
+                                    <td class="align-middle text-center">
+                                        @php
+                                            $mediaUrl = $local->getMediaUrl();
+                                        @endphp
+                                        @if($mediaUrl)
+                                            <img src="{{ $mediaUrl }}" alt="{{ $local->name }}" class="image-center">
+                                        @else
+                                            <span>{{ __('local.no_image') }}</span>
+                                        @endif
+                                    </td>
                                     <td class="align-middle text-center">{{ $local->name }}</td>
                                     <td class="align-middle text-center">{{ $local->description }}</td>
                                     <td class="align-middle text-center">{{ $local->coordinates }}</td>
