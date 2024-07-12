@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('locals.update', $local->id) }}">
+                <form method="POST" action="{{ route('locals.update', $local->id) }}" enctype="multipart/form-data>
                     @csrf
                     @method('PUT')
 
@@ -66,6 +66,17 @@
                             @endforeach
                         </select>
                         @error('regions_id')
+                        <div class="text-danger mt-2">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="media" class="form-label">{{ __('local.media') }}</label>
+                        <input class="form-control" type="file" id="media" name="media">
+                        @if($local->getFirstMediaUrl('locals'))
+                            <img src="{{ $local->getFirstMediaUrl('locals') }}" alt="{{ $local->name }}" class="img-thumbnail mt-2">
+                        @endif
+                        @error('media')
                         <div class="text-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
