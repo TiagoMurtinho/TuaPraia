@@ -5,7 +5,7 @@
                 <h5 class="modal-title" id="editLocalModalLabel{{ $local->id }}">{{ __('local.edit_local') }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body edit-modal">
+            <div class="modal-body">
                 <form method="POST" action="{{ route('locals.update', $local->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -74,7 +74,7 @@
                         <label>{{ __('local.attributes') }}</label>
                         @foreach($attributes as $attribute)
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="attribute_{{ $attribute->id }}" name="attributes[]" value="{{ $attribute->id }}" {{ $local->attributes->contains($attribute->id) ? 'checked' : '' }}>
+                                <input type="checkbox" id="attribute_{{ $attribute->id }}" name="attributes[]" value="{{ $attribute->id }}" {{ $local->attributes->contains($attribute->id) ? 'checked' : '' }} class="form-check-input">
                                 <label for="attribute_{{ $attribute->id }}" class="form-check-label">{{ $attribute->name }}</label>
                             </div>
                         @endforeach
