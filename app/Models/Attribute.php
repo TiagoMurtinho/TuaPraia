@@ -18,8 +18,8 @@ class Attribute extends Model
         'name' => 'string',
     ];
 
-    public function local(): BelongsToMany
+    public function locals(): BelongsToMany
     {
-        return $this->belongsToMany(Local::class, 'locals_has_attributes')->using(LocalAttribute::class);
+        return $this->belongsToMany(Local::class, 'locals_has_attributes', 'attributes_id', 'locals_id');
     }
 }

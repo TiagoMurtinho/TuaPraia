@@ -78,3 +78,155 @@ nav {
     margin: 0 auto;
     max-width: 80px;
 }
+
+.edit-modal {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.edit-modal::-webkit-scrollbar {
+    width: 8px;
+}
+
+.edit-modal::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.edit-modal::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.edit-modal::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.custom-select-wrapper {
+    position: relative;
+}
+
+.custom-select {
+    appearance: none; /* Remove o estilo padrão do select */
+    background-color: #f8f9fa; /* Cor de fundo leve */
+    border: 1px solid #ced4da; /* Borda padrão do Bootstrap */
+    border-radius: 0.50rem; /* Bordas arredondadas */
+    padding: 0.5rem 1.5em 0.5rem 1rem; /* Ajuste o padding para espaço para a seta */
+    transition: border-color 0.15s ease-in-out; /* Transição suave na borda */
+    width: 100%; /* Faz o select ocupar toda a largura */
+}
+
+.custom-select:focus {
+    border-color: #80bdff; /* Cor da borda ao focar */
+    outline: 0; /* Remove o contorno padrão */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Sombra ao focar */
+}
+
+.custom-select::after {
+    content: '▼'; /* Adiciona uma seta */
+    position: absolute;
+    right: 1rem; /* Espaço à direita */
+    top: 50%; /* Centraliza verticalmente */
+    transform: translateY(-50%); /* Ajuste vertical */
+    pointer-events: none; /* Ignora eventos de clique na seta */
+}
+
+.attribute-select[multiple] {
+    height: auto;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.card {
+    width: 1000px; /* Largura máxima da card */
+    margin: 0 auto; /* Centraliza horizontalmente, mas remove margens verticais */
+    padding: 0; /* Ajuste conforme necessário */
+    border: 1px solid #dee2e6; /* Borda padrão */
+    border-radius: 0.25rem; /* Bordas arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+*, *::before, *::after {
+    box-sizing: border-box; /* Facilita o controle sobre tamanho */
+}
+
+.checkbox-group {
+    margin-top: 10px;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px; /* Espaço entre as checkboxes */
+}
+
+.form-check-input {
+    -webkit-appearance: none; /* Remove a aparência padrão */
+    -moz-appearance: none;    /* Remove a aparência padrão */
+    appearance: none;         /* Remove a aparência padrão */
+    width: 20px;              /* Tamanho da checkbox */
+    height: 20px;             /* Tamanho da checkbox */
+    margin-right: 10px;       /* Espaço entre checkbox e label */
+    border-radius: 5px;       /* Arredonda as bordas */
+    border: 2px solid #007bff; /* Borda padrão */
+    cursor: pointer;          /* Cursor de ponteiro */
+    transition: background-color 0.3s, border-color 0.3s; /* Transição suave */
+}
+
+.form-check-input:checked {
+    background-color: #007bff; /* Cor ao marcar */
+    border-color: #0056b3;     /* Cor da borda ao marcar */
+}
+
+/* Adiciona um efeito visual ao passar o mouse */
+.form-check:hover .form-check-label {
+    color: #007bff; /* Muda a cor ao passar o mouse */
+}
+
+/* Efeito de foco */
+.form-check-input:focus {
+    outline: none; /* Remove a borda padrão ao focar */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra suave */
+}
+
+.form-group {
+    margin-top: 20px; /* Espaço acima do grupo de formulário */
+}
+
+.custom-file {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.custom-file-input {
+    display: none; /* Esconde o input padrão */
+}
+
+.custom-file-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 2px dashed #007bff; /* Borda em estilo pontilhado */
+    border-radius: 5px; /* Bordas arredondadas */
+    background-color: #f8f9fa; /* Fundo claro */
+    cursor: pointer; /* Cursor de ponteiro */
+    transition: background-color 0.3s, border-color 0.3s; /* Transição suave */
+}
+
+.custom-file-label:hover {
+    background-color: #e9ecef; /* Fundo mais escuro ao passar o mouse */
+    border-color: #0056b3; /* Borda mais escura ao passar o mouse */
+}
+
+.custom-file-input:focus + .custom-file-label {
+    outline: none; /* Remove a borda padrão ao focar */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra suave */
+}
+
+/* Exibir o nome do arquivo selecionado */
+.custom-file-input:focus ~ .custom-file-label::after {
+    content: "Escolher arquivo"; /* Texto padrão */
+}
+

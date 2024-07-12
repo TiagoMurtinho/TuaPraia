@@ -69,9 +69,22 @@
                         @enderror
                     </div>
 
+                    <div>
+                        <label>Attributes:</label>
+                        @foreach($attributes as $attribute)
+                            <div class="form-check">
+                                <input type="checkbox" id="attribute_{{ $attribute->id }}" name="attributes[]" value="{{ $attribute->id }}" class="form-check-input">
+                                <label for="attribute_{{ $attribute->id }}" class="form-check-label">{{ $attribute->name }}</label>
+                            </div>
+                        @endforeach
+                    </div>
+
                     <div class="form-group">
-                        <label for="media">Upload de Imagem</label>
-                        <input type="file" class="form-control" id="media" name="media" required>
+                        <label for="media" class="form-label">Upload de Imagem</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="media" name="media" required>
+                            <label class="custom-file-label" for="media">Escolher arquivo...</label>
+                        </div>
                     </div>
 
                     <div class="d-flex justify-content-end mt-4">
