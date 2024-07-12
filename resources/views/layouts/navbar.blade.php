@@ -18,7 +18,9 @@
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="#">{{__('nav.profile')}}</a></li>
+                        <li><a class="dropdown-item" href="{{ route('profile.index', ['id' => $authUser->id]) }}">
+                                {{ __('nav.profile') }}
+                            </a></li>
                         <li><a class="dropdown-item" href="#">{{__('nav.config')}}</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
