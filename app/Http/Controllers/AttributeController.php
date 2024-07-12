@@ -72,7 +72,7 @@ class AttributeController extends Controller
         $attribute = Attribute::findorfail($id);
         $attribute->name = $validated['name'];
         $attribute->save();
-        return redirect()->route('attributes.index')->with('success', 'Attribute created successfully!');
+        return redirect()->route('attributes.index')->with('success', 'Attribute updated successfully!');
     }
 
     /**
