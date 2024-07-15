@@ -29,9 +29,10 @@
     display: none !important;
 }
 
-nav {
+.custom-navbar {
     background-image: url("../assets/img/foto-mar-navbar.jpg");
 }
+
 .custom-btn-sucess {
     background-image: url("../assets/img/foto-mar-navbar.jpg");
     color: black !important;
