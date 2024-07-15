@@ -34,9 +34,9 @@ class Local extends Model implements HasMedia
         'cascade'
     ];
 
-    public function attribute(): BelongsToMany
+    public function attributes(): BelongsToMany
     {
-        return $this->belongsToMany(Attribute::class, 'locals_has_attributes')->using(LocalAttribute::class);
+        return $this->belongsToMany(Attribute::class, 'locals_has_attributes',  'locals_id', 'attributes_id');
     }
 
     public function district(): BelongsTo

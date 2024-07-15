@@ -17,15 +17,14 @@
                         <table class="table table-hover table-transparent align-middle">
                             <thead>
                             <tr>
-                                <th scope="col" class="text-center">{{ __('local.imagem') }}</th>
+                                <th scope="col" class="text-center">{{ __('local.image') }}</th>
                                 <th scope="col" class="text-center">{{ __('local.name') }}</th>
                                 <th scope="col" class="text-center">{{ __('local.description') }}</th>
                                 <th scope="col" class="text-center">{{ __('local.coordinates') }}</th>
                                 <th scope="col" class="text-center">{{ __('local.type') }}</th>
-                                <th scope="col" class="text-center">{{ __('region.created_at') }}</th>
-                                <th scope="col" class="text-center">{{ __('region.updated_at') }}</th>
                                 <th scope="col" class="text-center">{{ __('local.district') }}</th>
                                 <th scope="col" class="text-center">{{ __('local.region') }}</th>
+                                <th scope="col" class="text-center">{{ __('local.attributes') }}</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -46,10 +45,19 @@
                                     <td class="align-middle text-center">{{ $local->description }}</td>
                                     <td class="align-middle text-center">{{ $local->coordinates }}</td>
                                     <td class="align-middle text-center">{{ $local->type }}</td>
-                                    <td class="align-middle text-center">{{ $local->created_at }}</td>
-                                    <td class="align-middle text-center">{{ $local->updated_at }}</td>
                                     <td class="align-middle text-center">{{ $local->district->name }}</td>
                                     <td class="align-middle text-center">{{ $local->region->name }}</td>
+                                    <td class="align-middle text-center">
+                                        @if($local->attributes->isNotEmpty())
+                                            <select class="attribute-select custom-select">
+                                                @foreach($local->attributes as $attribute)
+                                                    <option value="{{ $attribute->id }}">{{ $attribute->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        @else
+                                            <span>{{ __('local.no_attributes') }}</span>
+                                        @endif
+                                    </td>
                                     <td class="align-middle">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#editLocalModal{{ $local->id }}">
                                             <i class="ph ph-pencil-simple edit-pencil me-1"></i>
@@ -59,8 +67,8 @@
                                         </a>
                                     </td>
                                 </tr>
-                                @include('pages.actions.locals.modals.locals-add-modal')
-                                @include('pages.actions.locals.modals.locals-edit-modal', ['id' => $local->id])
+                                @include('pages.actions.locals.modals.locals-add-modal', ['attributes' => $attributes])
+                                @include('pages.actions.locals.modals.locals-edit-modal', ['local' => $local, 'districts' => $districts, 'regions' => $regions, 'attributes' => $attributes])
                                 @include('pages.actions.locals.modals.locals-delete-modal')
                             @endforeach
                             </tbody>
