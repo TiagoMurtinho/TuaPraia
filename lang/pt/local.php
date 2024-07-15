@@ -18,5 +18,9 @@ return [
     'edit' => 'Editar',
     'delete_local' => 'Excluir Local',
     'sure_to_delete' => 'Você tem certeza que deseja excluir o local',
-    'delete' => 'Excluir'
+    'delete' => 'Excluir',
+    'image' => 'Imagem',
+    'attributes' => 'Atributos',
+    'media' => 'Imagem',
+    'no_image' => 'Sem imagem'
 ];

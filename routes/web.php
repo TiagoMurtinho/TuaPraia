@@ -1,13 +1,12 @@
 <?php
 
 use App\Http\Controllers\AttributeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegionController;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 /*Route::get('/dashboard', function () {
     return view('dashboard');
@@ -27,6 +26,10 @@ Route::resource('regions', RegionController::class)
 
 Route::resource('locals', \App\Http\Controllers\LocalController::class)
     ->middleware(['auth', 'verified']);
+
+Route::get('/storage/{path}', function ($path) {
+    return response()->file(storage_path('app/public/' . $path));
+});
 
 /*Route::resource('attributes', AttributeController::class)
     ->middleware('auth');*/

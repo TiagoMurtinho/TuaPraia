@@ -1,12 +1,12 @@
 <div class="modal fade" id="addLocalModal" tabindex="-1" aria-labelledby="addLocalModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addLocalModalLabel">{{ __('local.add_local') }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('locals.store') }}">
+                <form method="POST" action="{{ route('locals.store') }}" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">
@@ -67,6 +67,24 @@
                         @error('regions_id')
                         <div class="text-danger mt-2">{{ $message }}</div>
                         @enderror
+                    </div>
+
+                    <div>
+                        <label>Attributes:</label>
+                        @foreach($attributes as $attribute)
+                            <div class="form-check">
+                                <input type="checkbox" id="attribute_{{ $attribute->id }}" name="attributes[]" value="{{ $attribute->id }}" class="form-check-input">
+                                <label for="attribute_{{ $attribute->id }}" class="form-check-label">{{ $attribute->name }}</label>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="form-group">
+                        <label for="media" class="form-label">Upload de Imagem</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="media" name="media" required>
+                            <label class="custom-file-label" for="media">Escolher arquivo...</label>
+                        </div>
                     </div>
 
                     <div class="d-flex justify-content-end mt-4">

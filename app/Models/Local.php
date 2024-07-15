@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Local extends Model
+class Local extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
 
     protected $table = 'locals';
 
@@ -32,9 +34,9 @@ class Local extends Model
         'cascade'
     ];
 
-    public function attribute(): BelongsToMany
+    public function attributes(): BelongsToMany
     {
-        return $this->belongsToMany(Attribute::class, 'locals_has_attributes')->using(LocalAttribute::class);
+        return $this->belongsToMany(Attribute::class, 'locals_has_attributes',  'locals_id', 'attributes_id');
     }
 
     public function district(): BelongsTo
@@ -56,5 +58,11 @@ class Local extends Model
         }
 
         $this->attributes['type'] = $value;
+    }
+
+    public function getMediaUrl(): ?string
+    {
+        $url = $this->getFirstMediaUrl('locals');
+        return $url ? str_replace('http://localhost', 'http://localhost:8000', $url) : null;
     }
 }

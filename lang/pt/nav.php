@@ -10,5 +10,6 @@ return [
     'attributes' => 'Atributos',
     'regions' => 'Regiões',
     'exit' => 'Sair',
-    'locals' => 'Locais'
+    'locals' => 'Locais',
+    'districts' => 'Distritos'
 ];
