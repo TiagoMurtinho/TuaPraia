@@ -120,10 +120,13 @@ class LocalController extends Controller
         $local->update($validated);
 
         if ($request->hasFile('media')) {
+            $local->clearMediaCollection('locals');
             $local->addMediaFromRequest('media')->toMediaCollection('locals');
         }
 
         $local->attributes()->sync($request->input('attributes', []));
+
+        $local->save();
 
         return redirect()->route('locals.index')->with('success', 'Local updated successfully!');
     }

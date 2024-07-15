@@ -3,14 +3,28 @@ function confirmDelete(formId, url) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const mediaInput = document.getElementById('media');
-    const mediaLabel = document.querySelector('.custom-file-label');
+    console.log('DOM fully loaded and parsed');
 
-    mediaInput.addEventListener('change', function() {
-        if (mediaInput.files.length > 0) {
-            mediaLabel.textContent = mediaInput.files[0].name; // Atualiza o texto com o nome do arquivo
+    document.querySelectorAll('.custom-file-input').forEach(function(mediaInput) {
+        const mediaLabel = mediaInput.nextElementSibling;
+
+        if (mediaInput && mediaLabel) {
+            console.log('Media input and label found for:', mediaInput.id);
+
+            mediaInput.addEventListener('change', function() {
+                console.log('Change event triggered on media input:', mediaInput.id);
+
+                if (mediaInput.files.length > 0) {
+                    console.log('File selected:', mediaInput.files[0].name);
+                    mediaLabel.textContent = mediaInput.files[0].name; // Atualiza o texto com o nome do arquivo
+                } else {
+                    const existingImageAlt = document.querySelector('img.img-thumbnail') ? document.querySelector('img.img-thumbnail').alt : 'Escolher arquivo...';
+                    console.log('No file selected, setting label to:', existingImageAlt);
+                    mediaLabel.textContent = existingImageAlt; // Texto padrão ou alt da imagem existente
+                }
+            });
         } else {
-            mediaLabel.textContent = 'Escolher arquivo...'; // Texto padrão
+            console.log('Media input or label not found for:', mediaInput.id);
         }
     });
 });
