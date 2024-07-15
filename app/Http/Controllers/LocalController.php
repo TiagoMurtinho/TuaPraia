@@ -17,15 +17,15 @@ class LocalController extends Controller
      */
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
-        $attributes = Attribute::all();
-        $locals = Local::with('media')->paginate(5);
+        $attributes = Attribute::all(); // Obtém todos os atributos do model "Attribute".
+        $locals = Local::with('media')->paginate(5); // Obtèm tpdps os locals com as suas respectivas medias e paginação.
         $modalData = $this->addLocalModalData();
 
         return view('pages.actions.locals.locals', [
-            'locals' => $locals,
-            'attributes' => $attributes,
-            'regions' => $modalData['regions'],
-            'districts' => $modalData['districts'],
+            'locals' => $locals, // Passa a lista de locais para a view
+            'attributes' => $attributes, // Passa os atributos para a view
+            'regions' => $modalData['regions'], // Passa as regiões obtidas no modal
+            'districts' => $modalData['districts'], // Passa os distritos obtidos no modal
         ]);
     }
 
@@ -62,14 +62,14 @@ class LocalController extends Controller
             'media' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $local = Local::create($request->all());
+        $local = Local::create($request->all()); // Cria um novo registro de 'Local' com os dados validados da requisição.
 
         if ($request->hasFile('media')) {
-            $local->addMediaFromRequest('media')->toMediaCollection('locals');
+            $local->addMediaFromRequest('media')->toMediaCollection('locals'); // Adiciona o arquivo de mídia à coleção 'locals'.
         }
 
         if ($request->has('attributes')) {
-            $local->attributes()->attach($request->input('attributes'));
+            $local->attributes()->attach($request->input('attributes'));  // Anexa os atributos ao novo local.
         }
 
         return redirect()->route('locals.index')->with('success', 'Local created successfully!');
@@ -124,6 +124,13 @@ class LocalController extends Controller
             $local->addMediaFromRequest('media')->toMediaCollection('locals');
         }
 
+        /*
+           Sincroniza os atributos associados ao local com os IDs fornecidos na requisição.
+           O método 'attributes()' retorna a relação muitos para muitos entre 'Local' e 'Attribute'.
+           O método 'sync()' atualiza a relação, removendo atributos que não estão na entrada e adicionando novos que estão presentes.
+           Se nenhum atributo for fornecido, um array vazio é passado, removendo todos os atributos existentes.
+        */
+
         $local->attributes()->sync($request->input('attributes', []));
 
         $local->save();
@@ -143,9 +150,12 @@ class LocalController extends Controller
 
     public function addLocalModalData()
     {
-        $regions = Region::all();
-        $districts = District::all();
+        $regions = Region::all(); // Obtém todas as regiões do banco de dados.
+        $districts = District::all(); // Obtém todos os distritos do banco de dados.
 
+        /*
+            Retorna um array associativo com as regiões e distritos.
+        */
         return [
             'regions' => $regions,
             'districts' => $districts,
