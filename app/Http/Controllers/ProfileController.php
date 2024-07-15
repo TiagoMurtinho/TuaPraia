@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,42 +12,49 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+
+    public function index($id)
+    {
+        $user = User::findOrFail($id);
+        $authUser = Auth::user();
+        return view('profile.profile', compact('user', 'authUser'));
+    }
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    public function edit($id): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        $user = User::findorfail($id);
+        return view('profile.edit', compact('user'));
     }
 
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request, $id): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = User::findOrFail($id);
+        $user->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
-        $request->user()->save();
+        $user->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.index', ['id' => $id]);
     }
 
     /**
      * Delete the user's account.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request, $id): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
         ]);
 
-        $user = $request->user();
+        $user = User::findOrFail($id);
 
         Auth::logout();
 
