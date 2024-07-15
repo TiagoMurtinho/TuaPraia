@@ -254,3 +254,16 @@
     background: #555;
 }
 
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+    display: none;
+    position: absolute;
+    border: none !important;
+    margin-left: 5%;
+}
+
+.dropdown-submenu:hover .dropdown-menu {
+    display: block;
+}

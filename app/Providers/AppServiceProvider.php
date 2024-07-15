@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Region;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use App\Http\View\Composers\RegionComposer;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,5 +29,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Paginator::useBootstrapFive();
+
+        View::composer('*', RegionComposer::class);
     }
 }

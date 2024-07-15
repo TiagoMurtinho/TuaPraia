@@ -11,5 +11,6 @@ return [
     'regions' => 'Regiões',
     'exit' => 'Sair',
     'locals' => 'Locais',
-    'districts' => 'Distritos'
+    'districts' => 'Distritos',
+    'search' => 'Procurar...'
 ];
