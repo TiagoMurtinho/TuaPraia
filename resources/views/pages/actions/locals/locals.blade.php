@@ -74,6 +74,10 @@
                             </tbody>
                         </table>
 
+                            <div class="justify-content-end">
+                                {{ $locals->links() }} <!-- Links de paginação -->
+                            </div>
+
                     </div>
                 </div>
             </div>

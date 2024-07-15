@@ -1,4 +1,4 @@
-<nav class="navbar bg-body-tertiary" aria-label="Light offcanvas navbar">
+<nav class="navbar bg-body-tertiary custom-navbar" aria-label="Light offcanvas navbar">
     <div class="container-fluid position-relative">
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarLight" aria-controls="offcanvasNavbarLight" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
