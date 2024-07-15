@@ -1,6 +1,25 @@
+/*
+    Esta função recebe 2 parâmetros, "formID" e "url"
+    - formId: o ID do formulário a ser modificado.
+    - url: a URL para a qual o formulário será enviado quando submetido.
+    Por exemplo :
+    onclick="confirmDelete('deleteRegionForm','{{ route('regions.destroy', $region->id) }}')
+*/
+
 function confirmDelete(formId, url) {
     document.getElementById(formId).action = url;
 }
+
+/*
+    Este código aguarda o carregamento completo do DOM antes de executar.
+    Ele seleciona todos os elementos com a classe 'custom-file-input' e adiciona um evento de 'change' a cada um deles.
+    Quando um arquivo é selecionado:
+    - Atualiza o texto do rótulo adjacente com o nome do arquivo escolhido.
+    Se nenhum arquivo for selecionado:
+    - Verifica se há uma imagem com a classe 'img-thumbnail' e, se existir, usa seu atributo 'alt' como texto do rótulo;
+    - Se não houver imagem, define um texto padrão 'Escolher arquivo...'.
+    Se o input ou o rótulo não forem encontrados, registra uma mensagem no console.
+*/
 
 document.addEventListener('DOMContentLoaded', function() {
 

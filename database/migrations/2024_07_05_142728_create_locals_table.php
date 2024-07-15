@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('locals', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 45);
-            $table->longText('description')->nullable();
-            $table->string('coordinates', 45);
-            $table->enum('type', ['beach', 'fluvial', 'cascade']);
-            $table->timestamps();
-            $table->foreignId('districts_id')->constrained('districts', 'id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->id(); // Cria uma coluna 'id' como chave primária auto-incrementável.
+            $table->string('name', 45); // Cria uma coluna 'name' do tipo string com um limite de 45 caracteres.
+            $table->longText('description')->nullable(); // Cria uma coluna 'description' que pode armazenar texto longo e é opcional (nullable).
+            $table->string('coordinates', 45); // Cria uma coluna 'coordinates' do tipo string com um limite de 45 caracteres.
+            $table->enum('type', ['beach', 'fluvial', 'cascade']); // Cria uma coluna 'type' do tipo enum com valores permitidos: 'beach', 'fluvial', 'cascade'.
+            $table->timestamps();  // Cria colunas 'created_at' e 'updated_at' para rastrear datas de criação e atualização.
+            $table->foreignId('districts_id')->constrained('districts', 'id')->cascadeOnDelete()->cascadeOnUpdate();  // Cria uma coluna 'districts_id' como chave estrangeira que referencia 'id' na tabela 'districts', com ações de exclusão e atualização em cascata.
             $table->foreignId('regions_id')->constrained('regions', 'id')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
