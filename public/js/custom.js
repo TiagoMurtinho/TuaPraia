@@ -43,3 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+/*document.querySelectorAll('.dropdown-submenu a').forEach(function (submenuToggle) {
+    submenuToggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        const submenu = submenuToggle.nextElementSibling;
+        submenu.classList.toggle('show');
+    });
+});*/
