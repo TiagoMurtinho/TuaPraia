@@ -9,10 +9,17 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-4">
-                        <img src="{{ $user->profile_photo }}" alt="{{ __('profile.user_picture') }}" class="img-fluid rounded-circle">
+                    <div class="col-md-2 text-center">
+                        @php
+                            $mediaUrl = $user->getMediaUrl();
+                        @endphp
+                        @if($mediaUrl)
+                            <img src="{{ $mediaUrl }}" alt="{{ $user->name }}" class="img-fluid rounded-circle">
+                        @else
+                            <span>{{ __('profile.no_image') }}</span>
+                        @endif
                     </div>
-                    <div class="col-md-8 d-flex">
+                    <div class="col-md-8 d-flex ">
                         <div class="flex-grow-1">
                             <h3>{{ $user->name }}</h3>
                             <p><strong>{{ __('profile.email') }}:</strong> {{ $user->email }}</p>

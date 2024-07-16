@@ -33,6 +33,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'photo' => ['required', 'image', 'mimes:jpeg,png,jpg,gif|max:2048'],
         ]);
 
         $user = User::create([
@@ -40,6 +41,10 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        if ($request->hasFile('photo')) {
+            $user->addMediaFromRequest('photo')->toMediaCollection('users');
+        }
 
         event(new Registered($user));
 

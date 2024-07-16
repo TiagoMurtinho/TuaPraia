@@ -21,7 +21,7 @@
                             <label for="region" class="form-label">{{ __('district.region') }}</label>
                             <select name="regions_id" id="region" class="form-select form-select-sm" aria-label=".form-select-sm example">
                                 @foreach($regions as $region)
-                                    <option value="{{$region->id}}">{{$region->name}}</option>
+                                    <option value="{{$region->id}}" {{$region->id == $district->regions_id ? 'selected' : ''}}>{{$region->name}}</option>
                                 @endforeach
                             </select>
                         </div>
