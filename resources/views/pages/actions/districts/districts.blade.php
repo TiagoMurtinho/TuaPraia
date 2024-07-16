@@ -38,7 +38,7 @@
                                         </a>
                                     </td>
                                 </tr>
-                                @include('pages.actions.districts.modals.add-districts', ['regions'=>$regions])
+
                                 @include('pages.actions.districts.modals.edit-districts', ["id" => $district->id, "name" => $district->name])
                                 @include('pages.actions.districts.modals.delete-districts')
                             @endforeach
@@ -48,4 +48,5 @@
                 </div>
             </div>
         </div>
+    @include('pages.actions.districts.modals.add-districts', ['regions'=>$regions])
 @endsection

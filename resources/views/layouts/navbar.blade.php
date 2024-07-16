@@ -1,4 +1,4 @@
-<nav class="navbar bg-body-tertiary" aria-label="Light offcanvas navbar">
+<nav class="navbar bg-body-tertiary custom-navbar" aria-label="Light offcanvas navbar">
     <div class="container-fluid position-relative">
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarLight" aria-controls="offcanvasNavbarLight" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -55,10 +55,24 @@
         <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">{{__('nav.home')}}</a>
+                    <a class="nav-link active" aria-current="page" href="{{route('home')}}">{{__('nav.home')}}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ __('nav.locals') }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        @foreach($regions as $region)
+                            <li class="dropdown-submenu position-relative">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ $region->name }}</a>
+                                <ul class="dropdown-menu">
+                                    @foreach($region->districts as $district)
+                                        <li><a class="dropdown-item" href="#">{{ $district->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @endforeach
+                    </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -77,8 +91,10 @@
                 </li>
             </ul>
             <form class="d-flex mt-3" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success custom-btn-sucess" type="submit">Search</button>
+                <input class="form-control me-2" type="search" placeholder="{{__('nav.search')}}" aria-label="Search">
+                <button class="btn btn-outline-success custom-btn-sucess" type="submit">
+                    <i class="ph ph-magnifying-glass"></i>
+                </button>
             </form>
         </div>
     </div>

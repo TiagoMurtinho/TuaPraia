@@ -85,10 +85,12 @@
 
                     <div class="mb-3">
                         <label for="media" class="form-label">{{ __('local.media') }}</label>
-                        <input class="form-control" type="file" id="media" name="media">
-                        @if($local->getFirstMediaUrl('locals'))
-                            <img src="{{ $local->getFirstMediaUrl('locals') }}" alt="{{ $local->name }}" class="img-thumbnail mt-2">
-                        @endif
+                        <div class="custom-file">
+                            <input class="custom-file-input" type="file" id="media_{{ $local->id }}" name="media">
+                            <label class="custom-file-label" for="media_{{ $local->id }}">
+                                {{ $local->getFirstMediaUrl('locals') ? $local->name : 'Escolher arquivo...' }}
+                            </label>
+                        </div>
                         @error('media')
                         <div class="text-danger mt-2">{{ $message }}</div>
                         @enderror

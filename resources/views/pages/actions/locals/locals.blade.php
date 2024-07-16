@@ -67,15 +67,19 @@
                                         </a>
                                     </td>
                                 </tr>
-                                @include('pages.actions.locals.modals.locals-add-modal', ['attributes' => $attributes])
                                 @include('pages.actions.locals.modals.locals-edit-modal', ['local' => $local, 'districts' => $districts, 'regions' => $regions, 'attributes' => $attributes])
                                 @include('pages.actions.locals.modals.locals-delete-modal')
                             @endforeach
                             </tbody>
                         </table>
 
+                            <div class="justify-content-end">
+                                {{ $locals->links() }} <!-- Links de paginação -->
+                            </div>
+
                     </div>
                 </div>
             </div>
         </div>
+    @include('pages.actions.locals.modals.locals-add-modal', ['attributes' => $attributes])
 @endsection

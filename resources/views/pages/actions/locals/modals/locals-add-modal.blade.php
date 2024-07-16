@@ -80,10 +80,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="media" class="form-label">Upload de Imagem</label>
+                        <label for="add_media" class="form-label">{{ __('local.media') }}</label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="media" name="media" required>
-                            <label class="custom-file-label" for="media">Escolher arquivo...</label>
+                            <input type="file" class="custom-file-input" id="add_media" name="media" required>
+                            <label class="custom-file-label" for="add_media">Escolher arquivo...</label>
                         </div>
                     </div>
 
