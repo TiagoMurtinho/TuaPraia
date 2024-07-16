@@ -10,7 +10,16 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="{{ $user->profile_photo }}" alt="{{ __('profile.user_picture') }}" class="img-fluid rounded-circle">
+                        @php
+                            $media = $user->getFirstMedia('users');
+                            $mediaUrl = $media ? $media->getUrl() : null;
+                        @endphp
+
+                        @if($mediaUrl)
+                            <img src="{{ $mediaUrl }}" alt="{{ __('profile.user_picture') }}" class="img-fluid rounded-circle">
+                        @else
+                            <span>{{ __('profile.no_image') }}</span> >
+                        @endif
                     </div>
                     <div class="col-md-8 d-flex">
                         <div class="flex-grow-1">

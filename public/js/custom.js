@@ -3,14 +3,24 @@ function confirmDelete(formId, url) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const mediaInput = document.getElementById('media');
-    const mediaLabel = document.querySelector('.custom-file-label');
 
-    mediaInput.addEventListener('change', function() {
-        if (mediaInput.files.length > 0) {
-            mediaLabel.textContent = mediaInput.files[0].name; // Atualiza o texto com o nome do arquivo
+    document.querySelectorAll('.custom-file-input').forEach(function(mediaInput) {
+        const mediaLabel = mediaInput.nextElementSibling;
+
+        if (mediaInput && mediaLabel) {
+
+            mediaInput.addEventListener('change', function() {
+
+                if (mediaInput.files.length > 0) {
+                    mediaLabel.textContent = mediaInput.files[0].name; // Atualiza o texto com o nome do arquivo
+                } else {
+                    const existingImageAlt = document.querySelector('img.img-thumbnail') ? document.querySelector('img.img-thumbnail').alt : 'Escolher arquivo...';
+                    console.log('No file selected, setting label to:', existingImageAlt);
+                    mediaLabel.textContent = existingImageAlt; // Texto padrão ou alt da imagem existente
+                }
+            });
         } else {
-            mediaLabel.textContent = 'Escolher arquivo...'; // Texto padrão
+            console.log('Media input or label not found for:', mediaInput.id);
         }
     });
 });

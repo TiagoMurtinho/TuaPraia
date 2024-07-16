@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 <!-- Formulário de Registro -->
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
                     <!-- Name -->
                     <div class="mb-3">
@@ -32,6 +32,15 @@
                         <label for="password_confirmation" class="form-label">{{ __('Confirm Password') }}</label>
                         <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="photo" class="form-label">{{ __('Upload de Imagem') }}</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="photo" name="photo" required accept="image/*">
+                            <label class="custom-file-label" for="photo">Escolher arquivo...</label>
+                        </div>
+                        <x-input-error :messages="$errors->get('photo')" class="mt-2" />
                     </div>
                     <!-- Botões -->
                     <div class="text-end">
