@@ -46,4 +46,10 @@ class User extends Authenticatable implements HasMedia
             'password' => 'hashed',
         ];
     }
+
+    public function getMediaUrl(): ?string
+    {
+        $url = $this->getFirstMediaUrl('users'); // Obtém a URL da primeira mídia da coleção 'locals'.
+        return $url ? str_replace('http://localhost', 'http://localhost:8000', $url) : null; // Ajusta o URL, se necessário.
+    }
 }
