@@ -75,6 +75,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
+                    @if(auth()->check() && auth()->user()->hasRole('admin'))
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{__('nav.actions')}}
                     </a>
@@ -88,6 +89,7 @@
                         </li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
+                    @endif
                 </li>
             </ul>
             <form class="d-flex mt-3" role="search">

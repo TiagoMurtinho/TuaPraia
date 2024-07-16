@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia
 {
-    use HasFactory, Notifiable, InteractsWithMedia;
+    use HasFactory, Notifiable, InteractsWithMedia, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -47,9 +48,4 @@ class User extends Authenticatable implements HasMedia
         ];
     }
 
-    public function getMediaUrl(): ?string
-    {
-        $url = $this->getFirstMediaUrl('users'); // Obtém a URL da primeira mídia da coleção 'locals'.
-        return $url ? str_replace('http://localhost', 'http://localhost:8000', $url) : null; // Ajusta o URL, se necessário.
-    }
 }
