@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "69e72143b5b7e6a42991fad5a6d8260e",
+    "content-hash": "3cc7c77c7127f5f3084a0dcd0198a015",
     "packages": [
         {
             "name": "brick/math",
@@ -137,7 +137,6 @@
         },
         {
             "name": "composer/semver",
-
             "version": "3.4.0",
             "source": {
                 "type": "git",
@@ -148,7 +147,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/composer/semver/zipball/35e8d0af4486141bc745f23a29cc2091eb624a32",
                 "reference": "35e8d0af4486141bc745f23a29cc2091eb624a32",
-
                 "shasum": ""
             },
             "require": {
@@ -200,9 +198,7 @@
             "support": {
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/semver/issues",
-
                 "source": "https://github.com/composer/semver/tree/3.4.0"
-
             },
             "funding": [
                 {
@@ -218,10 +214,7 @@
                     "type": "tidelift"
                 }
             ],
-
-
             "time": "2023-08-31T09:50:34+00:00"
-
         },
         {
             "name": "dflydev/dot-access-data",
@@ -3406,7 +3399,6 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-
             "version": "11.7.3",
             "source": {
                 "type": "git",
@@ -3417,7 +3409,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/c3828e7558473d9df0803212c68d61d91173a3ab",
                 "reference": "c3828e7558473d9df0803212c68d61d91173a3ab",
-
                 "shasum": ""
             },
             "require": {
@@ -3501,9 +3492,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-
                 "source": "https://github.com/spatie/laravel-medialibrary/tree/11.7.3"
-
             },
             "funding": [
                 {
@@ -3515,9 +3504,7 @@
                     "type": "github"
                 }
             ],
-
             "time": "2024-07-02T13:37:35+00:00"
-
         },
         {
             "name": "spatie/laravel-package-tools",
@@ -3578,6 +3565,88 @@
                 }
             ],
             "time": "2024-03-20T07:29:11+00:00"
+        },
+        {
+            "name": "spatie/laravel-permission",
+            "version": "6.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-permission.git",
+                "reference": "fe973a58b44380d0e8620107259b7bda22f70408"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/fe973a58b44380d0e8620107259b7bda22f70408",
+                "reference": "fe973a58b44380d0e8620107259b7bda22f70408",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "^8.12|^9.0|^10.0|^11.0",
+                "illuminate/container": "^8.12|^9.0|^10.0|^11.0",
+                "illuminate/contracts": "^8.12|^9.0|^10.0|^11.0",
+                "illuminate/database": "^8.12|^9.0|^10.0|^11.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "laravel/passport": "^11.0|^12.0",
+                "orchestra/testbench": "^6.23|^7.0|^8.0|^9.0",
+                "phpunit/phpunit": "^9.4|^10.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "6.x-dev",
+                    "dev-master": "6.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Permission\\PermissionServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Spatie\\Permission\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Permission handling for Laravel 8.0 and up",
+            "homepage": "https://github.com/spatie/laravel-permission",
+            "keywords": [
+                "acl",
+                "laravel",
+                "permission",
+                "permissions",
+                "rbac",
+                "roles",
+                "security",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-permission/issues",
+                "source": "https://github.com/spatie/laravel-permission/tree/6.9.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-06-22T23:04:52+00:00"
         },
         {
             "name": "spatie/temporary-directory",
