@@ -23,7 +23,7 @@ class Region extends Model
         return $this->HasMany(District::class, "regions_id");
     }
 
-    public function local(): HasMany
+    public function locals(): HasMany
     {
         return $this->HasMany(Local::class, 'regions_id');
     }

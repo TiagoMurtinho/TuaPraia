@@ -33,6 +33,7 @@ Route::get('/storage/{path}', function ($path) {
 });
 
 Route::get('/districts/{district}', [DistrictController::class, 'show'])->name('districts.show');
+Route::get('regions/{id}', [RegionController::class, 'show'])->name('regions.show');
 
 /*Route::resource('attributes', AttributeController::class)
     ->middleware('auth');*/
