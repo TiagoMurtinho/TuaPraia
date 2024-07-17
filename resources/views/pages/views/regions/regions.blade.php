@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Locais da Região de ' . $region->name)
+@section('title', 'Locais da Região ' . $region->name)
 
 @section('content')
     <header class="region-header text-center my-4">
