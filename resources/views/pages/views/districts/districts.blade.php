@@ -8,14 +8,14 @@
     </header>
     <div class="container district-container">
 
-        <section class="locals-section">
-            <h2 class="locals-section py-6 julee-regular">Beaches</h2>
+        <section class="districts-section">
+            <h2 class="districts-section py-6 julee-regular">Beaches</h2>
             <div class="row">
                 @foreach($beaches as $local)
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="district-view-card h-100 position-relative">
                             @php
-                                $mediaUrl = $local->getFirstMediaUrl('locals') ?: $local->getMediaUrl();
+                                $mediaUrl = $local->getFirstMediaUrl('locals');
                             @endphp
                             @if($mediaUrl)
                                 <img src="{{ $mediaUrl }}" alt="{{ $local->name }}" class="district-view-card-img-top">
@@ -33,8 +33,8 @@
             </div>
         </section>
 
-        <section class="locals-section">
-            <h2 class="locals-section py-6 julee-regular">Fluvials</h2>
+        <section class="districts-section">
+            <h2 class="districts-section py-6 julee-regular">Fluvials</h2>
             <div class="row">
                 @foreach($fluvials as $local)
                     <div class="col-lg-4 col-md-6 mb-4">
@@ -58,8 +58,8 @@
             </div>
         </section>
 
-        <section class="locals-section">
-            <h2 class="locals-section py-6 julee-regular">Cascades</h2>
+        <section class="districts-section">
+            <h2 class="districts-section py-6 julee-regular">Cascades</h2>
             <div class="row">
                 @foreach($cascades as $local)
                     <div class="col-lg-4 col-md-6 mb-4">

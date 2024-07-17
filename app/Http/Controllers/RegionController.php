@@ -18,6 +18,13 @@ class RegionController extends Controller
         ]);
     }
 
+    public function show($id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+    {
+        $region = Region::with('districts.locals')->findOrFail($id);
+
+        return view('pages.views.regions.regions', compact('region'));
+    }
+
     public function store(Request $request): RedirectResponse
     {
 

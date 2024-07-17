@@ -64,7 +64,7 @@
                     <ul class="dropdown-menu">
                         @foreach($regions as $region)
                             <li class="dropdown-submenu position-relative">
-                                <a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ $region->name }}</a>
+                                <a class="dropdown-item" href="{{ route('regions.show', $region->id) }}" role="button" aria-expanded="false">{{ $region->name }}</a>
                                 <ul class="dropdown-menu">
                                     @foreach($region->districts as $district)
                                         <li><a class="dropdown-item" href="{{ route('districts.show', ['district' => $district->id]) }}">{{ $district->name }}</a></li>

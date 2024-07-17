@@ -281,11 +281,11 @@
 }
 
 /* Estilização específica para seções de locais */
-.locals-section {
+.districts-section {
     margin-bottom: 2rem;
 }
 
-.locals-section h2 {
+.districts-section h2 {
     font-size: 3rem;
 }
 
@@ -371,4 +371,33 @@
     padding-left: 150px!important;
     padding-right: 150px!important;
     box-sizing: border-box;
+}
+
+.region-header {
+    margin-bottom: 2rem;
+}
+
+.region-header h1 {
+    font-size: 5rem;
+    font-weight: bold;
+    margin: 0;
+    padding-top: 5rem;
+}
+
+.regions-section {
+    margin-bottom: 2rem;
+}
+
+.regions-section h2 {
+    font-size: 4rem;
+    padding-top: 5rem;
+}
+
+.regions-section h3 {
+    font-size: 3rem;
+}
+
+/* Tamanho maior para os títulos das seções */
+.section-title {
+    font-size: 2rem;
 }
