@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AttributeController;
+use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,8 @@ Route::resource('locals', \App\Http\Controllers\LocalController::class)
 Route::get('/storage/{path}', function ($path) {
     return response()->file(storage_path('app/public/' . $path));
 });
+
+Route::get('/districts/{district}', [DistrictController::class, 'show'])->name('districts.show');
 
 /*Route::resource('attributes', AttributeController::class)
     ->middleware('auth');*/
