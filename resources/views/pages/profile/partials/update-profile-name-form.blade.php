@@ -1,4 +1,4 @@
-<section>
+{{--<section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('profile.profile_information') }}
@@ -37,4 +37,4 @@
             @endif
         </div>
     </form>
-</section>
+</section>--}}
