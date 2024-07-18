@@ -2,6 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    <title>@yield('title')</title>
+
     @include('layouts/head')
 </head>
     <body class="custom-body-bg">

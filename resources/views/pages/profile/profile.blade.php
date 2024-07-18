@@ -18,9 +18,9 @@
                             $mediaUrl = $user->getFirstMediaUrl('users');
                         @endphp
                         @if($mediaUrl)
-                            <img src="{{ $mediaUrl }}" alt="{{ $user->name }}" class="img-fluid rounded-circle" style="max-width: 150px; max-height: 150px;">
+                            <img src="{{ $mediaUrl }}" alt="{{ $user->name }}" class="img-fluid rounded-circle">
                         @else
-                            <div class="no-image d-flex align-items-center justify-content-center" style="width: 150px; height: 150px;">{{ __('local.no_image') }}</div>
+                            <div class="no-image d-flex align-items-center justify-content-center">{{ __('local.no_image') }}</div>
                         @endif
                         <div class="mt-3">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#editProfilePhotoModal" class="text-decoration-none profile-icon-link">
