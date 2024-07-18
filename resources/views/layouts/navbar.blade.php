@@ -100,4 +100,6 @@
             </form>
         </div>
     </div>
+    @include('auth.login')
+    @include('auth.register')
 </nav>
