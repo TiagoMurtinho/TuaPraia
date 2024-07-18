@@ -17,7 +17,7 @@ class ProfileController extends Controller
     {
         $user = User::findOrFail($id);
         $authUser = Auth::user();
-        return view('profile.profile', compact('user', 'authUser'));
+        return view('pages.profile.profile', compact('user', 'authUser'));
     }
     /**
      * Display the user's profile form.
