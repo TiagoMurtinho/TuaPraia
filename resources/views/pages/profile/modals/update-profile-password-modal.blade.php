@@ -1,5 +1,5 @@
 <div class="modal fade" id="editProfilePasswordModal" tabindex="-1" aria-labelledby="editProfilePasswordModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editProfilePasswordModalLabel">{{ __('profile.edit_profile_password') }}</h5>
