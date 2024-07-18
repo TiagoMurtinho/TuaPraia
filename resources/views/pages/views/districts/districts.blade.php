@@ -40,7 +40,7 @@
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="district-view-card h-100 position-relative">
                             @php
-                                $mediaUrl = $local->getFirstMediaUrl('locals') ?: $local->getMediaUrl();
+                                $mediaUrl = $local->getFirstMediaUrl('locals');
                             @endphp
                             @if($mediaUrl)
                                 <img src="{{ $mediaUrl }}" alt="{{ $local->name }}" class="district-view-card-img-top">
@@ -65,7 +65,7 @@
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="district-view-card h-100 position-relative">
                             @php
-                                $mediaUrl = $local->getFirstMediaUrl('locals') ?: $local->getMediaUrl();
+                                $mediaUrl = $local->getFirstMediaUrl('locals');
                             @endphp
                             @if($mediaUrl)
                                 <img src="{{ $mediaUrl }}" alt="{{ $local->name }}" class="district-view-card-img-top">
