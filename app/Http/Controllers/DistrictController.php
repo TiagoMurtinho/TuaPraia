@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\District;
+use App\Models\Local;
 use App\Models\Region;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -50,9 +51,19 @@ class DistrictController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
-        //
+        $districts = District::with('region')->findOrFail($id);
+        $cascades = Local::where('districts_id', $id)->where('type', 'cascade')->get();
+        $fluvials = Local::where('districts_id', $id)->where('type', 'fluvial')->get();
+        $beaches = Local::where('districts_id', $id)->where('type', 'beach')->get();
+
+        return view('pages.views.districts.districts', [
+            'district' => $districts,
+            'cascades' => $cascades,
+            'fluvials' => $fluvials,
+            'beaches' => $beaches
+        ]);
     }
 
     /**

@@ -77,9 +77,4 @@ class Local extends Model implements HasMedia
         $this->attributes['type'] = $value;  // Define o valor do atributo 'type'.
     }
 
-    public function getMediaUrl(): ?string
-    {
-        $url = $this->getFirstMediaUrl('locals'); // Obtém a URL da primeira mídia da coleção 'locals'.
-        return $url ? str_replace('http://localhost', 'http://localhost:8000', $url) : null; // Ajusta o URL, se necessário.
-    }
 }

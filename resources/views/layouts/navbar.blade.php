@@ -64,10 +64,10 @@
                     <ul class="dropdown-menu">
                         @foreach($regions as $region)
                             <li class="dropdown-submenu position-relative">
-                                <a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ $region->name }}</a>
+                                <a class="dropdown-item" href="{{ route('regions.show', $region->id) }}" role="button" aria-expanded="false">{{ $region->name }}</a>
                                 <ul class="dropdown-menu">
                                     @foreach($region->districts as $district)
-                                        <li><a class="dropdown-item" href="#">{{ $district->name }}</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('districts.show', ['district' => $district->id]) }}">{{ $district->name }}</a></li>
                                     @endforeach
                                 </ul>
                             </li>
@@ -75,6 +75,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
+                    @if(auth()->check() && auth()->user()->hasRole('admin'))
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{__('nav.actions')}}
                     </a>
@@ -88,6 +89,7 @@
                         </li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
+                    @endif
                 </li>
             </ul>
             <form class="d-flex mt-3" role="search">
@@ -98,4 +100,6 @@
             </form>
         </div>
     </div>
+    @include('auth.login')
+    @include('auth.register')
 </nav>

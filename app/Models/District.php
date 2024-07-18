@@ -17,6 +17,7 @@ class District extends Model
 
     protected $fillable = [
         'name' => 'string',
+        'regions_id',
     ];
 
     public function region(): BelongsTo
@@ -24,7 +25,7 @@ class District extends Model
         return $this->belongsTo(Region::class, 'regions_id');
     }
 
-    public function local(): HasMany
+    public function locals(): HasMany
     {
         return $this->hasMany(Local::class, 'districts_id');
     }

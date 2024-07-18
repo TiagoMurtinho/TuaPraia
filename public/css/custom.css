@@ -45,6 +45,7 @@
 .custom-body-bg,
 .offcanvas-body-bg {
     background-color: #fcf6e4 !important;
+    font-family: Arial, sans-serif;
 }
 
 .navbar .container-fluid {
@@ -268,6 +269,7 @@
     display: block;
 }
 
+
 /* Modificar visualização do perfil */
 
 .profile-header {
@@ -276,6 +278,13 @@
 
 .profile-header h1 {
     font-size: 3rem;
+
+.district-header {
+    margin-bottom: 2rem;
+}
+
+.district-header h1 {
+    font-size: 4rem;
     font-weight: bold;
     margin: 0;
     padding-top: 5rem;
@@ -286,7 +295,12 @@
     margin-bottom: 2rem;
 }
 
-.profile-section h2 {
+.profile-section h2,
+.districts-section {
+    margin-bottom: 2rem;
+}
+
+.districts-section h2 {
     font-size: 3rem;
 }
 
@@ -295,8 +309,8 @@
     font-size: 2rem;
 }
 
-/* Estilização das cards específicas da vista do perfil */
-.profile-view-card {
+.profile-view-card,
+.district-view-card {
     background-color: #f4f4f4;
     border: none;
     border-radius: 0.5rem;
@@ -316,6 +330,14 @@
 }
 
 .profile-view-card-img-top {
+    min-height: 350px; /* Definindo uma altura mínima para as cards */
+}
+
+.district-view-card:hover {
+    transform: translateY(-10px);
+}
+
+.district-view-card-img-top {
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     object-fit: cover;
@@ -332,24 +354,28 @@
     color: #888;
 }
 
-.profile-view-card-body {
+.profile-view-card-body,
+.district-view-card-body {
     padding: 1rem;
     position: relative;
     flex-grow: 1;
 }
 
-.profile-view-card-title {
+.profile-view-card-title,
+.district-view-card-title {
     font-size: 1.25rem;
     margin-bottom: 0.75rem;
 }
 
-.profile-view-card-text {
+.profile-view-card-text,
+.district-view-card-text {
     margin-bottom: 1.25rem;
     flex-grow: 1;
 }
 
 /* Estilização específica para o link de ícone */
-.profile-icon-link {
+.profile-icon-link,
+.district-icon-link {
     position: absolute;
     bottom: 0.1rem;
     right: 0.5rem;
@@ -358,7 +384,8 @@
     transition: color 0.3s;
 }
 
-.profile-icon-link:hover {
+.profile-icon-link:hover,
+.district-icon-link:hover {
     color: #0056b3;
 }
 
@@ -368,8 +395,38 @@
     font-style: normal;
 }
 
-.profile-container {
+.profile-container,
+.district-container {
     padding-left: 150px!important;
     padding-right: 150px!important;
     box-sizing: border-box;
+}
+
+.region-header {
+    margin-bottom: 2rem;
+}
+
+.region-header h1 {
+    font-size: 5rem;
+    font-weight: bold;
+    margin: 0;
+    padding-top: 5rem;
+}
+
+.regions-section {
+    margin-bottom: 2rem;
+}
+
+.regions-section h2 {
+    font-size: 4rem;
+    padding-top: 5rem;
+}
+
+.regions-section h3 {
+    font-size: 3rem;
+}
+
+/* Tamanho maior para os títulos das seções */
+.section-title {
+    font-size: 2rem;
 }
