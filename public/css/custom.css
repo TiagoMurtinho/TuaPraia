@@ -5,6 +5,7 @@
 
 .user-name {
     font-size: 1.2rem;
+    margin-right: 0.5rem;
 }
 
 .logotipo {
@@ -470,4 +471,11 @@
 
 .profile-icon-link:hover {
     color: #0056b3;
+}
+
+.navbar-user-image {
+    max-width: 50px!important;
+    max-height: 50px!important;
+    width: 50px!important;
+    height: 50px!important;
 }

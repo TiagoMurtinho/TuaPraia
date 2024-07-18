@@ -14,7 +14,14 @@
                     <a class="dropdown-toggle d-flex align-items-center" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="d-flex align-items-center">
                             <span class="user-name">{{ Auth::user()->name }}</span>
-                            <i class="ph ph-user-circle user"></i>
+                            @php
+                                $mediaUrl = Auth::user()->getFirstMediaUrl('users');
+                            @endphp
+                            @if($mediaUrl)
+                                <img src="{{ $mediaUrl }}" alt="{{ Auth::user()->name }}" class="img-fluid rounded-circle navbar-user-image">
+                            @else
+                                <div class="no-image d-flex align-items-center justify-content-center" style="width: 150px; height: 150px;">{{ __('local.no_image') }}</div>
+                            @endif
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
@@ -64,7 +71,12 @@
                     <ul class="dropdown-menu">
                         @foreach($regions as $region)
                             <li class="dropdown-submenu position-relative">
-                                <a class="dropdown-item" href="{{ route('regions.show', $region->id) }}" role="button" aria-expanded="false">{{ $region->name }}</a>
+                                <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{ route('regions.show', $region->id) }}" role="button" aria-expanded="false">
+                                    {{ $region->name }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+                                        <path d="M8 10.793l-5.531-5.531a.75.75 0 0 1 1.061-1.06L8 8.707l4.47-4.47a.75.75 0 0 1 1.06 1.06L8.707 10.5a.75.75 0 0 1-1.414 0L2.47 5.293a.75.75 0 0 1 0-1.06L8 10.793z"/>
+                                    </svg>
+                                </a>
                                 <ul class="dropdown-menu">
                                     @foreach($region->districts as $district)
                                         <li><a class="dropdown-item" href="{{ route('districts.show', ['district' => $district->id]) }}">{{ $district->name }}</a></li>
