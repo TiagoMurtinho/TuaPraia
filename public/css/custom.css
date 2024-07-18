@@ -417,6 +417,18 @@
     font-size: 2rem;
 }
 
+.profile-header {
+    margin-bottom: 2rem;
+}
+
+.profile-header h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 0;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+}
+
 .profile-view-card,
 .custom-profile-card {
     min-height: 300px; /* Altura mínima para as cards */
