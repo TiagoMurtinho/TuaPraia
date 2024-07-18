@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container mt-5">
-        <div class="card">
+        <div class="actions-card">
             <div class="card">
                 <div class="card-header d-flex align-items-center">
                     <h5 class="mb-0 ms-2">{{ __('local.locals') }}</h5>

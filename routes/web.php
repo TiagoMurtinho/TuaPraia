@@ -16,7 +16,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::middleware('auth')->group(function () {
     Route::get('/profile/{id}', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile/{id}/update-photo', [ProfileController::class, 'updatePhoto'])->name('profile.update.photo');
+    Route::patch('/profile/{id}/update_name', [ProfileController::class, 'updateName'])->name('profile.update_name');
+    Route::patch('/profile/{id}/update_email', [ProfileController::class, 'updateEmail'])->name('profile.update_email');
+    Route::patch('/profile/{id}/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
     Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('attributes', AttributeController::class)->except('show', 'create');
     Route::resource('districts', \App\Http\Controllers\DistrictController::class)->except('show');
