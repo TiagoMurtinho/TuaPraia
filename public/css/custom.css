@@ -319,10 +319,6 @@
     min-height: 150px; /* Definindo uma altura mínima para as cards */
 }
 
-.profile-view-card:hover {
-    transform: translateY(-10px);
-}
-
 .profile-view-card-img-top {
     min-height: 350px; /* Definindo uma altura mínima para as cards */
 }
