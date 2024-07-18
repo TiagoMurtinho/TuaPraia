@@ -139,14 +139,14 @@
     overflow-y: auto;
 }
 
-.card {
-    width: 1000px; /* Largura máxima da card */
-    margin: 0 auto; /* Centraliza horizontalmente, mas remove margens verticais */
-    padding: 0; /* Ajuste conforme necessário */
-    border: 1px solid #dee2e6; /* Borda padrão */
-    border-radius: 0.25rem; /* Bordas arredondadas */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-}
+/*.card {
+    width: 1000px; !* Largura máxima da card *!
+    margin: 0 auto; !* Centraliza horizontalmente, mas remove margens verticais *!
+    padding: 0; !* Ajuste conforme necessário *!
+    border: 1px solid #dee2e6; !* Borda padrão *!
+    border-radius: 0.25rem; !* Bordas arredondadas *!
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); !* Sombra sutil *!
+}*/
 
 *, *::before, *::after {
     box-sizing: border-box; /* Facilita o controle sobre tamanho */
@@ -269,6 +269,16 @@
     display: block;
 }
 
+
+/* Modificar visualização do perfil */
+
+.profile-header {
+    margin-bottom: 2rem;
+}
+
+.profile-header h1 {
+    font-size: 3rem;
+
 .district-header {
     margin-bottom: 2rem;
 }
@@ -281,6 +291,11 @@
 }
 
 /* Estilização específica para seções de locais */
+.profile-section {
+    margin-bottom: 2rem;
+}
+
+.profile-section h2,
 .districts-section {
     margin-bottom: 2rem;
 }
@@ -294,7 +309,7 @@
     font-size: 2rem;
 }
 
-/* Estilização das cards específicas da vista do distrito */
+.profile-view-card,
 .district-view-card {
     background-color: #f4f4f4;
     border: none;
@@ -307,6 +322,14 @@
     justify-content: space-between;
     padding: 1rem;
     height: 100%;
+    min-height: 150px; /* Definindo uma altura mínima para as cards */
+}
+
+.profile-view-card:hover {
+    transform: translateY(-10px);
+}
+
+.profile-view-card-img-top {
     min-height: 350px; /* Definindo uma altura mínima para as cards */
 }
 
@@ -331,23 +354,27 @@
     color: #888;
 }
 
+.profile-view-card-body,
 .district-view-card-body {
     padding: 1rem;
     position: relative;
     flex-grow: 1;
 }
 
+.profile-view-card-title,
 .district-view-card-title {
     font-size: 1.25rem;
     margin-bottom: 0.75rem;
 }
 
+.profile-view-card-text,
 .district-view-card-text {
     margin-bottom: 1.25rem;
     flex-grow: 1;
 }
 
 /* Estilização específica para o link de ícone */
+.profile-icon-link,
 .district-icon-link {
     position: absolute;
     bottom: 0.1rem;
@@ -357,6 +384,7 @@
     transition: color 0.3s;
 }
 
+.profile-icon-link:hover,
 .district-icon-link:hover {
     color: #0056b3;
 }
@@ -367,6 +395,7 @@
     font-style: normal;
 }
 
+.profile-container,
 .district-container {
     padding-left: 150px!important;
     padding-right: 150px!important;
