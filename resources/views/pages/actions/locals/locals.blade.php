@@ -33,7 +33,7 @@
                                 <tr>
                                     <td class="align-middle text-center">
                                         @php
-                                            $mediaUrl = $local->getMediaUrl();
+                                            $mediaUrl = $local->getFirstMediaUrl('locals');
                                         @endphp
                                         @if($mediaUrl)
                                             <img src="{{ $mediaUrl }}" alt="{{ $local->name }}" class="image-center">
