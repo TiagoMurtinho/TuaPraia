@@ -20,7 +20,7 @@
                             @if($mediaUrl)
                                 <img src="{{ $mediaUrl }}" alt="{{ Auth::user()->name }}" class="img-fluid rounded-circle navbar-user-image">
                             @else
-                                <img src="{{ $user->avatar_url }}" alt="Avatar de {{ $user->name }}" class="img-fluid rounded-circle navbar-user-image">
+                                <img src="{{ Auth::user()->avatar_url }}" alt="Avatar de {{ Auth::user()->name }}" class="img-fluid rounded-circle navbar-user-image">
                             @endif
                         </div>
                     </a>
