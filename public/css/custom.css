@@ -479,3 +479,66 @@
     width: 50px!important;
     height: 50px!important;
 }
+
+/* View do local específico */
+
+.icon-text-container {
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.place_icon {
+    font-size: 40px; /* Ajustar o tamanho do ícone conforme necessário */
+    height: auto;
+    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
+}
+
+.icon-text-container p {
+    margin: 0; /* Remove a margem padrão do parágrafo para melhor o alinhamento */
+}
+
+.image-description-container {
+    display: flex;
+    align-items: flex-start; /* Alinha verticalmente a imagem e o texto */
+    gap: 20px; /* Espaçamento entre a imagem e a descrição */
+}
+
+.local-image-container {
+    text-align: center; /* Centraliza a imagem dentro do container */
+    flex: 1;
+}
+
+.local-image {
+    max-width: 100%; /* Ajusta a imagem para não ultrapassar o container */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Garante que a imagem é um bloco e que aceita margens */
+}
+
+.description-container {
+    flex: 1;
+    margin-top: 20px; /* Está a alinhar verticalmente a descrição com a imagem*/
+}
+
+.local-subtitle {
+    font-size: 35px;
+}
+
+.description_icon {
+    font-size: 25px; /* Ajustar o tamanho do ícone conforme necessário */
+    height: auto;
+    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
+}
+
+.description-container .icon-text-container {
+    gap: 10px;
+}
+
+.local_description_info {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.local_description_info_row {
+    align-items: flex-start !important;
+}
