@@ -20,7 +20,7 @@
                         @if($mediaUrl)
                             <img src="{{ $mediaUrl }}" alt="{{ $user->name }}" class="img-fluid rounded-circle">
                         @else
-                            <img src="{{ Avatar::create('$user->name')->toBase64() }}"  alt="Initials"/>
+                            <img src="{{ $user->avatar_url }}" alt="Avatar de {{ $user->name }}">
                         @endif
                         <div class="mt-3">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#editProfilePhotoModal" class="text-decoration-none profile-icon-link">

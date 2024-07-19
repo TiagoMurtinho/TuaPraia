@@ -48,4 +48,14 @@ class User extends Authenticatable implements HasMedia
         ];
     }
 
+    public function getAvatarUrlAttribute(): string
+    {
+        if ($this->avatar) {
+            return asset('storage/' . $this->avatar);
+        }
+
+        $name = urlencode($this->name);
+        return "https://ui-avatars.com/api/?name={$name}&background=random";
+    }
+
 }
