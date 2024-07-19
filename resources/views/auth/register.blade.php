@@ -37,7 +37,7 @@
                     <div class="mb-3">
                         <label for="photo" class="form-label">{{ __('Upload de Imagem') }}</label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="photo" name="photo" required accept="image/*">
+                            <input type="file" class="custom-file-input" id="photo" name="photo" accept="image/*">
                             <label class="custom-file-label" for="photo">Escolher arquivo...</label>
                         </div>
                         <x-input-error :messages="$errors->get('photo')" class="mt-2" />
