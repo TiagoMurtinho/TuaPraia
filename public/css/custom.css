@@ -482,6 +482,10 @@
 
 /* View do local específico */
 
+.local-container {
+    margin-left: 150px !important;
+}
+
 .icon-text-container {
     display: flex;
     align-items: center;
@@ -507,6 +511,9 @@
 .local-image-container {
     text-align: center; /* Centraliza a imagem dentro do container */
     flex: 1;
+    width: 20%;
+    max-width:400px;
+    margin: auto;
 }
 
 .local-image {
@@ -540,5 +547,7 @@
 }
 
 .local_description_info_row {
+    display: flex; /* Serviu para colocar cada ícone ao lado de cada parágrafo, em vez de ser um por cima do outro */
     align-items: flex-start !important;
+    gap: 10px;
 }

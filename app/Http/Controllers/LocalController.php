@@ -82,7 +82,18 @@ class LocalController extends Controller
     {
 
         $local = Local::findOrFail($id);
-        return view('pages.views.locals.local', compact('local'));
+
+        $coordinates = explode(',', $local->coordinates);
+
+        if (count($coordinates) == 2) {
+            $latitude = trim($coordinates[0]);
+            $longitude = trim($coordinates[1]);
+        } else {
+            $latitude = null;
+            $longitude = null;
+        }
+
+        return view('pages.views.locals.local', compact('local', 'latitude', 'longitude'));
     }
 
     /**
