@@ -26,5 +26,6 @@ return [
     'portugal' => 'Portugal',
     'image_of_local' => 'Imagem do local',
     'existing_services' => 'Serviços existentes',
-    'invalid_coordinates' => 'Coordenadas inválidas. Mapa não disponível.'
+    'invalid_coordinates' => 'Coordenadas inválidas. Mapa não disponível.',
+    'no_info' => 'Sem informações sobre serviços disponíveis.'
 ];

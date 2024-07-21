@@ -25,7 +25,7 @@
                 <h2 class="julee-regular local-subtitle">{{ __('local.description') }}</h2>
                 <p class="mt-5">{{ $local->description }}</p>
                 <div class="icon-text-container local_description_info">
-                    <div class="local_description_info_row"><i class="ph ph-tag description_icon"></i><p>{{ $local->type }}</p></div>
+                    <div class="local_description_info_row"><i class="ph ph-tag description_icon"></i><p>{{ ucfirst($local->type) }}</p></div>
                     <div class="local_description_info_row"><i class="ph ph-gps description_icon"></i><p>{{ __('local.coordinates') }}: {{ $local->coordinates }}</p></div>
 
 
@@ -33,18 +33,33 @@
             </div>
         </div>
 
-        <!-- Tabela com listagem dos atributos -->
-        <h2 class="julee-regular local-subtitle mb-5">{{ __('local.existing_services') }}</h2>
-        <table class="mb-5">
-            <tr>
-                <td>Icon</td>
-                <td>Atributo</td>
-            </tr>
-            <tr>
-                <td>Icon 2</td>
-                <td>Atributo 2</td>
-            </tr>
-        </table>
+        <!-- Listagem dos atributos -->
+        <div>
+            <h2 class="julee-regular local-subtitle mb-5">{{ __('local.existing_services') }}</h2>
+            <ul>
+                @foreach($local->attributes as $attribute)
+                    @if($attribute->name == 'Disabled Mobility Access')
+                        <div class="local_description_info_row"><i class="ph ph-wheelchair description_icon"></i><p>{{ $attribute->name }}</p></div>
+                    @elseif($attribute->name == 'Parking')
+                        <div class="local_description_info_row"><i class="ph ph-letter-circle-p description_icon"></i><p>{{ $attribute->name }}</p></div>
+                    @elseif($attribute->name == 'Shower')
+                        <div class="local_description_info_row"><i class="ph ph-shower description_icon"></i><p>{{ $attribute->name }}</p></div>
+                    @elseif($attribute->name == 'WC')
+                        <div class="local_description_info_row"><i class="ph ph-toilet description_icon"></i><p>{{ $attribute->name }}</p></div>
+                    @elseif($attribute->name == 'Lifeguard')
+                        <div class="local_description_info_row"><i class="ph ph-binoculars description_icon"></i><p>{{ $attribute->name }}</p></div>
+                    @elseif($attribute->name == 'Blue Flag')
+                        <div class="local_description_info_row"><i class="ph ph-flag description_icon"></i><p>{{ $attribute->name }}</p></div>
+                    @elseif($attribute->name == 'Restaurants')
+                        <div class="local_description_info_row"><i class="ph ph-fork-knife description_icon"></i><p>{{ $attribute->name }}</p></div>
+                    @elseif($attribute->name == 'Activities')
+                        <div class="local_description_info_row"><i class="ph ph-person-simple-swim description_icon"></i><p>{{ $attribute->name }}</p></div>
+                    @else
+                        <div class="local_description_info_row"><i class="ph ph-smiley-sad description_icon"></i><p>{{ __('local.no_info') }}</p></div>
+                    @endif
+                @endforeach
+            </ul>
+        </div>
 
         <!-- Integração com Google Maps -->
         <div class="map-container mt-4 mb-4">
