@@ -10,23 +10,23 @@
 
         <!-- Distrito e País -->
         <div class="icon-text-container">
-            <i class="ph ph-map-pin-area place_icon"></i><p>Distrito,Portugal</p>
+            <i class="ph ph-map-pin-area place_icon"></i><p>{{ $local->district->name }}, {{ __('local.portugal') }}</p>
         </div>
 
         <!-- Secção com imagem e descrição -->
         <div class="image-description-container mt-4 mb-5">
             <!-- Imagem -->
             <div class="local-image-container mt-4">
-                <img src="{{ asset('assets/img/place.png') }}" alt="Imagem do Local" class="local-image">
+                <img src="{{ asset('assets/img/place.png') }}" alt="{{ __('profile.image_of_local') }}" class="local-image">
             </div>
 
             <!-- Descrição -->
             <div class="description-container">
-                <h2 class="julee-regular local-subtitle">Descrição</h2>
+                <h2 class="julee-regular local-subtitle">{{ __('local.description') }}</h2>
                 <p class="mt-5">{{ $local->description }}</p>
                 <div class="icon-text-container local_description_info">
                     <div class="local_description_info_row"><i class="ph ph-tag description_icon"></i><p>{{ $local->type }}</p></div>
-                    <div class="local_description_info_row"><i class="ph ph-gps description_icon"></i><p>Coordenadas: {{ $local->coordinates }}</p></div>
+                    <div class="local_description_info_row"><i class="ph ph-gps description_icon"></i><p>{{ __('local.coordinates') }}: {{ $local->coordinates }}</p></div>
 
 
                 </div>
@@ -34,7 +34,7 @@
         </div>
 
         <!-- Tabela com listagem dos atributos -->
-        <h2 class="julee-regular local-subtitle mb-5">Serviços existentes</h2>
+        <h2 class="julee-regular local-subtitle mb-5">{{ __('local.existing_services') }}</h2>
         <table class="mb-5">
             <tr>
                 <td>Icon</td>
@@ -54,7 +54,7 @@
                 @endphp
                 <iframe src="{{ $mapUrl }}" width="1000" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             @else
-                <p>Coordenadas inválidas. Mapa não disponível.</p>
+                <p>{{ __('local.invalid_coordinates') }}</p>
             @endif
         </div>
     </div>

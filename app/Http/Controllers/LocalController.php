@@ -81,7 +81,7 @@ class LocalController extends Controller
     public function show(string $id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
 
-        $local = Local::findOrFail($id);
+        $local = Local::with('district')->findOrFail($id);
 
         $coordinates = explode(',', $local->coordinates);
 
