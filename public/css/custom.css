@@ -551,3 +551,12 @@
     align-items: flex-start !important;
     gap: 10px;
 }
+
+.no-image-local {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    background-color: #f4f4f4;
+    color: #888;
+}

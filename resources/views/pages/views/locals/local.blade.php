@@ -17,7 +17,14 @@
         <div class="image-description-container mt-4 mb-5">
             <!-- Imagem -->
             <div class="local-image-container mt-4">
-                <img src="{{ asset('assets/img/place.png') }}" alt="{{ __('profile.image_of_local') }}" class="local-image">
+                @php
+                    $mediaUrl = $local->getFirstMediaUrl('locals');
+                @endphp
+                @if($mediaUrl)
+                    <img src="{{ $mediaUrl }}" alt="{{ $local->name }}" class="local-image">
+                @else
+                    <div class="no-image-local">{{ __('local.no_image') }}</div>
+                @endif
             </div>
 
             <!-- Descrição -->
