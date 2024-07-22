@@ -175,4 +175,13 @@ class LocalController extends Controller
         ];
     }
 
+    //Completar as sugestões na barra de pesquisa da navbar
+    public function autocomplete(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $search = $request->get('query');
+        $locals = Local::where('name', 'LIKE', "%{$search}%")->get();
+
+        return response()->json($locals);
+    }
+
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LocalController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegionController;
@@ -37,6 +38,9 @@ Route::get('/storage/{path}', function ($path) {
 
 Route::get('/districts/{district}', [DistrictController::class, 'show'])->name('districts.show');
 Route::get('/regions/{id}', [RegionController::class, 'show'])->name('regions.show');
+
+Route::get('/autocomplete-locals', [LocalController::class, 'autocomplete'])->name('locals.autocomplete');
+
 
 /*Route::resource('attributes', AttributeController::class)
     ->middleware('auth');*/

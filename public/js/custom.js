@@ -51,3 +51,51 @@ document.addEventListener('DOMContentLoaded', function() {
         submenu.classList.toggle('show');
     });
 });*/
+
+//Fazer o autocomplete na searchbar da navbar
+
+document.addEventListener('DOMContentLoaded', function() {
+    var searchInput = document.getElementById('search');
+    var searchResults = document.getElementById('search-results');
+
+    if (searchInput) {
+        var searchUrl = searchInput.getAttribute('data-url'); // Obtém a URL do atributo data-url
+        searchInput.addEventListener('keyup', function() {
+            var query = searchInput.value;
+
+            if (query.length > 1) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', searchUrl + '?query=' + encodeURIComponent(query), true);
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        var data = JSON.parse(xhr.responseText);
+                        searchResults.innerHTML = '';
+                        if (data.length > 0) {
+                            data.forEach(function(local) {
+                                var li = document.createElement('li');
+                                li.className = 'list-group-item';
+                                li.innerHTML = '<a href="/locals/' + local.id + '">' + local.name + '</a>';
+                                searchResults.appendChild(li);
+                            });
+                        } else {
+                            var li = document.createElement('li');
+                            li.className = 'list-group-item';
+                            li.textContent = 'No results found';
+                            searchResults.appendChild(li);
+                        }
+                    } else {
+                        console.error('Erro na requisição:', xhr.status, xhr.statusText);
+                    }
+                };
+                xhr.onerror = function() {
+                    console.error('Erro na requisição AJAX');
+                };
+                xhr.send();
+            } else {
+                searchResults.innerHTML = '';
+            }
+        });
+    } else {
+        console.error('Elemento de busca não encontrado');
+    }
+});
