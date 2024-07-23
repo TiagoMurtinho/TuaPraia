@@ -104,7 +104,7 @@
                     @endif
                 </li>
             </ul>
-            <form class="d-flex mt-3" role="search">
+            <form id="searchForm" class="d-flex mt-3" role="search">
                 <input class="form-control me-2" type="search" id="search" placeholder="{{__('nav.search')}}" aria-label="Search" autocomplete="off" data-url="{{ route('locals.autocomplete') }}">
                 <button class="btn btn-outline-success custom-btn-sucess" type="submit">
                     <i class="ph ph-magnifying-glass"></i>

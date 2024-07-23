@@ -184,4 +184,12 @@ class LocalController extends Controller
         return response()->json($locals);
     }
 
+    public function searchResults(Request $request)
+    {
+        $query = $request->input('query');
+        $locals = Local::where('name', 'LIKE', "%{$query}%")->get();
+
+        return view('pages.views.locals.search-results', compact('locals', 'query'));
+    }
+
 }

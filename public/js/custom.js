@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() { //Garante que todo o HTML esteja carregado
     var searchInput = document.getElementById('search');
     var searchResults = document.getElementById('search-results');
+    var searchForm = document.getElementById('searchForm');
 
     if (searchInput) {
         var searchUrl = searchInput.getAttribute('data-url'); // Obtém a URL do atributo data-url
@@ -99,7 +100,42 @@ document.addEventListener('DOMContentLoaded', function() { //Garante que todo o 
                 searchResults.innerHTML = '';
             }
         });
+/*    } else {
+        console.error('Elemento de busca não encontrado');
+    }
+});*/
+
+        // Adicionar um listener para a submissão do formulário
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita a submissão padrão do formulário
+
+            var query = searchInput.value;
+
+            if (query.length > 1) {
+                var xhr = new XMLHttpRequest(); // Requisição Ajax
+                xhr.open('GET', searchUrl + '?query=' + encodeURIComponent(query), true);
+                xhr.onload = function() { // Define o que deve acontecer quando a resposta da requisição é recebida
+                    if (xhr.status === 200) { // Verificar se a requisição foi bem sucedida
+                        var data = JSON.parse(xhr.responseText); // Resposta analisada em JSON
+                        if (data.length === 1) { // Se houver apenas um resultado, redirecionar para a página desse resultado
+                            window.location.href = '/locals/' + data[0].id;
+                        } else if (data.length > 1) { // Se houver múltiplos resultados, redirecionar para a página de resultados
+                            window.location.href = '/search-results?query=' + encodeURIComponent(query);
+                        } else {
+                            alert('No results found'); // Exibir uma mensagem de alerta se nenhum resultado for encontrado
+                        }
+                    } else {
+                        console.error('Erro na requisição:', xhr.status, xhr.statusText);
+                    }
+                };
+                xhr.onerror = function() { // Define o que é feito em caso de erro na requisição
+                    console.error('Erro na requisição AJAX');
+                };
+                xhr.send();
+            }
+        });
     } else {
         console.error('Elemento de busca não encontrado');
     }
 });
+

@@ -40,6 +40,7 @@ Route::get('/districts/{district}', [DistrictController::class, 'show'])->name('
 Route::get('/regions/{id}', [RegionController::class, 'show'])->name('regions.show');
 
 Route::get('/autocomplete-locals', [LocalController::class, 'autocomplete'])->name('locals.autocomplete');
+Route::get('/search-results', [LocalController::class, 'searchResults'])->name('search.results');
 
 
 /*Route::resource('attributes', AttributeController::class)
