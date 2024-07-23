@@ -6,32 +6,35 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- Formulário de Registro -->
-                <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                <form id="registerForm" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
+
                     <!-- Name -->
                     <div class="mb-3">
                         <label for="name" class="form-label">{{ __('Name') }}</label>
                         <input id="name" type="text" class="form-control" name="name" required autofocus autocomplete="name">
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        <div id="nameError" class="alert alert-danger d-none mt-2"></div> <!-- Erro específico -->
                     </div>
+
                     <!-- Email Address -->
                     <div class="mb-3">
                         <label for="register-email" class="form-label">{{ __('Email') }}</label>
-                        <input id="register-email" type="email" class="form-control" name="email" required autocomplete="email">
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                        <input id="register-email" type="text" class="form-control" name="email" required autocomplete="email">
+                        <div id="emailError" class="alert alert-danger d-none mt-2"></div> <!-- Erro específico -->
                     </div>
+
                     <!-- Password -->
                     <div class="mb-3">
                         <label for="register-password" class="form-label">{{ __('Password') }}</label>
                         <input id="register-password" type="password" class="form-control" name="password" required autocomplete="new-password">
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        <div id="passwordError" class="alert alert-danger d-none mt-2"></div> <!-- Erro específico -->
                     </div>
+
                     <!-- Confirm Password -->
                     <div class="mb-3">
                         <label for="password_confirmation" class="form-label">{{ __('Confirm Password') }}</label>
                         <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                        <div id="passwordConfirmationError" class="alert alert-danger d-none mt-2"></div> <!-- Erro específico -->
                     </div>
 
                     <div class="mb-3">
@@ -40,9 +43,9 @@
                             <input type="file" class="custom-file-input" id="photo" name="photo" accept="image/*">
                             <label class="custom-file-label" for="photo">Escolher arquivo...</label>
                         </div>
-                        <x-input-error :messages="$errors->get('photo')" class="mt-2" />
+                        <div class="alert alert-danger d-none mt-2" id="photoError"></div>
                     </div>
-                    <!-- Botões -->
+
                     <div class="text-end">
                         <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">{{ __('Cancel') }}</button>
                         <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
@@ -52,3 +55,4 @@
         </div>
     </div>
 </div>
+

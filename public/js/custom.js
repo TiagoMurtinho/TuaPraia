@@ -51,3 +51,58 @@ document.addEventListener('DOMContentLoaded', function() {
         submenu.classList.toggle('show');
     });
 });*/
+
+$(document).ready(function() {
+    function handleFormSubmission(modalId, isGlobal) {
+        var $modal = $('#' + modalId);
+        var $form = $modal.find('form');
+        var $globalError = $modal.find('#' + modalId + 'GlobalError');
+
+        $form.on('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            var actionUrl = $form.attr('action');
+
+            // Limpa erros anteriores
+            $modal.find('.alert.alert-danger').empty().addClass('d-none');
+
+            $.ajax({
+                url: actionUrl,
+                method: 'POST',
+                data: new FormData($form[0]),
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    if (response.success) {
+                        window.location.href = response.redirect;
+                    }
+                },
+                error: function(xhr) {
+                    console.log('Erro de validação:', xhr.responseJSON); // Debug: Verificar a resposta do servidor
+
+                    if (isGlobal) {
+                        // Exibir erros globais
+                        if (xhr.responseJSON.message) {
+                            $globalError.text(xhr.responseJSON.message).removeClass('d-none');
+                        } else {
+                            $globalError.text('Ocorreu um erro.').removeClass('d-none');
+                        }
+                    } else {
+                        // Exibir erros específicos
+                        var errors = xhr.responseJSON.errors;
+                        $.each(errors, function(key, messages) {
+                            var errorDiv = $modal.find('#' + key + 'Error');
+                            if (errorDiv.length) {
+                                errorDiv.text(messages.join(', ')).removeClass('d-none');
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    }
+
+    // Inicializa o gerenciamento de formulários para modais de registro e login
+    handleFormSubmission('registerModal', false); // Para o modal de registro
+    handleFormSubmission('loginModal', true); // Para o modal de login
+});

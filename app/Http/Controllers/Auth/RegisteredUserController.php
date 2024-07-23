@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Validation\ValidationException;
 
 class RegisteredUserController extends Controller
 {
@@ -27,29 +28,37 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'photo' => ['nullable','image', 'mimes:jpeg,png,jpg,gif|max:2048'],
-        ]);
+        try {
+            $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+                'photo' => ['nullable','image', 'mimes:jpeg,png,jpg,gif|max:2048'],
+            ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
 
-        if ($request->hasFile('photo')) {
-            $user->addMediaFromRequest('photo')->toMediaCollection('users');
+            if ($request->hasFile('photo')) {
+                $user->addMediaFromRequest('photo')->toMediaCollection('users');
+            }
+
+            event(new Registered($user));
+
+            Auth::login($user);
+
+            return response()->json(['success' => true, 'redirect' => route('home', absolute: false)]);
+        } catch (ValidationException $e) {
+            // Captura exceções de validação e retorna os erros no formato JSON
+            return response()->json(['errors' => $e->errors()], 422);
+        } catch (\Exception $e) {
+            // Captura qualquer outra exceção e retorna uma mensagem genérica de erro
+            return response()->json(['message' => 'An error occurred.'], 500);
         }
-
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(route('home', absolute: false));
     }
 }
