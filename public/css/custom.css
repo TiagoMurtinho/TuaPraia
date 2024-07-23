@@ -480,6 +480,18 @@
     height: 50px!important;
 }
 
+#search-results {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+#search-results .list-group-item {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 320px; /* Ajustar a largura máxima */
+}
+
 /* View do local específico */
 
 .local-container {

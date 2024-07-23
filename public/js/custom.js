@@ -54,27 +54,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //Fazer o autocomplete na searchbar da navbar
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() { //Garante que todo o HTML esteja carregado
     var searchInput = document.getElementById('search');
     var searchResults = document.getElementById('search-results');
 
     if (searchInput) {
         var searchUrl = searchInput.getAttribute('data-url'); // Obtém a URL do atributo data-url
-        searchInput.addEventListener('keyup', function() {
+        searchInput.addEventListener('keyup', function() { //Sempre que uma tecla se soltar, aciona a função interna
             var query = searchInput.value;
 
-            if (query.length > 1) {
-                var xhr = new XMLHttpRequest();
+            if (query.length > 1) { //Se a pesquisa for maior que 1 caracter, são mostradas as sugestões
+                var xhr = new XMLHttpRequest(); //Requisição Ajax
                 xhr.open('GET', searchUrl + '?query=' + encodeURIComponent(query), true);
-                xhr.onload = function() {
-                    if (xhr.status === 200) {
-                        var data = JSON.parse(xhr.responseText);
-                        searchResults.innerHTML = '';
+                xhr.onload = function() { //Define o que deve acontecer quando a resposta da requisição é recebida
+                    if (xhr.status === 200) { //Verificar se a requisição foi bem sucedida
+                        var data = JSON.parse(xhr.responseText); //Resposta analisada em JSON
+                        searchResults.innerHTML = ''; //Limpa o searchResults
                         if (data.length > 0) {
                             data.forEach(function(local) {
                                 var li = document.createElement('li');
                                 li.className = 'list-group-item';
-                                li.innerHTML = '<a href="/locals/' + local.id + '">' + local.name + '</a>';
+
+                                // Limita o texto do nome a 30 caracteres, o resto terá reticências
+                                var name = local.name.length > 30 ? local.name.substring(0, 30) + '...' : local.name;
+
+                                li.innerHTML = '<a href="/locals/' + local.id + '">' + name + '</a>';
                                 searchResults.appendChild(li);
                             });
                         } else {
@@ -87,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.error('Erro na requisição:', xhr.status, xhr.statusText);
                     }
                 };
-                xhr.onerror = function() {
+                xhr.onerror = function() { //Define o que é feito em caso de erro na requisição
                     console.error('Erro na requisição AJAX');
                 };
                 xhr.send();
