@@ -13,12 +13,12 @@
                     <div class="mb-3">
                         <label for="profile_photo" class="form-label">{{ __('local.media') }}</label>
                         <div class="custom-file">
-                            <input class="custom-file-input" type="file" id="profile_photo_{{ $user->id }}" name="profile_photo">
-                            <label class="custom-file-label" for="profile_photo_{{ $user->id }}">
+                            <input class="custom-file-input" type="file" id="profile_photo" name="profile_photo">
+                            <label class="custom-file-label" for="profile_photo">
                                 {{ $user->getFirstMediaUrl('users') ? $user->name : 'Escolher arquivo...' }}
                             </label>
                         </div>
-                        <div id="profile_photoError" class="text-danger mt-2 d-none"></div>
+                        <div id="profile_photoError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="d-flex justify-content-end mt-4">

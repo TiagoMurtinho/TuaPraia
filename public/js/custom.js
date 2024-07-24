@@ -108,4 +108,5 @@ $(document).ready(function() {
     handleFormSubmission('editProfileEmailModal', false);
     handleFormSubmission('editProfileInfoModal', false);
     handleFormSubmission('editProfilePasswordModal', false);
+    handleFormSubmission('editProfilePhotoModal', false);
 });
