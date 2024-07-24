@@ -38,7 +38,7 @@ class ProfileController extends Controller
 
         // Validação
         $validator = Validator::make($request->all(), [
-            'profile_name' => 'required|string|max:255',
+            'profile_name' => 'required|string|max:55',
         ]);
 
         // Verifica se a validação falhou
