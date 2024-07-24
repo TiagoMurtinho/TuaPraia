@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('profile.update.photo', ['id' => $user->id]) }}" enctype="multipart/form-data">
+                <form id="editProfilePhotoForm" method="POST" action="{{ route('profile.update.photo', ['id' => $user->id]) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
 
@@ -18,9 +18,7 @@
                                 {{ $user->getFirstMediaUrl('users') ? $user->name : 'Escolher arquivo...' }}
                             </label>
                         </div>
-                        @error('profile_photo')
-                        <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
+                        <div id="profile_photoError" class="text-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="d-flex justify-content-end mt-4">

@@ -6,16 +6,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('profile.update_name', ['id' => $user->id]) }}">
+                <form id="editProfileInfoForm" method="POST" action="{{ route('profile.update.name', ['id' => $user->id]) }}">
                     @csrf
                     @method('PATCH')
 
                     <div class="mb-3">
                         <label for="profile_name" class="form-label">{{ __('profile.profile_name') }}</label>
                         <input id="profile_name" class="form-control" type="text" name="profile_name" value="{{ old('profile_name', $user->name) }}" required>
-                        @error('profile_name')
-                        <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
+                        <div id="profile_nameError" class="alert alert-danger mt-2 d-none"></div> <!-- Specific error container -->
                     </div>
 
                     <div class="d-flex justify-content-end mt-4">

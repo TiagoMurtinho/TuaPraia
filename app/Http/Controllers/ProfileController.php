@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -31,65 +32,120 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function updateName(Request $request, $id): RedirectResponse
+    public function updateName(Request $request, $id): \Illuminate\Http\JsonResponse
     {
         $user = User::findOrFail($id);
 
-        $validatedData = $request->validate([
+        // Validação
+        $validator = Validator::make($request->all(), [
             'profile_name' => 'required|string|max:255',
         ]);
 
-        $user->name = $validatedData['profile_name'];
+        // Verifica se a validação falhou
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        // Atualiza o nome do usuário
+        $user->name = $request->input('profile_name');
         $user->save();
 
-        return redirect()->route('profile.index', ['id' => $user->id]);
+        return response()->json([
+            'success' => true,
+            'redirect' => route('profile.index', ['id' => $user->id])
+        ]);
     }
 
-    public function updateEmail(Request $request, $id): RedirectResponse
+    public function updateEmail(Request $request, $id): \Illuminate\Http\JsonResponse
     {
-        $user = User::findOrFail($id);
-
-        $validatedData = $request->validate([
-            'profile_email' => 'required|email|unique:users,email,'.$user->id,
+        // Validação
+        $validator = Validator::make($request->all(), [
+            'profile_email' => 'required|email|unique:users,email,' . $id,
         ]);
 
-        $user->email = $validatedData['profile_email'];
+        // Verifica se a validação falhou
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        // Atualiza o email do usuário
+        $user = User::findOrFail($id);
+        $user->email = $request->input('profile_email');
         $user->save();
 
-        return redirect()->route('profile.index', ['id' => $user->id]);
+        return response()->json([
+            'success' => true,
+            'redirect' => route('profile.index', ['id' => $id])
+        ]);
     }
 
-    public function updatePassword(Request $request, $id): RedirectResponse
+    public function updatePassword(Request $request, $id): \Illuminate\Http\JsonResponse
     {
-        $user = User::findOrFail($id);
-
-        $validatedData = $request->validate([
+        // Validação
+        $validator = Validator::make($request->all(), [
+            'current_password' => 'required',
             'new_password' => 'required|string|min:8|confirmed',
         ]);
 
-        $user->password = Hash::make($validatedData['new_password']);
+        // Verifica se a validação falhou
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        // Verifica a senha atual
+        $user = User::findOrFail($id);
+        if (!Hash::check($request->input('current_password'), $user->password)) {
+            return response()->json([
+                'errors' => [
+                    'current_password' => ['A senha atual está incorreta.']
+                ]
+            ], 422);
+        }
+
+        // Atualiza a senha do usuário
+        $user->password = Hash::make($request->input('new_password'));
         $user->save();
 
-        return redirect()->route('profile.index', ['id' => $user->id]);
+        return response()->json([
+            'success' => true,
+            'redirect' => route('profile.index', ['id' => $id])
+        ]);
     }
 
-    public function updatePhoto(Request $request, $id): RedirectResponse
+    public function updatePhoto(Request $request, $id): \Illuminate\Http\JsonResponse
     {
         $user = User::findOrFail($id);
 
-        // Validação da requisição para garantir que foi enviado um arquivo de imagem
-        $request->validate([
-            'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // ajuste o tamanho máximo conforme necessário
+        // Validação
+        $validator = Validator::make($request->all(), [
+            'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Remove a foto atual, se existir
-        $user->clearMediaCollection('users');
+        // Verifica se a validação falhou
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
 
-        // Armazena a nova foto usando Spatie Media Library
-        $user->addMediaFromRequest('profile_photo')
-            ->toMediaCollection('users');
+        // Remove a foto antiga
+        if ($user->getFirstMedia('users')) {
+            $user->clearMediaCollection('users');
+        }
 
-        return redirect()->route('profile.index', ['id' => $user->id])->with('success', __('profile.photo_updated'));
+        // Adiciona a nova foto
+        $user->addMedia($request->file('profile_photo'))->toMediaCollection('users');
+
+        return response()->json([
+            'success' => true,
+            'redirect' => route('profile.index', ['id' => $user->id])
+        ]);
     }
 
     /**

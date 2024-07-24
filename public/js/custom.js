@@ -105,4 +105,7 @@ $(document).ready(function() {
     // Inicializa o gerenciamento de formulários para modais de registro e login
     handleFormSubmission('registerModal', false); // Para o modal de registro
     handleFormSubmission('loginModal', true); // Para o modal de login
+    handleFormSubmission('editProfileEmailModal', false);
+    handleFormSubmission('editProfileInfoModal', false);
+    handleFormSubmission('editProfilePasswordModal', false);
 });
