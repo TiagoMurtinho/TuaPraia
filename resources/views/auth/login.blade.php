@@ -12,13 +12,13 @@
                     <!-- Email Address -->
                     <div>
                         <label for="loginModalEmail" class="form-label">{{ __('Email') }}</label>
-                        <input id="loginModalEmail" type="text" class="form-control" name="email" required autofocus autocomplete="username">
+                        <input id="loginModalEmail" type="text" class="form-control" name="email">
                         <div id="loginModalEmailError" class="alert alert-danger d-none"></div>
                     </div>
                     <!-- Password -->
                     <div class="mt-4">
                         <label for="loginModalPassword" class="form-label">{{ __('Password') }}</label>
-                        <input id="loginModalPassword" type="password" class="form-control" name="password" required autocomplete="current-password">
+                        <input id="loginModalPassword" type="password" class="form-control" name="password">
                         <div id="loginModalPasswordError" class="alert alert-danger d-none"></div>
                     </div>
                     <!-- Remember Me -->
