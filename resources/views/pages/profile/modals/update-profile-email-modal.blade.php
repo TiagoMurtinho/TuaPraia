@@ -11,9 +11,9 @@
                     @method('PATCH')
 
                     <div class="mb-3">
-                        <label for="profile_email" class="form-label">{{ __('profile.email') }}</label>
-                        <input id="profile_email" class="form-control" type="text" name="profile_email" value="{{ old('profile_email', $user->email) }}" required>
-                        <div id="profile_emailError" class="alert alert-danger mt-2 d-none"></div> <!-- Specific error container -->
+                        <label for="editProfileEmailModalProfile_email" class="form-label">{{ __('profile.email') }}</label>
+                        <input id="editProfileEmailModalProfile_email" class="form-control" type="text" name="profile_email" value="{{ old('profile_email', $user->email) }}" required>
+                        <div id="editProfileEmailModalProfile_emailError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="d-flex justify-content-end mt-4">

@@ -10,7 +10,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('attribute.cancel')}}</button>
-                <form id="deleteAttributeForm" method="POST" action="">
+                <form id="deleteAttributeForm{{ $attribute->id }}" method="POST" action="">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">{{__('attribute.delete')}}</button>

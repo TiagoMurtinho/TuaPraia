@@ -6,6 +6,7 @@ use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Validator;
 
 class RegionController extends Controller
 {
@@ -25,20 +26,31 @@ class RegionController extends Controller
         return view('pages.views.regions.regions', compact('region'));
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-
-        $validated = $request->validate([
-            'name' => 'required|string|max:45',
+        // Valida os dados do formulário
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:45', // Ajuste o tamanho máximo conforme necessário
         ]);
 
-        $region = new Region();
-        $region->name = $validated['name'];
+        // Se a validação falhar, retorna os erros em formato JSON
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
 
+        // Lógica para salvar a nova região
+        $region = new Region();
+        $region->name = $request->input('name');
         $region->save();
 
-        return redirect()->route('regions.index')->with('success', 'Região adicionada com sucesso!');
-
+        // Retorna uma resposta de sucesso com uma URL de redirecionamento
+        return response()->json([
+            'success' => true,
+            'redirect' => route('regions.index'), // Ajuste a rota conforme necessário
+            'message' => 'Região adicionada com sucesso!'
+        ]);
     }
 
     public function edit(string $id)
@@ -50,17 +62,31 @@ class RegionController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, int $id): \Illuminate\Http\JsonResponse
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:45',
+        // Valida os dados do formulário
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:45', // Ajuste o tamanho máximo conforme necessário
         ]);
 
+        // Se a validação falhar, retorna os erros em formato JSON
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        // Encontra a região e atualiza o nome
         $region = Region::findOrFail($id);
-        $region->name = $validated['name'];
+        $region->name = $request->input('name');
         $region->save();
 
-        return redirect()->route('regions.index')->with('success', 'Região atualizada com sucesso!');
+        // Retorna uma resposta de sucesso com uma URL de redirecionamento
+        return response()->json([
+            'success' => true,
+            'redirect' => route('regions.index'), // Ajuste a rota conforme necessário
+            'message' => 'Região atualizada com sucesso!'
+        ]);
     }
 
     public function destroy(Region $region):RedirectResponse

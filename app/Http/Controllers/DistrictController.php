@@ -7,6 +7,7 @@ use App\Models\Local;
 use App\Models\Region;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DistrictController extends Controller
 {
@@ -32,20 +33,33 @@ class DistrictController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:45',
+        // Valida os dados do formulário
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
             'regions_id' => 'required|exists:regions,id'
         ]);
 
-        $district = new District();
-        $district->name = $validated['name'];
-        $district->regions_id = $validated['regions_id'];
+        // Se a validação falhar, retorna os erros em formato JSON
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
 
+        // Lógica para salvar o distrito
+        $district = new District();
+        $district->name = $request->input('name');
+        $district->regions_id = $request->input('regions_id');
         $district->save();
 
-        return redirect()->route('districts.index')->with('success', 'Attribute added successfully!');
+        // Retorna uma resposta de sucesso com uma URL de redirecionamento
+        return response()->json([
+            'success' => true,
+            'redirect' => route('districts.index'),
+            'message' => 'Distrito adicionado com sucesso!'
+        ]);
     }
 
     /**
@@ -77,18 +91,31 @@ class DistrictController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, District $district): \Illuminate\Http\JsonResponse
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:45',
-            'regions_id' => 'required|exists:regions,id'
+        // Valida os dados do formulário
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'regions_id' => 'required|exists:regions,id',
         ]);
 
-        $district = District::findorfail($id);
-        $district->name = $validated['name'];
-        $district->regions_id = $validated['regions_id'];
+        // Se a validação falhar, retorna os erros em formato JSON
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        // Atualiza o distrito
+        $district->name = $request->input('name');
+        $district->regions_id = $request->input('regions_id');
         $district->save();
-        return redirect()->route('districts.index')->with('success', 'Distrit updated successfully!');
+
+        // Retorna uma resposta de sucesso
+        return response()->json([
+            'success' => true,
+            'redirect' => route('districts.index') // Ajuste a rota conforme necessário
+        ]);
     }
 
     /**

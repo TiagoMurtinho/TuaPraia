@@ -8,6 +8,7 @@ use App\Models\District;
 use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpKernel\EventListener\LocaleListener;
 
 class LocalController extends Controller
@@ -48,31 +49,53 @@ class LocalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): \Illuminate\Http\RedirectResponse
+    public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-        $request->validate([
+        // Validação dos dados
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'coordinates' => 'required|string',
+            'description' => 'required|string|max:255',
+            'coordinates' => 'required|string|max:255',
             'type' => 'required|string',
-            'districts_id' => 'required|integer',
-            'regions_id' => 'required|integer',
-            'attributes' => 'array',
+            'districts_id' => 'required|exists:districts,id',
+            'regions_id' => 'required|exists:regions,id',
+            'attributes' => 'nullable|array',
             'attributes.*' => 'integer|exists:attributes,id',
             'media' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $local = Local::create($request->all()); // Cria um novo registro de 'Local' com os dados validados da requisição.
+        // Se a validação falhar, retorna os erros em formato JSON
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
 
+        // Criação do novo local
+        $local = new Local();
+        $local->name = $request->input('name');
+        $local->description = $request->input('description');
+        $local->coordinates = $request->input('coordinates');
+        $local->type = $request->input('type');
+        $local->districts_id = $request->input('districts_id');
+        $local->regions_id = $request->input('regions_id');
+        $local->save();
+
+        // Adição de mídia, se fornecida
         if ($request->hasFile('media')) {
-            $local->addMediaFromRequest('media')->toMediaCollection('locals'); // Adiciona o arquivo de mídia à coleção 'locals'.
+            $local->addMediaFromRequest('media')->toMediaCollection('locals');
         }
 
+        // Associação de atributos, se fornecidos
         if ($request->has('attributes')) {
-            $local->attributes()->attach($request->input('attributes'));  // Anexa os atributos ao novo local.
+            $local->attributes()->attach($request->input('attributes'));
         }
 
-        return redirect()->route('locals.index')->with('success', 'Local created successfully!');
+        // Retorna uma resposta de sucesso
+        return response()->json([
+            'success' => true,
+            'redirect' => route('locals.index') // Ajuste a rota conforme necessário
+        ]);
     }
 
     /**
@@ -103,39 +126,55 @@ class LocalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Local $local): \Illuminate\Http\RedirectResponse
+    public function update(Request $request, Local $local): \Illuminate\Http\JsonResponse
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:45',
+        // Validação dos dados recebidos
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:255',
-            'coordinates' => 'nullable|string|max:45',
-            'type' => ['nullable', 'string', 'max:45', Rule::in(Local::LOCALTYPES)],
+            'coordinates' => 'nullable|string|max:255',
+            'type' => ['nullable', 'string', 'max:255', Rule::in(Local::LOCALTYPES)],
             'districts_id' => 'required|exists:districts,id',
             'regions_id' => 'required|exists:regions,id',
             'media' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'attributes' => 'array',
+            'attributes' => 'nullable|array',
             'attributes.*' => 'integer|exists:attributes,id',
         ]);
 
-        $local->update($validated);
+        // Se a validação falhar, retorna os erros em formato JSON
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
 
+        // Atualiza o local com os dados validados
+        $local->update([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'coordinates' => $request->input('coordinates'),
+            'type' => $request->input('type'),
+            'districts_id' => $request->input('districts_id'),
+            'regions_id' => $request->input('regions_id'),
+        ]);
+
+        // Se um novo arquivo de mídia foi enviado, substitua o anterior
         if ($request->hasFile('media')) {
+            // Limpa a coleção de mídia anterior
             $local->clearMediaCollection('locals');
+            // Adiciona o novo arquivo de mídia
             $local->addMediaFromRequest('media')->toMediaCollection('locals');
         }
 
-        /*
-           Sincroniza os atributos associados ao local com os IDs fornecidos na requisição.
-           O método 'attributes()' retorna a relação muitos para muitos entre 'Local' e 'Attribute'.
-           O método 'sync()' atualiza a relação, removendo atributos que não estão na entrada e adicionando novos que estão presentes.
-           Se nenhum atributo for fornecido, um array vazio é passado, removendo todos os atributos existentes.
-        */
-
+        // Sincroniza os atributos associados ao local
         $local->attributes()->sync($request->input('attributes', []));
 
-        $local->save();
-
-        return redirect()->route('locals.index')->with('success', 'Local updated successfully!');
+        // Retorna uma resposta JSON com sucesso
+        return response()->json([
+            'success' => true,
+            'message' => 'Local updated successfully!',
+            'redirect' => route('locals.index') // Ajuste a rota conforme necessário
+        ]);
     }
 
     /**

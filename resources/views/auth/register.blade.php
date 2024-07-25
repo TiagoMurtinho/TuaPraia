@@ -11,39 +11,39 @@
 
                     <!-- Name -->
                     <div class="mb-3">
-                        <label for="name" class="form-label">{{ __('Name') }}</label>
-                        <input id="name" type="text" class="form-control" name="name" required autofocus autocomplete="name">
-                        <div id="nameError" class="alert alert-danger d-none mt-2"></div> <!-- Erro específico -->
+                        <label for="registerModalName" class="form-label">{{ __('Name') }}</label>
+                        <input id="registerModalName" type="text" class="form-control" name="name" required autofocus autocomplete="name">
+                        <div id="registerModalNameError" class="alert alert-danger d-none mt-2"></div>
                     </div>
 
                     <!-- Email Address -->
                     <div class="mb-3">
-                        <label for="register-email" class="form-label">{{ __('Email') }}</label>
-                        <input id="register-email" type="text" class="form-control" name="email" required autocomplete="email">
-                        <div id="emailError" class="alert alert-danger d-none mt-2"></div> <!-- Erro específico -->
+                        <label for="registerModalEmail" class="form-label">{{ __('Email') }}</label>
+                        <input id="registerModalEmail" type="text" class="form-control" name="email" required autocomplete="email">
+                        <div id="registerModalEmailError" class="alert alert-danger d-none mt-2"></div>
                     </div>
 
                     <!-- Password -->
                     <div class="mb-3">
-                        <label for="register-password" class="form-label">{{ __('Password') }}</label>
-                        <input id="register-password" type="password" class="form-control" name="password" required autocomplete="new-password">
-                        <div id="passwordError" class="alert alert-danger d-none mt-2"></div> <!-- Erro específico -->
+                        <label for="registerModalRegister-password" class="form-label">{{ __('Password') }}</label>
+                        <input id="registerModalRegister-password" type="password" class="form-control" name="password" required autocomplete="new-password">
+                        <div id="registerModalPasswordError" class="alert alert-danger d-none mt-2"></div>
                     </div>
 
                     <!-- Confirm Password -->
                     <div class="mb-3">
-                        <label for="password_confirmation" class="form-label">{{ __('Confirm Password') }}</label>
-                        <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                        <div id="passwordConfirmationError" class="alert alert-danger d-none mt-2"></div> <!-- Erro específico -->
+                        <label for="registerModalPassword_confirmation" class="form-label">{{ __('Confirm Password') }}</label>
+                        <input id="registerModalPassword_confirmation" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                        <div id="registerModalPasswordConfirmationError" class="alert alert-danger d-none mt-2"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="photo" class="form-label">{{ __('Upload de Imagem') }}</label>
+                        <label for="registerModalPhoto" class="form-label">{{ __('Upload de Imagem') }}</label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="photo" name="photo" accept="image/*">
+                            <input type="file" class="custom-file-input" id="registerModalPhoto" name="photo" accept="image/*">
                             <label class="custom-file-label" for="photo">Escolher arquivo...</label>
                         </div>
-                        <div class="alert alert-danger d-none mt-2" id="photoError"></div>
+                        <div class="alert alert-danger d-none mt-2" id="registerModalPhotoError"></div>
                     </div>
 
                     <div class="text-end">

@@ -91,9 +91,14 @@ $(document).ready(function() {
                         // Exibir erros específicos
                         var errors = xhr.responseJSON.errors;
                         $.each(errors, function(key, messages) {
-                            var errorDiv = $modal.find('#' + key + 'Error');
+                            // Construa o ID do campo de erro correspondente
+                            var errorDivId = modalId + key.charAt(0).toUpperCase() + key.slice(1) + 'Error';
+                            console.log('Buscando por ID:', '#' + errorDivId);
+                            var errorDiv = $modal.find('#' + errorDivId);
                             if (errorDiv.length) {
                                 errorDiv.text(messages.join(', ')).removeClass('d-none');
+                            } else {
+                                console.log('Div de erro não encontrada para o ID:', errorDivId); // Debug: Verifique se a div foi encontrada
                             }
                         });
                     }
@@ -103,10 +108,19 @@ $(document).ready(function() {
     }
 
     // Inicializa o gerenciamento de formulários para modais de registro e login
-    handleFormSubmission('registerModal', false); // Para o modal de registro
-    handleFormSubmission('loginModal', true); // Para o modal de login
+    handleFormSubmission('registerModal', false);
+    handleFormSubmission('loginModal', true);
     handleFormSubmission('editProfileEmailModal', false);
     handleFormSubmission('editProfileInfoModal', false);
     handleFormSubmission('editProfilePasswordModal', false);
     handleFormSubmission('editProfilePhotoModal', false);
+    handleFormSubmission('addAttributeModal', false);
+    handleFormSubmission('addRegionModal', false);
+    handleFormSubmission('addDistrictModal', false);
+    handleFormSubmission('addLocalModal', false);
+
+    $('.dynamic-modal').each(function() {
+        var modalId = $(this).attr('id');
+        handleFormSubmission(modalId, false);
+    });
 });

@@ -11,21 +11,21 @@
                     @method('PATCH')
 
                     <div class="mb-3">
-                        <label for="current_password" class="form-label">{{ __('profile.current_password') }}</label>
-                        <input id="current_password" class="form-control" type="password" name="current_password" required>
-                        <div id="current_passwordError" class="alert alert-danger mt-2 d-none"></div>
+                        <label for="editProfilePasswordModalCurrent_password" class="form-label">{{ __('profile.current_password') }}</label>
+                        <input id="editProfilePasswordModalCurrent_password" class="form-control" type="password" name="current_password" required>
+                        <div id="editProfilePasswordModalCurrent_passwordError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="new_password" class="form-label">{{ __('profile.new_password') }}</label>
-                        <input id="new_password" class="form-control" type="password" name="new_password" required>
-                        <div id="new_passwordError" class="alert alert-danger mt-2 d-none"></div>
+                        <label for="editProfilePasswordModalNew_password" class="form-label">{{ __('profile.new_password') }}</label>
+                        <input id="editProfilePasswordModalNew_password" class="form-control" type="password" name="new_password" required>
+                        <div id="editProfilePasswordModalNew_passwordError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="new_password_confirmation" class="form-label">{{ __('profile.confirm_new_password') }}</label>
-                        <input id="new_password_confirmation" class="form-control" type="password" name="new_password_confirmation" required>
-                        <div id="new_password_confirmationError" class="alert alert-danger mt-2 d-none"></div>
+                        <label for="editProfilePasswordModalNew_password_confirmation" class="form-label">{{ __('profile.confirm_new_password') }}</label>
+                        <input id="editProfilePasswordModalNew_password_confirmation" class="form-control" type="password" name="new_password_confirmation" required>
+                        <div id="editProfilePasswordModalNew_password_confirmationError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="d-flex justify-content-end mt-4">

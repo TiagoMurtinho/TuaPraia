@@ -11,15 +11,15 @@
                     @csrf
                     <!-- Email Address -->
                     <div>
-                        <label for="login-email" class="form-label">{{ __('Email') }}</label>
-                        <input id="login-email" type="email" class="form-control" name="email" required autofocus autocomplete="username">
-                        <div id="emailError" class="alert alert-danger d-none"></div>
+                        <label for="loginModalEmail" class="form-label">{{ __('Email') }}</label>
+                        <input id="loginModalEmail" type="email" class="form-control" name="email" required autofocus autocomplete="username">
+                        <div id="loginModalEmailError" class="alert alert-danger d-none"></div>
                     </div>
                     <!-- Password -->
                     <div class="mt-4">
-                        <label for="login-password" class="form-label">{{ __('Password') }}</label>
-                        <input id="login-password" type="password" class="form-control" name="password" required autocomplete="current-password">
-                        <div id="passwordError" class="alert alert-danger d-none"></div>
+                        <label for="loginModalPassword" class="form-label">{{ __('Password') }}</label>
+                        <input id="loginModalPassword" type="password" class="form-control" name="password" required autocomplete="current-password">
+                        <div id="loginModalPasswordError" class="alert alert-danger d-none"></div>
                     </div>
                     <!-- Remember Me -->
                     <div class="block mt-4">
