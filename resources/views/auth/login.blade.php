@@ -12,7 +12,7 @@
                     <!-- Email Address -->
                     <div>
                         <label for="loginModalEmail" class="form-label">{{ __('Email') }}</label>
-                        <input id="loginModalEmail" type="email" class="form-control" name="email" required autofocus autocomplete="username">
+                        <input id="loginModalEmail" type="text" class="form-control" name="email" required autofocus autocomplete="username">
                         <div id="loginModalEmailError" class="alert alert-danger d-none"></div>
                     </div>
                     <!-- Password -->

@@ -34,14 +34,20 @@ class ProfileController extends Controller
      */
     public function updateName(Request $request, $id): \Illuminate\Http\JsonResponse
     {
+        // Encontra o usuário ou retorna erro se não encontrar
         $user = User::findOrFail($id);
 
-        // Validação
+        // Validação dos dados recebidos
         $validator = Validator::make($request->all(), [
-            'profile_name' => 'required|string|max:55',
+            'profile_name' => 'required|string|max:55', // Nome obrigatório e com limite de caracteres
+        ], [
+            // Mensagens personalizadas para a validação do nome
+            'profile_name.required' => __('validation.custom.name.required'),
+            'profile_name.string' => __('validation.custom.name.string'),
+            'profile_name.max' => __('validation.custom.name.max'),
         ]);
 
-        // Verifica se a validação falhou
+        // Se a validação falhar, retorna os erros em formato JSON
         if ($validator->fails()) {
             return response()->json([
                 'errors' => $validator->errors()
@@ -49,49 +55,77 @@ class ProfileController extends Controller
         }
 
         // Atualiza o nome do usuário
-        $user->name = $request->input('profile_name');
-        $user->save();
+        try {
+            $user->name = $request->input('profile_name');
+            $user->save();
+        } catch (\Exception $e) {
+            // Retorna um erro se a atualização falhar
+            return response()->json([
+                'message' => __('validation.custom.name.update_failed') // Mensagem de falha traduzida
+            ], 500);
+        }
 
+        // Retorna uma resposta JSON com sucesso
         return response()->json([
             'success' => true,
+            'message' => __('validation.custom.name.updated_successfully'), // Mensagem de sucesso traduzida
             'redirect' => route('profile.index', ['id' => $user->id])
         ]);
     }
 
     public function updateEmail(Request $request, $id): \Illuminate\Http\JsonResponse
     {
-        // Validação
+        // Validação dos dados recebidos
         $validator = Validator::make($request->all(), [
-            'profile_email' => 'required|email|unique:users,email,' . $id,
+            'profile_email' => [
+                'required',
+                'email',
+                'max:255',
+                'unique:users,email,' . $id,
+            ],
+        ], [
+            // Mensagens personalizadas para a validação do e-mail
+            'profile_email.required' => __('validation.custom.email.required'),
+            'profile_email.email' => __('validation.custom.email.email'),
+            'profile_email.max' => __('validation.custom.email.max'),
+            'profile_email.unique' => __('validation.custom.email.unique'),
         ]);
 
-        // Verifica se a validação falhou
+        // Se a validação falhar, retorna os erros em formato JSON
         if ($validator->fails()) {
             return response()->json([
                 'errors' => $validator->errors()
             ], 422);
         }
 
-        // Atualiza o email do usuário
+        // Atualiza o e-mail do usuário
         $user = User::findOrFail($id);
         $user->email = $request->input('profile_email');
         $user->save();
 
         return response()->json([
             'success' => true,
+            'message' => __('validation.custom.email.success_updated'), // Mensagem de sucesso traduzida
             'redirect' => route('profile.index', ['id' => $id])
         ]);
     }
 
     public function updatePassword(Request $request, $id): \Illuminate\Http\JsonResponse
     {
-        // Validação
+        // Validação dos dados recebidos
         $validator = Validator::make($request->all(), [
             'current_password' => 'required',
             'new_password' => 'required|string|min:8|confirmed',
+        ], [
+            // Mensagens personalizadas para a validação da senha
+            'current_password.required' => __('validation.custom.current_password.required'),
+            'new_password.required' => __('validation.custom.new_password.required'),
+            'new_password.string' => __('validation.custom.new_password.string'),
+            'new_password.min' => __('validation.custom.new_password.min'),
+            'new_password.confirmed' => __('validation.custom.new_password.confirmed'),
         ]);
 
-        // Verifica se a validação falhou
+        // Se a validação falhar, retorna os erros em formato JSON
         if ($validator->fails()) {
             return response()->json([
                 'errors' => $validator->errors()
@@ -103,7 +137,7 @@ class ProfileController extends Controller
         if (!Hash::check($request->input('current_password'), $user->password)) {
             return response()->json([
                 'errors' => [
-                    'current_password' => ['A senha atual está incorreta.']
+                    'current_password' => [__('validation.custom.current_password.incorrect')]
                 ]
             ], 422);
         }
@@ -112,38 +146,47 @@ class ProfileController extends Controller
         $user->password = Hash::make($request->input('new_password'));
         $user->save();
 
+        // Retorna uma resposta JSON com sucesso
         return response()->json([
             'success' => true,
+            'message' => __('validation.custom.password.updated_successfully'), // Mensagem de sucesso traduzida
             'redirect' => route('profile.index', ['id' => $id])
         ]);
     }
 
     public function updatePhoto(Request $request, $id): \Illuminate\Http\JsonResponse
     {
+        // Encontra o usuário ou retorna erro se não encontrar
         $user = User::findOrFail($id);
 
-        // Validação
+        // Validação dos dados recebidos
         $validator = Validator::make($request->all(), [
-            'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'media' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ], [
+            'media.image' => __('validation.custom.media.image'),
+            'media.mimes' => __('validation.custom.media.mimes'),
+            'media.max' => __('validation.custom.media.max'),
         ]);
 
-        // Verifica se a validação falhou
+        // Se a validação falhar, retorna os erros em formato JSON
         if ($validator->fails()) {
             return response()->json([
                 'errors' => $validator->errors()
             ], 422);
         }
 
-        // Remove a foto antiga
+        // Remove a foto antiga, se existir
         if ($user->getFirstMedia('users')) {
             $user->clearMediaCollection('users');
         }
 
         // Adiciona a nova foto
-        $user->addMedia($request->file('profile_photo'))->toMediaCollection('users');
+        $user->addMedia($request->file('media'))->toMediaCollection('users');
 
+        // Retorna uma resposta JSON com sucesso
         return response()->json([
             'success' => true,
+            'message' => __('profile.photo_updated_successfully'), // Mensagem de sucesso traduzida
             'redirect' => route('profile.index', ['id' => $user->id])
         ]);
     }

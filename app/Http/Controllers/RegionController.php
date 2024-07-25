@@ -36,7 +36,7 @@ class RegionController extends Controller
         // Se a validação falhar, retorna os erros em formato JSON
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()
+                'errors' => $validator->errors()->toArray() // Retorna os erros de validação
             ], 422);
         }
 
@@ -49,7 +49,7 @@ class RegionController extends Controller
         return response()->json([
             'success' => true,
             'redirect' => route('regions.index'), // Ajuste a rota conforme necessário
-            'message' => 'Região adicionada com sucesso!'
+            'message' => __('messages.region_added_successfully') // Mensagem de sucesso localizada
         ]);
     }
 
@@ -72,7 +72,7 @@ class RegionController extends Controller
         // Se a validação falhar, retorna os erros em formato JSON
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()
+                'errors' => $validator->errors()->toArray() // Retorna os erros de validação
             ], 422);
         }
 
@@ -85,7 +85,7 @@ class RegionController extends Controller
         return response()->json([
             'success' => true,
             'redirect' => route('regions.index'), // Ajuste a rota conforme necessário
-            'message' => 'Região atualizada com sucesso!'
+            'message' => __('messages.region_updated_successfully') // Mensagem de sucesso localizada
         ]);
     }
 

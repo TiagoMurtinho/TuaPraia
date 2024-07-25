@@ -12,38 +12,38 @@
                     <!-- Name -->
                     <div class="mb-3">
                         <label for="registerModalName" class="form-label">{{ __('Name') }}</label>
-                        <input id="registerModalName" type="text" class="form-control" name="name" required autofocus autocomplete="name">
+                        <input id="registerModalName" type="text" class="form-control" name="name">
                         <div id="registerModalNameError" class="alert alert-danger d-none mt-2"></div>
                     </div>
 
                     <!-- Email Address -->
                     <div class="mb-3">
                         <label for="registerModalEmail" class="form-label">{{ __('Email') }}</label>
-                        <input id="registerModalEmail" type="text" class="form-control" name="email" required autocomplete="email">
+                        <input id="registerModalEmail" type="text" class="form-control" name="email">
                         <div id="registerModalEmailError" class="alert alert-danger d-none mt-2"></div>
                     </div>
 
                     <!-- Password -->
                     <div class="mb-3">
                         <label for="registerModalRegister-password" class="form-label">{{ __('Password') }}</label>
-                        <input id="registerModalRegister-password" type="password" class="form-control" name="password" required autocomplete="new-password">
+                        <input id="registerModalRegister-password" type="password" class="form-control" name="password">
                         <div id="registerModalPasswordError" class="alert alert-danger d-none mt-2"></div>
                     </div>
 
                     <!-- Confirm Password -->
                     <div class="mb-3">
                         <label for="registerModalPassword_confirmation" class="form-label">{{ __('Confirm Password') }}</label>
-                        <input id="registerModalPassword_confirmation" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                        <input id="registerModalPassword_confirmation" type="password" class="form-control" name="password_confirmation">
                         <div id="registerModalPasswordConfirmationError" class="alert alert-danger d-none mt-2"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="registerModalPhoto" class="form-label">{{ __('Upload de Imagem') }}</label>
+                        <label for="registerModalMedia" class="form-label">{{ __('Upload de Imagem') }}</label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="registerModalPhoto" name="photo" accept="image/*">
+                            <input type="file" class="custom-file-input" id="registerModalMedia" name="media" accept="image/*">
                             <label class="custom-file-label" for="photo">Escolher arquivo...</label>
                         </div>
-                        <div class="alert alert-danger d-none mt-2" id="registerModalPhotoError"></div>
+                        <div class="alert alert-danger d-none mt-2" id="registerModalMediaError"></div>
                     </div>
 
                     <div class="text-end">

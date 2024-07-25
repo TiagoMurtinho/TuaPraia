@@ -44,7 +44,7 @@ class DistrictController extends Controller
         // Se a validação falhar, retorna os erros em formato JSON
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()
+                'errors' => $validator->errors()->toArray()
             ], 422);
         }
 
@@ -58,7 +58,7 @@ class DistrictController extends Controller
         return response()->json([
             'success' => true,
             'redirect' => route('districts.index'),
-            'message' => 'Distrito adicionado com sucesso!'
+            'message' => __('messages.district_added_successfully') // Mensagem de sucesso localizada
         ]);
     }
 
@@ -102,7 +102,7 @@ class DistrictController extends Controller
         // Se a validação falhar, retorna os erros em formato JSON
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()
+                'errors' => $validator->errors()->toArray() // Retorna os erros de validação
             ], 422);
         }
 
@@ -114,7 +114,8 @@ class DistrictController extends Controller
         // Retorna uma resposta de sucesso
         return response()->json([
             'success' => true,
-            'redirect' => route('districts.index') // Ajuste a rota conforme necessário
+            'redirect' => route('districts.index'),
+            'message' => __('messages.district_updated_successfully') // Mensagem de sucesso localizada
         ]);
     }
 

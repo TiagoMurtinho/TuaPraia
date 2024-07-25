@@ -51,7 +51,7 @@ class LocalController extends Controller
      */
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-        // Validação dos dados
+        // Valida os dados do formulário
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
@@ -67,7 +67,7 @@ class LocalController extends Controller
         // Se a validação falhar, retorna os erros em formato JSON
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()
+                'errors' => $validator->errors()->toArray() // Retorna os erros de validação
             ], 422);
         }
 
@@ -91,10 +91,11 @@ class LocalController extends Controller
             $local->attributes()->attach($request->input('attributes'));
         }
 
-        // Retorna uma resposta de sucesso
+        // Retorna uma resposta de sucesso com uma URL de redirecionamento
         return response()->json([
             'success' => true,
-            'redirect' => route('locals.index') // Ajuste a rota conforme necessário
+            'redirect' => route('locals.index'), // Ajuste a rota conforme necessário
+            'message' => __('messages.local_created_successfully') // Mensagem de sucesso localizada
         ]);
     }
 
@@ -128,7 +129,7 @@ class LocalController extends Controller
      */
     public function update(Request $request, Local $local): \Illuminate\Http\JsonResponse
     {
-        // Validação dos dados recebidos
+        // Valida os dados recebidos
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:255',
@@ -160,10 +161,17 @@ class LocalController extends Controller
 
         // Se um novo arquivo de mídia foi enviado, substitua o anterior
         if ($request->hasFile('media')) {
-            // Limpa a coleção de mídia anterior
-            $local->clearMediaCollection('locals');
-            // Adiciona o novo arquivo de mídia
-            $local->addMediaFromRequest('media')->toMediaCollection('locals');
+            try {
+                // Limpa a coleção de mídia anterior
+                $local->clearMediaCollection('locals');
+                // Adiciona o novo arquivo de mídia
+                $local->addMediaFromRequest('media')->toMediaCollection('locals');
+            } catch (\Exception $e) {
+                // Retorna um erro se a mídia não puder ser processada
+                return response()->json([
+                    'message' => 'Falha ao adicionar mídia: ' . $e->getMessage()
+                ], 500);
+            }
         }
 
         // Sincroniza os atributos associados ao local
@@ -172,7 +180,7 @@ class LocalController extends Controller
         // Retorna uma resposta JSON com sucesso
         return response()->json([
             'success' => true,
-            'message' => 'Local updated successfully!',
+            'message' => 'Local atualizado com sucesso!',
             'redirect' => route('locals.index') // Ajuste a rota conforme necessário
         ]);
     }

@@ -12,7 +12,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="editAttributeModalName{{ $attribute->id }}" class="form-label">{{ __('attribute.attribute_name') }}</label>
-                            <input id="editAttributeModalName{{ $attribute->id }}" class="form-control" type="text" name="name" value="{{ $attribute->name }}" required>
+                            <input id="editAttributeModalName{{ $attribute->id }}" class="form-control" type="text" name="name" value="{{ $attribute->name }}">
                             <div id="editAttributeModal{{ $attribute->id }}NameError" class="alert alert-danger mt-2 d-none"></div>
                         </div>
                     </div>

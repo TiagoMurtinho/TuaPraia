@@ -12,7 +12,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="editRegionModalName{{ $region->id }}" class="form-label">{{ __('region.region_name') }}</label>
-                            <input id="editRegionModalName{{ $region->id }}" class="form-control" type="text" name="name" value="{{ $region->name }}" required>
+                            <input id="editRegionModalName{{ $region->id }}" class="form-control" type="text" name="name" value="{{ $region->name }}">
                             <div id="editRegionModal{{ $region->id }}NameError" class="alert alert-danger mt-2 d-none"></div>
                         </div>
                     </div>

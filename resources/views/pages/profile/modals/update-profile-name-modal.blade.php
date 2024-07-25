@@ -12,7 +12,7 @@
 
                     <div class="mb-3">
                         <label for="editProfileInfoModalProfile_name" class="form-label">{{ __('profile.profile_name') }}</label>
-                        <input id="editProfileInfoModalProfile_name" class="form-control" type="text" name="profile_name" value="{{ old('profile_name', $user->name) }}" required>
+                        <input id="editProfileInfoModalProfile_name" class="form-control" type="text" name="profile_name" value="{{ old('profile_name', $user->name) }}">
                         <div id="editProfileInfoModalProfile_nameError" class="alert alert-danger mt-2 d-none"></div> <!-- Specific error container -->
                     </div>
 

@@ -41,7 +41,7 @@ class AttributeController extends Controller
         // Se a validação falhar, retorna os erros em formato JSON
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()
+                'errors' => $validator->errors()->toArray()
             ], 422);
         }
 
@@ -50,11 +50,10 @@ class AttributeController extends Controller
         $attribute->name = $request->input('name');
         $attribute->save();
 
-
         // Retorna uma resposta de sucesso
         return response()->json([
             'success' => true,
-            'redirect' => route('attributes.index') // Ajuste a rota conforme necessário
+            'redirect' => route('attributes.index')
         ]);
     }
 
@@ -80,21 +79,29 @@ class AttributeController extends Controller
     public function update(Request $request, int $id): \Illuminate\Http\JsonResponse
     {
         // Valida os dados recebidos
-        $validated = $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:45'
         ]);
+
+        // Se a validação falhar, retorna os erros em formato JSON
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()->toArray()
+            ], 422);
+        }
 
         // Encontra o atributo pelo ID ou retorna erro se não encontrar
         $attribute = Attribute::findOrFail($id);
 
         // Atualiza o atributo
-        $attribute->name = $validated['name'];
+        $attribute->name = $request->input('name');
         $attribute->save();
 
-        // Retorna uma resposta JSON para o AJAX
+        // Retorna uma resposta JSON com mensagem de sucesso
         return response()->json([
             'success' => true,
-            'redirect' => route('attributes.index') // Redireciona para a lista de atributos após a atualização
+            'redirect' => route('attributes.index'),
+            'message' => __('messages.attribute_updated_successfully') // Mensagem de sucesso localizada
         ]);
     }
 

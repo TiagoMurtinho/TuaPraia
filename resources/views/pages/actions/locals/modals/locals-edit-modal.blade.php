@@ -12,7 +12,7 @@
 
                     <div class="mb-3">
                         <label for="editLocalModalName{{ $local->id }}" class="form-label">{{ __('local.local_name') }}</label>
-                        <input id="editLocalModalName{{ $local->id }}" class="form-control" type="text" name="name" value="{{ $local->name }}" required>
+                        <input id="editLocalModalName{{ $local->id }}" class="form-control" type="text" name="name" value="{{ $local->name }}">
                         <div id="editLocalModal{{ $local->id }}NameError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
@@ -40,22 +40,22 @@
 
                     <div class="mb-3">
                         <label for="editLocalModalDistrict{{ $local->id }}" class="form-label">{{ __('local.district') }}</label>
-                        <select id="editLocalModalDistrict{{ $local->id }}" class="form-select" name="districts_id" required>
+                        <select id="editLocalModalDistrict{{ $local->id }}" class="form-select" name="districts_id">
                             @foreach ($districts as $district)
                                 <option value="{{ $district->id }}" {{ $district->id == $local->districts_id ? 'selected' : '' }}>{{ $district->name }}</option>
                             @endforeach
                         </select>
-                        <div id="editLocalModal{{ $local->id }}DistrictError" class="alert alert-danger mt-2 d-none"></div>
+                        <div id="editLocalModal{{ $local->id }}Districts_idError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">
                         <label for="editLocalModalRegion{{ $local->id }}" class="form-label">{{ __('local.region') }}</label>
-                        <select id="editLocalModalRegion{{ $local->id }}" class="form-select" name="regions_id" required>
+                        <select id="editLocalModalRegion{{ $local->id }}" class="form-select" name="regions_id">
                             @foreach ($regions as $region)
                                 <option value="{{ $region->id }}" {{ $region->id == $local->regions_id ? 'selected' : '' }}>{{ $region->name }}</option>
                             @endforeach
                         </select>
-                        <div id="editLocalModal{{ $local->id }}RegionError" class="alert alert-danger mt-2 d-none"></div>
+                        <div id="editLocalModal{{ $local->id }}Regions_idError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">

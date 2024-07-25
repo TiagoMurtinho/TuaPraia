@@ -11,7 +11,7 @@
 
                     <div class="mb-3">
                         <label for="addRegionModalName" class="form-label">{{ __('region.region_name') }}</label>
-                        <input id="addRegionModalName" class="form-control" type="text" name="name" required>
+                        <input id="addRegionModalName" class="form-control" type="text" name="name">
                         <div id="addRegionModalNameError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 

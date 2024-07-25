@@ -11,7 +11,7 @@
 
                     <div class="mb-3">
                         <label for="addLocalModalName" class="form-label">{{ __('local.local_name') }}</label>
-                        <input id="addLocalModalName" class="form-control" type="text" name="name" required>
+                        <input id="addLocalModalName" class="form-control" type="text" name="name">
                         <div id="addLocalModalNameError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
@@ -39,22 +39,22 @@
 
                     <div class="mb-3">
                         <label for="addLocalModalDistrict" class="form-label">{{ __('local.district') }}</label>
-                        <select id="addLocalModalDistrict" class="form-select" name="districts_id" required>
+                        <select id="addLocalModalDistrict" class="form-select" name="districts_id">
                             @foreach ($districts as $district)
                                 <option value="{{ $district->id }}">{{ $district->name }}</option>
                             @endforeach
                         </select>
-                        <div id="addLocalModalDistrictError" class="alert alert-danger mt-2 d-none"></div>
+                        <div id="addLocalModalDistricts_idError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">
                         <label for="addLocalModalRegion" class="form-label">{{ __('local.region') }}</label>
-                        <select id="addLocalModalRegion" class="form-select" name="regions_id" required>
+                        <select id="addLocalModalRegion" class="form-select" name="regions_id">
                             @foreach ($regions as $region)
                                 <option value="{{ $region->id }}">{{ $region->name }}</option>
                             @endforeach
                         </select>
-                        <div id="addLocalModalRegionError" class="alert alert-danger mt-2 d-none"></div>
+                        <div id="addLocalModalRegions_idError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">

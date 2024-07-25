@@ -11,7 +11,7 @@
 
                     <div class="mb-3">
                         <label for="addAttributeModalName" class="form-label">{{ __('attribute.attribute_name') }}</label>
-                        <input id="addAttributeModalName" class="form-control" type="text" name="name" required autofocus autocomplete="name">
+                        <input id="addAttributeModalName" class="form-control" type="text" name="name">
                         <div id="addAttributeModalNameError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 

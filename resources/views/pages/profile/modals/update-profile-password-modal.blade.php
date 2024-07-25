@@ -12,19 +12,19 @@
 
                     <div class="mb-3">
                         <label for="editProfilePasswordModalCurrent_password" class="form-label">{{ __('profile.current_password') }}</label>
-                        <input id="editProfilePasswordModalCurrent_password" class="form-control" type="password" name="current_password" required>
+                        <input id="editProfilePasswordModalCurrent_password" class="form-control" type="password" name="current_password">
                         <div id="editProfilePasswordModalCurrent_passwordError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">
                         <label for="editProfilePasswordModalNew_password" class="form-label">{{ __('profile.new_password') }}</label>
-                        <input id="editProfilePasswordModalNew_password" class="form-control" type="password" name="new_password" required>
+                        <input id="editProfilePasswordModalNew_password" class="form-control" type="password" name="new_password">
                         <div id="editProfilePasswordModalNew_passwordError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">
                         <label for="editProfilePasswordModalNew_password_confirmation" class="form-label">{{ __('profile.confirm_new_password') }}</label>
-                        <input id="editProfilePasswordModalNew_password_confirmation" class="form-control" type="password" name="new_password_confirmation" required>
+                        <input id="editProfilePasswordModalNew_password_confirmation" class="form-control" type="password" name="new_password_confirmation">
                         <div id="editProfilePasswordModalNew_password_confirmationError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 

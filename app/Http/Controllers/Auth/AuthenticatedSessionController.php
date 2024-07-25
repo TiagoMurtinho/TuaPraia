@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
             return response()->json(['success' => true, 'redirect' => route('home', absolute: false)]);
         }
 
-        return response()->json(['message' => 'Invalid credentials.'], 401);
+        return response()->json(['message' => __('validation.custom.auth.auth')], 401);
     }
 
     /**
