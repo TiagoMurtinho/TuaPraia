@@ -13,7 +13,7 @@
             <div class="hero-content">
                 <h2 class="hero-title">Encontre o local perfeito para a sua próxima aventura</h2>
                 <form class="search-form">
-                    <input type="text" class="search-input" placeholder="Pesquise por praias, cascatas, e muito mais...">
+                    <input type="search" class="search-input" placeholder="Pesquise por praias, cascatas, e muito mais...">
                     <button type="submit" class="search-button">Pesquisar</button>
                 </form>
             </div>
