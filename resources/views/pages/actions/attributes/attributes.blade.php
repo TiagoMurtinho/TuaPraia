@@ -31,12 +31,11 @@
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#editAttributeModal{{ $attribute->id }}">
                                             <i class="ph ph-pencil-simple edit-pencil me-1"></i>
                                         </a>
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteAttributeModal" onclick="confirmDelete('deleteAttributeForm', '{{ route('attributes.destroy', $attribute->id) }}')">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteAttributeModal" onclick="confirmDelete('deleteAttributeForm{{ $attribute->id }}', '{{ route('attributes.destroy', $attribute->id) }}')">
                                             <i class="ph ph-trash delete-trash me-1"></i>
                                         </a>
                                     </td>
                                 </tr>
-                                @include('pages.actions.attributes.modals.edit-attributes', ["id" => $attribute->id, "name" => $attribute->name])
                                 @include('pages.actions.attributes.modals.delete-attributes')
                             @endforeach
                             </tbody>
@@ -45,5 +44,7 @@
                 </div>
             </div>
         </div>
+
+    @include('pages.actions.attributes.modals.edit-attributes', ["id" => $attribute->id, "name" => $attribute->name])
     @include('pages.actions.attributes.modals.add-attributes')
 @endsection

@@ -22,13 +22,15 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request): \Illuminate\Http\JsonResponse
     {
-        $request->authenticate();
+        $credentials = $request->only('email', 'password');
 
-        $request->session()->regenerate();
+        if (Auth::attempt($credentials)) {
+            return response()->json(['success' => true, 'redirect' => route('home', absolute: false)]);
+        }
 
-        return redirect()->intended(route('home', absolute: false));
+        return response()->json(['message' => __('validation.custom.auth.auth')], 401);
     }
 
     /**
