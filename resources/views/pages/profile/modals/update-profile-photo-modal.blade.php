@@ -13,7 +13,7 @@
                     <div class="mb-3">
                         <label for="editProfilePhotoModalMedia" class="form-label">{{ __('local.media') }}</label>
                         <div class="custom-file">
-                            <input class="custom-file-input" type="file" id="editProfilePhotoModalMedia" name="profile_photo">
+                            <input class="custom-file-input" type="file" id="editProfilePhotoModalMedia" name="media">
                             <label class="custom-file-label" for="editProfilePhotoModalMedia">
                                 {{ $user->getFirstMediaUrl('users') ? $user->name : 'Escolher arquivo...' }}
                             </label>

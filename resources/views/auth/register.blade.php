@@ -41,7 +41,7 @@
                         <label for="registerModalMedia" class="form-label">{{ __('Upload de Imagem') }}</label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="registerModalMedia" name="media" accept="image/*">
-                            <label class="custom-file-label" for="photo">Escolher arquivo...</label>
+                            <label class="custom-file-label" for="registerModalMedia">Escolher arquivo...</label>
                         </div>
                         <div class="alert alert-danger d-none mt-2" id="registerModalMediaError"></div>
                     </div>
