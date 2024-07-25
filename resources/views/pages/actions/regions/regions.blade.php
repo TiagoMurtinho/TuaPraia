@@ -36,7 +36,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            @include('pages.actions.regions.modals.regions-edit-modal', ["id" => $region->id, "name" => $region->name])
+
                             @include('pages.actions.regions.modals.regions-delete-modal')
                         @endforeach
                         </tbody>
@@ -46,5 +46,6 @@
             </div>
         </div>
     </div>
+    @include('pages.actions.regions.modals.regions-edit-modal')
     @include('pages.actions.regions.modals.regions-add-modal')
 @endsection

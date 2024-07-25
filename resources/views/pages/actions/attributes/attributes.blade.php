@@ -45,6 +45,6 @@
             </div>
         </div>
 
-    @include('pages.actions.attributes.modals.edit-attributes', ["id" => $attribute->id, "name" => $attribute->name])
+    @include('pages.actions.attributes.modals.edit-attributes')
     @include('pages.actions.attributes.modals.add-attributes')
 @endsection
