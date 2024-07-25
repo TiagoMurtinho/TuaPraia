@@ -12,8 +12,26 @@ class HomeController extends Controller
      */
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
-        $locals = Local::all();
-        return view('home', compact('locals'));
+        // Obtém todos os locais e filtra por tipo e atributo
+        $blueFlag = Local::where('type', 'beach')
+            ->whereHas('attributes', function($query) {
+                $query->where('attributes.id', 23); // Substitua 1 pelo ID real do atributo 'blue_flag'
+            })->get();
+
+        $zeroPollution = Local::where('type', 'beach')
+            ->whereHas('attributes', function($query) {
+                $query->where('attributes.id', 24); // Substitua 2 pelo ID real do atributo 'zero_pollution'
+            })->get();
+
+        $fluvials = Local::where('type', 'fluvial')->get();
+        $cascades = Local::where('type', 'cascade')->get();
+
+        return view('home', [
+            'blueFlag' => $blueFlag,
+            'zeroPollution' => $zeroPollution,
+            'fluvials' => $fluvials,
+            'cascades' => $cascades,
+        ]);
     }
 
     /**

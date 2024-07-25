@@ -116,7 +116,7 @@ class LocalController extends Controller
         $districts = District::all();
         $regions = Region::all();
 
-        return view('locals.edit', [
+        return view('pages.actions.locals.locals', [
             'local' => $local,
             'districts' => $districts,
             'regions' => $regions,

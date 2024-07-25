@@ -124,3 +124,23 @@ $(document).ready(function() {
         handleFormSubmission(modalId, false);
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    var backToTopButton = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 200) { // Ajuste a quantidade de rolagem antes de mostrar o botão
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
+        }
+    });
+
+    backToTopButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});
