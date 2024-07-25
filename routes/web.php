@@ -24,13 +24,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('attributes', AttributeController::class)->except('show', 'create');
     Route::resource('districts', \App\Http\Controllers\DistrictController::class)->except('show');
+    Route::resource('locals', \App\Http\Controllers\LocalController::class)
+        ->except('show');
 });
 
 Route::resource('regions', RegionController::class)->except('show')
     ->middleware(['auth', 'verified']);
 
-Route::resource('locals', \App\Http\Controllers\LocalController::class)
-    ->middleware(['auth', 'verified']);
+/*Route::resource('locals', \App\Http\Controllers\LocalController::class)
+    ->middleware(['auth', 'verified']);*/
 
 Route::get('/storage/{path}', function ($path) {
     return response()->file(storage_path('app/public/' . $path));
@@ -38,6 +40,8 @@ Route::get('/storage/{path}', function ($path) {
 
 Route::get('/districts/{district}', [DistrictController::class, 'show'])->name('districts.show');
 Route::get('/regions/{id}', [RegionController::class, 'show'])->name('regions.show');
+Route::get('locals', [LocalController::class, 'show'])->name('locals.show');
+Route::get('locals/{id}', [LocalController::class, 'show'])->name('locals.show');
 
 Route::get('/autocomplete-locals', [LocalController::class, 'autocomplete'])->name('locals.autocomplete');
 Route::get('/search-results', [LocalController::class, 'searchResults'])->name('search.results');
