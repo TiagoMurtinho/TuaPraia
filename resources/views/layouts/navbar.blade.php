@@ -20,7 +20,7 @@
                             @if($mediaUrl)
                                 <img src="{{ $mediaUrl }}" alt="{{ Auth::user()->name }}" class="img-fluid rounded-circle navbar-user-image">
                             @else
-                                <div class="no-image d-flex align-items-center justify-content-center" style="width: 150px; height: 150px;">{{ __('local.no_image') }}</div>
+                                <img src="{{ Auth::user()->avatar_url }}" alt="Avatar de {{ Auth::user()->name }}" class="img-fluid rounded-circle navbar-user-image">
                             @endif
                         </div>
                     </a>
@@ -104,12 +104,13 @@
                     @endif
                 </li>
             </ul>
-            <form class="d-flex mt-3" role="search">
-                <input class="form-control me-2" type="search" placeholder="{{__('nav.search')}}" aria-label="Search">
+            <form id="searchForm1" class="d-flex mt-3" role="search">
+                <input class="form-control me-2" type="search" id="search1" placeholder="{{__('nav.search')}}" aria-label="Search" autocomplete="off" data-url="{{ route('locals.autocomplete') }}">
                 <button class="btn btn-outline-success custom-btn-sucess" type="submit">
                     <i class="ph ph-magnifying-glass"></i>
                 </button>
             </form>
+            <ul id="search-results1" class="list-group position-absolute w-100 mt-2" style="z-index: 1000;"></ul>
         </div>
     </div>
     @include('auth.login')

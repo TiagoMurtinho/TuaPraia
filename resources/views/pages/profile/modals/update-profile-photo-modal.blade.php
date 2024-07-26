@@ -6,21 +6,19 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('profile.update.photo', ['id' => $user->id]) }}" enctype="multipart/form-data">
+                <form id="editProfilePhotoForm" method="POST" action="{{ route('profile.update.photo', ['id' => $user->id]) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
 
                     <div class="mb-3">
-                        <label for="profile_photo" class="form-label">{{ __('local.media') }}</label>
+                        <label for="editProfilePhotoModalMedia" class="form-label">{{ __('local.media') }}</label>
                         <div class="custom-file">
-                            <input class="custom-file-input" type="file" id="profile_photo_{{ $user->id }}" name="profile_photo">
-                            <label class="custom-file-label" for="profile_photo_{{ $user->id }}">
+                            <input class="custom-file-input" type="file" id="editProfilePhotoModalMedia" name="media">
+                            <label class="custom-file-label" for="editProfilePhotoModalMedia">
                                 {{ $user->getFirstMediaUrl('users') ? $user->name : 'Escolher arquivo...' }}
                             </label>
                         </div>
-                        @error('profile_photo')
-                        <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
+                        <div id="editProfilePhotoModalMediaError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="d-flex justify-content-end mt-4">

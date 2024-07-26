@@ -6,84 +6,73 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('locals.store') }}" enctype="multipart/form-data">
+                <form id="addLocalForm" method="POST" action="{{ route('locals.store') }}" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">
-                        <label for="name" class="form-label">{{ __('local.local_name') }}</label>
-                        <input id="name" class="form-control" type="text" name="name" required>
-                        @error('name')
-                        <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
+                        <label for="addLocalModalName" class="form-label">{{ __('local.local_name') }}</label>
+                        <input id="addLocalModalName" class="form-control" type="text" name="name">
+                        <div id="addLocalModalNameError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="description" class="form-label">{{ __('local.description') }}</label>
-                        <textarea id="description" class="form-control" name="description" rows="3"></textarea>
-                        @error('description')
-                        <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
+                        <label for="addLocalModalDescription" class="form-label">{{ __('local.description') }}</label>
+                        <textarea id="addLocalModalDescription" class="form-control" name="description" rows="3"></textarea>
+                        <div id="addLocalModalDescriptionError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="coordinates" class="form-label">{{ __('local.coordinates') }}</label>
-                        <input id="coordinates" class="form-control" type="text" name="coordinates">
-                        @error('coordinates')
-                        <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
+                        <label for="addLocalModalCoordinates" class="form-label">{{ __('local.coordinates') }}</label>
+                        <input id="addLocalModalCoordinates" class="form-control" type="text" name="coordinates">
+                        <div id="addLocalModalCoordinatesError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="type" class="form-label">{{ __('local.type') }}</label>
-                        <select id="type" class="form-select" name="type">
+                        <label for="addLocalModalType" class="form-label">{{ __('local.type') }}</label>
+                        <select id="addLocalModalType" class="form-select" name="type">
                             @foreach(\App\Models\Local::LOCALTYPES as $type)
                                 <option value="{{ $type }}">{{ ucfirst($type) }}</option>
                             @endforeach
                         </select>
-                        @error('type')
-                        <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
+                        <div id="addLocalModalTypeError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="districts_id" class="form-label">{{ __('local.district') }}</label>
-                        <select id="districts_id" class="form-select" name="districts_id" required>
+                        <label for="addLocalModalDistrict" class="form-label">{{ __('local.district') }}</label>
+                        <select id="addLocalModalDistrict" class="form-select" name="districts_id">
                             @foreach ($districts as $district)
                                 <option value="{{ $district->id }}">{{ $district->name }}</option>
                             @endforeach
                         </select>
-                        @error('districts_id')
-                        <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
+                        <div id="addLocalModalDistricts_idError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="regions_id" class="form-label">{{ __('local.region') }}</label>
-                        <select id="regions_id" class="form-select" name="regions_id" required>
+                        <label for="addLocalModalRegion" class="form-label">{{ __('local.region') }}</label>
+                        <select id="addLocalModalRegion" class="form-select" name="regions_id">
                             @foreach ($regions as $region)
                                 <option value="{{ $region->id }}">{{ $region->name }}</option>
                             @endforeach
                         </select>
-                        @error('regions_id')
-                        <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
+                        <div id="addLocalModalRegions_idError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
-                    <div>
-                        <label>Attributes:</label>
+                    <div class="mb-3">
+                        <label>{{ __('local.attributes') }}</label>
                         @foreach($attributes as $attribute)
                             <div class="form-check">
-                                <input type="checkbox" id="attribute_{{ $attribute->id }}" name="attributes[]" value="{{ $attribute->id }}" class="form-check-input">
-                                <label for="attribute_{{ $attribute->id }}" class="form-check-label">{{ $attribute->name }}</label>
+                                <input type="checkbox" id="addLocalModalAttribute_{{ $attribute->id }}" name="attributes[]" value="{{ $attribute->id }}" class="form-check-input">
+                                <label for="addLocalModalAttribute_{{ $attribute->id }}" class="form-check-label">{{ $attribute->name }}</label>
                             </div>
                         @endforeach
                     </div>
 
                     <div class="form-group">
-                        <label for="add_media" class="form-label">{{ __('local.media') }}</label>
+                        <label for="addLocalModalMedia" class="form-label">{{ __('local.media') }}</label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="add_media" name="media">
-                            <label class="custom-file-label" for="add_media">Escolher arquivo...</label>
+                            <input type="file" class="custom-file-input" id="addLocalModalMedia" name="media">
+                            <label class="custom-file-label" for="addLocalModalMedia">Escolher arquivo...</label>
+                            <div id="addLocalModalMediaError" class="alert alert-danger mt-2 d-none"></div>
                         </div>
                     </div>
 
