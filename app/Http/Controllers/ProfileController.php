@@ -194,7 +194,7 @@ class ProfileController extends Controller
     /**
      * Delete the user's account.
      */
-    public function destroy(Request $request, $id): RedirectResponse
+    /*public function destroy(Request $request, $id): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
@@ -210,6 +210,26 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }*/
+
+    public function destroy(Request $request, $id)
+    {
+        $user = User::findOrFail($id); // Encontre o usuário pelo ID
+
+        $request->validate([
+            'password' => 'required',
+        ]);
+
+        if (!Hash::check($request->password, $user->password)) {
+            return redirect()->route('profile.show', Auth::id())
+                ->with('error', 'Senha incorreta. A conta não foi apagada.');
+        }
+
+        Auth::logout();
+        $user->delete();
+
+        return redirect()->route('home')
+            ->with('success', 'Conta apagada com sucesso.');
     }
 
 }

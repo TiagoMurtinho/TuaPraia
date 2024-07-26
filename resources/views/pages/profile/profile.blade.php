@@ -59,6 +59,7 @@
                                 <i class="ph ph-gear text-primary"></i>
                             </a>
                         </p>
+                        <button type="button" class="btn btn-danger mt-3" data-bs-toggle="modal" data-bs-target="#deleteProfileModal">{{ __('profile.delete_account') }}</button>
                     </div>
                 </div>
             </div>
@@ -69,5 +70,6 @@
     @include('pages.profile.modals.update-profile-name-modal')
     @include('pages.profile.modals.update-profile-email-modal')
     @include('pages.profile.modals.update-profile-password-modal')
+    @include('pages.profile.modals.delete-profile-modal')
 
 @endsection
