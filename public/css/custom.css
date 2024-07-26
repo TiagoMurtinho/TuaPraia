@@ -564,7 +564,7 @@
     color: #888;
 }
 
-special_attr_info_row {
+.special_attr_info_row {
     display: flex;
     flex-direction: column; /* Colocar o texto abaixo da imagem */
     align-items: center; /* Centralizar o conteúdo */
