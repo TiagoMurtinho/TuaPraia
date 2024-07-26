@@ -18,9 +18,9 @@ return [
     'confirm_password' => 'Confirmar Palavra-Passe',
     'saved' => 'Guardado.',
     'delete_account' => 'Apagar Conta',
-    'pre_delete_message' => 'Assim que a sua conta for eliminada, todos os seus recursos e dados serão eliminados permanentemente. Antes de eliminar a sua conta, descarregue quaisquer dados ou informações que pretenda reter.',
     'sure_to_delete' => 'De certeza que pretende eliminar a conta?',
-    'delete_with_pass_confirmation' => 'Assim que a sua conta for eliminada, todos os seus recursos e dados serão apagados permanentemente. Por favor, insira a sua palavra-passe para confirmar que gostaria de apagar permanentemente a sua conta.',
+    'delete_info' => 'A sua conta será eliminada e todos os dados serão apagados.',
+    'delete_with_pass_confirmation' => 'Por favor, insira a sua palavra-passe para confirmar que gostaria de apagar permanentemente a sua conta.',
     'password' => 'Palavra-Passe',
     'cancel' => 'Cancelar',
 

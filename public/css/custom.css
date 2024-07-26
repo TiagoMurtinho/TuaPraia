@@ -43,6 +43,12 @@
     color: white !important;
 }
 
+/* Mensagens de sucesso*/
+.global-success-messages {
+    max-width: 500px;
+    text-align: center;
+}
+
 .custom-body-bg,
 .offcanvas-body-bg {
     background-color: #fcf6e4 !important;

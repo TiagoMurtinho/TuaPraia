@@ -221,7 +221,7 @@ class ProfileController extends Controller
         ]);
 
         if (!Hash::check($request->password, $user->password)) {
-            return redirect()->route('profile.show', Auth::id())
+            return redirect()->route('profile.index', Auth::id())
                 ->with('error', 'Senha incorreta. A conta não foi apagada.');
         }
 

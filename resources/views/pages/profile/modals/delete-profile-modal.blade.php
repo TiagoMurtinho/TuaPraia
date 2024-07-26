@@ -8,21 +8,12 @@
 
             <div class="modal-body">
                 <div id="deleteProfileMessage" class="d-none"></div>
-                <!-- Mensagem de erro será exibida aqui -->
-                @if(session('error'))
-                    <div class="alert alert-danger">{{ session('error') }}</div>
-                @endif
-                <!-- Mensagem de erro será exibida aqui -->
-                @if(session('error'))
-                    <div class="alert alert-danger">{{ session('error') }}</div>
-                @endif
-                <!-- Mensagem de sucesso será exibida aqui -->
-                @if(session('success'))
-                    <div class="alert alert-success">{{ session('success') }}</div>
-                @endif
+
                 <form action="{{ route('profile.destroy', Auth::id()) }}" method="POST">
                     @csrf
                     @method('DELETE')
+                    <p class="mb-3">{{ __('profile.delete_info') }}</p>
+                    <p class="mb-3">{{ __('profile.delete_with_pass_confirmation') }}</p>
                     <div class="mb-3">
                         <label for="password" class="form-label">{{ __('profile.confirm_password') }}</label>
                         <input type="password" class="form-control" id="password" name="password" required>

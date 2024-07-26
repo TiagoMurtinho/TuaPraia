@@ -14,9 +14,9 @@
         </header><!-- End Header -->
     @endif
 
-    <!-- Exibe mensagem de sucesso se houver -->
+    <!-- Exibe mensagem de sucesso se existir -->
     @if(session('success'))
-        <div class="alert alert-success global-success-messages">
+        <div class="alert alert-success global-success-messages mx-auto mt-2">
             {{ session('success') }}
         </div>
     @endif
