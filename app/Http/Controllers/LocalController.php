@@ -19,7 +19,7 @@ class LocalController extends Controller
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
         $attributes = Attribute::all(); // Obtém todos os atributos do model "Attribute".
-        $locals = Local::with('media')->paginate(5); // Obtèm tpdps os locals com as suas respectivas medias e paginação.
+        $locals = Local::with('media')->paginate(5); // Obtém todos os locals com as suas respectivas medias e paginação.
         $modalData = $this->addLocalModalData();
 
         return view('pages.actions.locals.locals', [
@@ -102,9 +102,22 @@ class LocalController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
-        //
+
+        $local = Local::with('district', 'attributes')->findOrFail($id);
+
+        $coordinates = explode(',', $local->coordinates);
+
+        if (count($coordinates) == 2) {
+            $latitude = trim($coordinates[0]);
+            $longitude = trim($coordinates[1]);
+        } else {
+            $latitude = null;
+            $longitude = null;
+        }
+
+        return view('pages.views.locals.local', compact('local', 'latitude', 'longitude'));
     }
 
     /**
@@ -207,6 +220,23 @@ class LocalController extends Controller
             'regions' => $regions,
             'districts' => $districts,
         ];
+    }
+
+    //Completar as sugestões na barra de pesquisa da navbar
+    public function autocomplete(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $search = $request->get('query');
+        $locals = Local::where('name', 'LIKE', "%{$search}%")->get();
+
+        return response()->json($locals);
+    }
+
+    public function searchResults(Request $request)
+    {
+        $query = $request->input('query');
+        $locals = Local::where('name', 'LIKE', "%{$query}%")->get();
+
+        return view('pages.views.results.search-results', compact('locals', 'query'));
     }
 
 }

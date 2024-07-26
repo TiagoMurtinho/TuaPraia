@@ -104,12 +104,13 @@
                     @endif
                 </li>
             </ul>
-            <form class="d-flex mt-3" role="search">
-                <input class="form-control me-2" type="search" placeholder="{{__('nav.search')}}" aria-label="Search">
+            <form id="searchForm" class="d-flex mt-3" role="search">
+                <input class="form-control me-2" type="search" id="search" placeholder="{{__('nav.search')}}" aria-label="Search" autocomplete="off" data-url="{{ route('locals.autocomplete') }}">
                 <button class="btn btn-outline-success custom-btn-sucess" type="submit">
                     <i class="ph ph-magnifying-glass"></i>
                 </button>
             </form>
+            <ul id="search-results" class="list-group position-absolute w-100 mt-2" style="z-index: 1000;"></ul>
         </div>
     </div>
     @include('auth.login')

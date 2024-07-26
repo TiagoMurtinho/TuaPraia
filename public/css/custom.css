@@ -480,6 +480,99 @@
     height: 50px!important;
 }
 
+#search-results {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+#search-results .list-group-item {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 320px; /* Ajustar a largura máxima */
+}
+
+/* View do local específico */
+
+.local-container {
+    margin-left: 150px !important;
+}
+
+.icon-text-container {
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.place_icon {
+    font-size: 40px; /* Ajustar o tamanho do ícone conforme necessário */
+    height: auto;
+    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
+}
+
+.icon-text-container p {
+    margin: 0; /* Remove a margem padrão do parágrafo para melhor o alinhamento */
+}
+
+.image-description-container {
+    display: flex;
+    align-items: flex-start; /* Alinha verticalmente a imagem e o texto */
+    gap: 20px; /* Espaçamento entre a imagem e a descrição */
+}
+
+.local-image-container {
+    text-align: center; /* Centraliza a imagem dentro do container */
+    flex: 1;
+    width: 20%;
+    max-width:400px;
+    margin: auto;
+}
+
+.local-image {
+    max-width: 100%; /* Ajusta a imagem para não ultrapassar o container */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Garante que a imagem é um bloco e que aceita margens */
+}
+
+.description-container {
+    flex: 1;
+    margin-top: 20px; /* Está a alinhar verticalmente a descrição com a imagem*/
+}
+
+.local-subtitle {
+    font-size: 35px;
+}
+
+.description_icon {
+    font-size: 25px; /* Ajustar o tamanho do ícone conforme necessário */
+    height: auto;
+    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
+}
+
+.description-container .icon-text-container {
+    gap: 10px;
+}
+
+.local_description_info {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.local_description_info_row {
+    display: flex; /* Serviu para colocar cada ícone ao lado de cada parágrafo, em vez de ser um por cima do outro */
+    align-items: flex-start !important;
+    gap: 10px;
+}
+
+.no-image-local {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    background-color: #f4f4f4;
+    color: #888;
+}
+
 .homepage-container {
     padding-left: 150px!important;
     padding-right: 150px!important;

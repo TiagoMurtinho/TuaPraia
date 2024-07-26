@@ -44,13 +44,89 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-/*document.querySelectorAll('.dropdown-submenu a').forEach(function (submenuToggle) {
-    submenuToggle.addEventListener('click', function (e) {
-        e.preventDefault();
-        const submenu = submenuToggle.nextElementSibling;
-        submenu.classList.toggle('show');
-    });
-});*/
+//Fazer o autocomplete na searchbar da navbar
+
+document.addEventListener('DOMContentLoaded', function() { //Garante que todo o HTML esteja carregado
+    var searchInput = document.getElementById('search');
+    var searchResults = document.getElementById('search-results');
+    var searchForm = document.getElementById('searchForm');
+
+    if (searchInput) {
+        var searchUrl = searchInput.getAttribute('data-url'); // Obtém a URL do atributo data-url
+        searchInput.addEventListener('keyup', function() { //Sempre que uma tecla se soltar, aciona a função interna
+            var query = searchInput.value;
+
+            if (query.length > 1) { //Se a pesquisa for maior que 1 caracter, são mostradas as sugestões
+                var xhr = new XMLHttpRequest(); //Requisição Ajax
+                xhr.open('GET', searchUrl + '?query=' + encodeURIComponent(query), true);
+                xhr.onload = function() { //Define o que deve acontecer quando a resposta da requisição é recebida
+                    if (xhr.status === 200) { //Verificar se a requisição foi bem sucedida
+                        var data = JSON.parse(xhr.responseText); //Resposta analisada em JSON
+                        searchResults.innerHTML = ''; //Limpa o searchResults
+                        if (data.length > 0) {
+                            data.forEach(function(local) {
+                                var li = document.createElement('li');
+                                li.className = 'list-group-item';
+
+                                // Limita o texto do nome a 30 caracteres, o resto terá reticências
+                                var name = local.name.length > 30 ? local.name.substring(0, 30) + '...' : local.name;
+
+                                li.innerHTML = '<a href="/locals/' + local.id + '">' + name + '</a>';
+                                searchResults.appendChild(li);
+                            });
+                        } else {
+                            var li = document.createElement('li');
+                            li.className = 'list-group-item';
+                            li.textContent = 'No results found';
+                            searchResults.appendChild(li);
+                        }
+                    } else {
+                        console.error('Erro na requisição:', xhr.status, xhr.statusText);
+                    }
+                };
+                xhr.onerror = function() { //Define o que é feito em caso de erro na requisição
+                    console.error('Erro na requisição AJAX');
+                };
+                xhr.send();
+            } else {
+                searchResults.innerHTML = '';
+            }
+        });
+});
+
+        // Adicionar um listener para a submissão do formulário
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita a submissão padrão do formulário
+
+            var query = searchInput.value;
+
+            if (query.length > 1) {
+                var xhr = new XMLHttpRequest(); // Requisição Ajax
+                xhr.open('GET', searchUrl + '?query=' + encodeURIComponent(query), true);
+                xhr.onload = function() { // Define o que deve acontecer quando a resposta da requisição é recebida
+                    if (xhr.status === 200) { // Verificar se a requisição foi bem sucedida
+                        var data = JSON.parse(xhr.responseText); // Resposta analisada em JSON
+                        if (data.length === 1) { // Se houver apenas um resultado, redirecionar para a página desse resultado
+                            window.location.href = '/locals/' + data[0].id;
+                        } else if (data.length > 1) { // Se houver múltiplos resultados, redirecionar para a página de resultados
+                            window.location.href = '/search-results?query=' + encodeURIComponent(query);
+                        } else {
+                            alert('No results found'); // Exibir uma mensagem de alerta se nenhum resultado for encontrado
+                        }
+                    } else {
+                        console.error('Erro na requisição:', xhr.status, xhr.statusText);
+                    }
+                };
+                xhr.onerror = function() { // Define o que é feito em caso de erro na requisição
+                    console.error('Erro na requisição AJAX');
+                };
+                xhr.send();
+            }
+        });
+    } else {
+        console.error('Elemento de busca não encontrado');
+    }
+});
 
 $(document).ready(function() {
     function handleFormSubmission(modalId, isGlobal) {
