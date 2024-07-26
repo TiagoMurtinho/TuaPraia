@@ -305,7 +305,7 @@
     font-size: 2rem;
 }
 
-.district-view-card {
+.view-card {
     background-color: #f4f4f4;
     border: none;
     border-radius: 0.5rem;
@@ -324,11 +324,11 @@
     min-height: 350px; /* Definindo uma altura mínima para as cards */
 }
 
-.district-view-card:hover {
+.view-card:hover {
     transform: translateY(-10px);
 }
 
-.district-view-card-img-top {
+.view-card-img-top {
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     object-fit: cover;
@@ -345,23 +345,23 @@
     color: #888;
 }
 
-.district-view-card-body {
+.view-card-body {
     padding: 1rem;
     position: relative;
     flex-grow: 1;
 }
 
-.district-view-card-title {
+.view-card-title {
     font-size: 1.25rem;
     margin-bottom: 0.75rem;
 }
 
-.district-view-card-text {
+.view-card-text {
     margin-bottom: 1.25rem;
     flex-grow: 1;
 }
 
-.district-icon-link {
+.custom-icon-link {
     position: absolute;
     bottom: 0.1rem;
     right: 0.5rem;
@@ -370,7 +370,7 @@
     transition: color 0.3s;
 }
 
-.district-icon-link:hover {
+.custom-icon-link:hover {
     color: #0056b3;
 }
 
@@ -380,7 +380,7 @@
     font-style: normal;
 }
 
-.district-container {
+.custom-container {
     padding-left: 150px!important;
     padding-right: 150px!important;
     box-sizing: border-box;
@@ -485,11 +485,32 @@
     overflow: hidden;
 }
 
-#search-results .list-group-item {
+#search-results1 .list-group-item {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 320px; /* Ajustar a largura máxima */
+    max-width: 80%; /* Ajustar a largura máxima */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+#search-results2 .list-group-item {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 63%; /* Ajustar a largura máxima */
+    margin-left: 10.5%;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+#search-results2 .list-group-item {
+    direction: rtl; /* Define a direção do texto da direita para a esquerda */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+#search-results1 .list-group-item:hover,
+#search-results2 .list-group-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    background-color: #f9f9f9; /* Opcional: Adicionar uma cor de fundo diferente no hover para um efeito de destaque */
 }
 
 /* View do local específico */
@@ -571,12 +592,6 @@
     height: 300px;
     background-color: #f4f4f4;
     color: #888;
-}
-
-.homepage-container {
-    padding-left: 150px!important;
-    padding-right: 150px!important;
-    box-sizing: border-box;
 }
 
 .homepage-title {
@@ -668,13 +683,18 @@
     overflow: hidden;
 }
 
-.search-input {
-    border: none;
+.search-form .search-input.form-control {
+    border: none!important;
     padding: 0.75rem;
     width: 100%;
     font-size: 1rem;
     color: #000000; /* Cor do texto dentro do campo de pesquisa */
     background-color: #f9f9f9; /* Cor de fundo do campo de pesquisa */
+    outline: none!important;
+}
+
+.search-form .search-input.form-control:focus {
+    outline: none!important; /* Remove o contorno azul padrão no foco */
 }
 
 .search-button {

@@ -13,5 +13,9 @@ return [
     'edit' => 'Editar',
     'delete_district' => 'Excluir distrito',
     'sure_to_delete' => 'Você tem a certeza que deseja excluir o distrito',
-    'delete' => 'Excluir'
+    'delete' => 'Excluir',
+    'local_district' => 'Locais do distrito de ',
+    'beach' => 'Praias',
+    'fluvial' => 'Praias fluvias',
+    'cascade' => 'Cascatas',
 ];

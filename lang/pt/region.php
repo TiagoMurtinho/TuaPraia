@@ -13,5 +13,10 @@ return [
     'edit' => 'Editar',
     'delete_region' => 'Excluir Região',
     'sure_to_delete' => 'Você tem certeza que deseja excluir a região',
-    'delete' => 'Excluir'
+    'delete' => 'Excluir',
+    'local_region' => 'Locais da região ',
+    'district_region' => 'Distrito de' ,
+    'beach' => 'Praias',
+    'fluvial' => 'Praias fluviais',
+    'cascade' => 'Cascatas',
 ];
