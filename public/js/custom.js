@@ -46,23 +46,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //Fazer o autocomplete na searchbar da navbar
 
-document.addEventListener('DOMContentLoaded', function() { //Garante que todo o HTML esteja carregado
+document.addEventListener('DOMContentLoaded', function() { // Garante que todo o HTML esteja carregado
     var searchInput = document.getElementById('search');
     var searchResults = document.getElementById('search-results');
     var searchForm = document.getElementById('searchForm');
 
-    if (searchInput) {
+    if (searchInput && searchResults && searchForm) {
         var searchUrl = searchInput.getAttribute('data-url'); // Obtém a URL do atributo data-url
-        searchInput.addEventListener('keyup', function() { //Sempre que uma tecla se soltar, aciona a função interna
+
+        searchInput.addEventListener('keyup', function() { // Sempre que uma tecla se soltar, aciona a função interna
             var query = searchInput.value;
 
-            if (query.length > 1) { //Se a pesquisa for maior que 1 caracter, são mostradas as sugestões
-                var xhr = new XMLHttpRequest(); //Requisição Ajax
+            if (query.length > 1) { // Se a pesquisa for maior que 1 caracter, são mostradas as sugestões
+                var xhr = new XMLHttpRequest(); // Requisição Ajax
                 xhr.open('GET', searchUrl + '?query=' + encodeURIComponent(query), true);
-                xhr.onload = function() { //Define o que deve acontecer quando a resposta da requisição é recebida
-                    if (xhr.status === 200) { //Verificar se a requisição foi bem sucedida
-                        var data = JSON.parse(xhr.responseText); //Resposta analisada em JSON
-                        searchResults.innerHTML = ''; //Limpa o searchResults
+                xhr.onload = function() { // Define o que deve acontecer quando a resposta da requisição é recebida
+                    if (xhr.status === 200) { // Verificar se a requisição foi bem sucedida
+                        var data = JSON.parse(xhr.responseText); // Resposta analisada em JSON
+                        searchResults.innerHTML = ''; // Limpa o searchResults
                         if (data.length > 0) {
                             data.forEach(function(local) {
                                 var li = document.createElement('li');
@@ -84,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() { //Garante que todo o 
                         console.error('Erro na requisição:', xhr.status, xhr.statusText);
                     }
                 };
-                xhr.onerror = function() { //Define o que é feito em caso de erro na requisição
+                xhr.onerror = function() { // Define o que é feito em caso de erro na requisição
                     console.error('Erro na requisição AJAX');
                 };
                 xhr.send();
@@ -92,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function() { //Garante que todo o 
                 searchResults.innerHTML = '';
             }
         });
-});
 
         // Adicionar um listener para a submissão do formulário
         searchForm.addEventListener('submit', function(event) {
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() { //Garante que todo o 
             }
         });
     } else {
-        console.error('Elemento de busca não encontrado');
+        console.error('Elemento de busca ou formulário não encontrado');
     }
 });
 
