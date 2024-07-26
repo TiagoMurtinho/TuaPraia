@@ -189,7 +189,7 @@ class LocalController extends Controller
         $query = $request->input('query');
         $locals = Local::where('name', 'LIKE', "%{$query}%")->get();
 
-        return view('pages.views.locals.search-results', compact('locals', 'query'));
+        return view('pages.views.results.search-results', compact('locals', 'query'));
     }
 
 }
