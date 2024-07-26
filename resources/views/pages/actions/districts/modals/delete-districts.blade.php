@@ -10,7 +10,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('district.cancel') }}</button>
-                <form id="deleteDistrictForm" method="POST" action="">
+                <form id="deleteDistrictForm{{ $district->id }}" method="POST" action="">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">{{ __('district.delete') }}</button>

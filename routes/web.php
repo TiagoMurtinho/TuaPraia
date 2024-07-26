@@ -5,14 +5,17 @@ use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocalController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\{
+    AttributeController,
+    DistrictController,
+    HomeController,
+    ProfileController,
+    RegionController,
+    LocalController
+};
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RegionController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
-/*Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile/{id}', [ProfileController::class, 'index'])->name('profile.index');
@@ -24,18 +27,27 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('attributes', AttributeController::class)->except('show', 'create');
     Route::resource('districts', \App\Http\Controllers\DistrictController::class)->except('show');
+    Route::resource('regions', RegionController::class)->except('show');
     Route::resource('locals', \App\Http\Controllers\LocalController::class)
         ->except('show');
 });
 
-Route::resource('regions', RegionController::class)->except('show')
-    ->middleware(['auth', 'verified']);
-
-/*Route::resource('locals', \App\Http\Controllers\LocalController::class)
-    ->middleware(['auth', 'verified']);*/
-
 Route::get('/storage/{path}', function ($path) {
     return response()->file(storage_path('app/public/' . $path));
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('{id}', [ProfileController::class, 'index'])->name('index');
+        Route::get('{id}/edit', [ProfileController::class, 'edit'])->name('edit');
+        Route::patch('{id}/update-photo', [ProfileController::class, 'updatePhoto'])->name('update.photo');
+        Route::patch('{id}/update-name', [ProfileController::class, 'updateName'])->name('update.name');
+        Route::patch('{id}/update-email', [ProfileController::class, 'updateEmail'])->name('update.email');
+        Route::patch('{id}/update-password', [ProfileController::class, 'updatePassword'])->name('update.password');
+        Route::delete('{id}', [ProfileController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::resource('attributes', AttributeController::class)->except(['show', 'create']);
+    Route::resource('districts', DistrictController::class)->except('show');
+    Route::resource('regions', RegionController::class)->except('show');
+    Route::resource('locals', LocalController::class);
 });
 
 Route::get('/districts/{district}', [DistrictController::class, 'show'])->name('districts.show');
@@ -47,9 +59,9 @@ Route::get('/autocomplete-locals', [LocalController::class, 'autocomplete'])->na
 Route::get('/search-results', [LocalController::class, 'searchResults'])->name('search.results');
 
 
-/*Route::resource('attributes', AttributeController::class)
-    ->middleware('auth');*/
-//'verified' serve para quando o user faz a verificação de email
+Route::get('/storage/{path}', function ($path) {
+    return response()->file(storage_path('app/public/' . $path));
+});
 
 require __DIR__.'/auth.php';
 

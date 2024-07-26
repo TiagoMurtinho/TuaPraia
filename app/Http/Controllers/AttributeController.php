@@ -6,6 +6,7 @@ use App\Models\Attribute;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class AttributeController extends Controller
 {
@@ -30,18 +31,30 @@ class AttributeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:45'
+        // Valida os dados do formulário
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
         ]);
 
-        $attribute = new Attribute();
-        $attribute->name = $validated['name'];
+        // Se a validação falhar, retorna os erros em formato JSON
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()->toArray()
+            ], 422);
+        }
 
+        // Lógica para salvar o atributo
+        $attribute = new Attribute();
+        $attribute->name = $request->input('name');
         $attribute->save();
 
-        return redirect()->route('attributes.index')->with('success', 'Attribute added successfully!');
+        // Retorna uma resposta de sucesso
+        return response()->json([
+            'success' => true,
+            'redirect' => route('attributes.index')
+        ]);
     }
 
     /**
@@ -63,16 +76,33 @@ class AttributeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): \Illuminate\Http\JsonResponse
     {
-        $validated = $request->validate([
+        // Valida os dados recebidos
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:45'
         ]);
 
-        $attribute = Attribute::findorfail($id);
-        $attribute->name = $validated['name'];
+        // Se a validação falhar, retorna os erros em formato JSON
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()->toArray()
+            ], 422);
+        }
+
+        // Encontra o atributo pelo ID ou retorna erro se não encontrar
+        $attribute = Attribute::findOrFail($id);
+
+        // Atualiza o atributo
+        $attribute->name = $request->input('name');
         $attribute->save();
-        return redirect()->route('attributes.index')->with('success', 'Attribute updated successfully!');
+
+        // Retorna uma resposta JSON com mensagem de sucesso
+        return response()->json([
+            'success' => true,
+            'redirect' => route('attributes.index'),
+            'message' => __('messages.attribute_updated_successfully') // Mensagem de sucesso localizada
+        ]);
     }
 
     /**

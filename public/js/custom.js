@@ -44,14 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-/*document.querySelectorAll('.dropdown-submenu a').forEach(function (submenuToggle) {
-    submenuToggle.addEventListener('click', function (e) {
-        e.preventDefault();
-        const submenu = submenuToggle.nextElementSibling;
-        submenu.classList.toggle('show');
-    });
-});*/
-
 //Fazer o autocomplete na searchbar da navbar
 
 document.addEventListener('DOMContentLoaded', function() { //Garante que todo o HTML esteja carregado
@@ -100,10 +92,7 @@ document.addEventListener('DOMContentLoaded', function() { //Garante que todo o 
                 searchResults.innerHTML = '';
             }
         });
-/*    } else {
-        console.error('Elemento de busca não encontrado');
-    }
-});*/
+});
 
         // Adicionar um listener para a submissão do formulário
         searchForm.addEventListener('submit', function(event) {
@@ -139,3 +128,95 @@ document.addEventListener('DOMContentLoaded', function() { //Garante que todo o 
     }
 });
 
+$(document).ready(function() {
+    function handleFormSubmission(modalId, isGlobal) {
+        var $modal = $('#' + modalId);
+        var $form = $modal.find('form');
+        var $globalError = $modal.find('#' + modalId + 'GlobalError');
+
+        $form.on('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            var actionUrl = $form.attr('action');
+
+            // Limpa erros anteriores
+            $modal.find('.alert.alert-danger').empty().addClass('d-none');
+
+            $.ajax({
+                url: actionUrl,
+                method: 'POST',
+                data: new FormData($form[0]),
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    if (response.success) {
+                        window.location.href = response.redirect;
+                    }
+                },
+                error: function(xhr) {
+                    console.log('Erro de validação:', xhr.responseJSON); // Debug: Verificar a resposta do servidor
+
+                    if (isGlobal) {
+                        // Exibir erros globais
+                        if (xhr.responseJSON.message) {
+                            $globalError.text(xhr.responseJSON.message).removeClass('d-none');
+                        } else {
+                            $globalError.text('Ocorreu um erro.').removeClass('d-none');
+                        }
+                    } else {
+                        // Exibir erros específicos
+                        var errors = xhr.responseJSON.errors;
+                        $.each(errors, function(key, messages) {
+                            // Construa o ID do campo de erro correspondente
+                            var errorDivId = modalId + key.charAt(0).toUpperCase() + key.slice(1) + 'Error';
+                            console.log('Buscando por ID:', '#' + errorDivId);
+                            var errorDiv = $modal.find('#' + errorDivId);
+                            if (errorDiv.length) {
+                                errorDiv.text(messages.join(', ')).removeClass('d-none');
+                            } else {
+                                console.log('Div de erro não encontrada para o ID:', errorDivId); // Debug: Verifique se a div foi encontrada
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    }
+
+    // Inicializa o gerenciamento de formulários para modais de registro e login
+    handleFormSubmission('registerModal', false);
+    handleFormSubmission('loginModal', true);
+    handleFormSubmission('editProfileEmailModal', false);
+    handleFormSubmission('editProfileInfoModal', false);
+    handleFormSubmission('editProfilePasswordModal', false);
+    handleFormSubmission('editProfilePhotoModal', false);
+    handleFormSubmission('addAttributeModal', false);
+    handleFormSubmission('addRegionModal', false);
+    handleFormSubmission('addDistrictModal', false);
+    handleFormSubmission('addLocalModal', false);
+
+    $('.dynamic-modal').each(function() {
+        var modalId = $(this).attr('id');
+        handleFormSubmission(modalId, false);
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    var backToTopButton = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 200) { // Ajuste a quantidade de rolagem antes de mostrar o botão
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
+        }
+    });
+
+    backToTopButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});

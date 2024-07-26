@@ -20,7 +20,7 @@
                         @if($mediaUrl)
                             <img src="{{ $mediaUrl }}" alt="{{ $user->name }}" class="img-fluid rounded-circle">
                         @else
-                            <div class="no-image d-flex align-items-center justify-content-center">{{ __('local.no_image') }}</div>
+                            <img src="{{ $user->avatar_url }}" alt="Avatar de {{ $user->name }}">
                         @endif
                         <div class="mt-3">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#editProfilePhotoModal" class="text-decoration-none profile-icon-link">

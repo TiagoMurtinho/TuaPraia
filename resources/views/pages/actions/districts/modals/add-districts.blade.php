@@ -6,24 +6,23 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('districts.store') }}">
+                <form id="addDistrictForm" method="POST" action="{{ route('districts.store') }}">
                     @csrf
 
                     <div class="mb-3">
-                        <label for="name" class="form-label">{{ __('district.name') }}</label>
-                        <input id="name" class="form-control" type="text" name="name" required>
-                        @error('name')
-                        <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
+                        <label for="addDistrictModalName" class="form-label">{{ __('district.name') }}</label>
+                        <input id="addDistrictModalName" class="form-control" type="text" name="name">
+                        <div id="addDistrictModalNameError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
-                    <div>
-                        <label for="region" class="form-label">{{ __('district.region') }}</label>
-                        <select name="regions_id" id="region" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <div class="mb-3">
+                        <label for="addDistrictModalRegion" class="form-label">{{ __('district.region') }}</label>
+                        <select name="regions_id" id="addDistrictModalRegion" class="form-select form-select-sm">
                             @foreach($regions as $region)
-                                <option value="{{$region->id}}">{{$region->name}}</option>
+                                <option value="{{ $region->id }}">{{ $region->name }}</option>
                             @endforeach
                         </select>
+                        <div id="addDistrictModalRegions_idError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="d-flex justify-content-end mt-4">
