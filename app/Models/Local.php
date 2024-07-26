@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use http\Exception\InvalidArgumentException;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use InvalidArgumentException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -64,6 +65,11 @@ class Local extends Model implements HasMedia
     public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class, 'regions_id', 'id');
+    }
+
+    public function feedbacks(): HasMany
+    {
+        return $this->hasMany(Feedback::class, 'locals_id','id');
     }
 
     //Puts an exception if we use a different type.

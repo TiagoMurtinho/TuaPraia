@@ -140,8 +140,6 @@ document.addEventListener('DOMContentLoaded', function() { // Garante que todo o
                     xhr.send();
                 }
             });
-        } else {
-            console.error('Elemento de busca ou formulário não encontrado');
         }
     });
 });
@@ -235,6 +233,73 @@ document.addEventListener('DOMContentLoaded', function () {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const stars = document.querySelectorAll('.rating-stars .star');
+    const ratingInput = document.getElementById('rating');
+    let selectedRating = 0;
+
+    stars.forEach(star => {
+        star.addEventListener('mouseover', function() {
+            const value = this.getAttribute('data-value');
+            updateStars(value);
+        });
+
+        star.addEventListener('mouseout', function() {
+            updateStars(selectedRating);
+        });
+
+        star.addEventListener('click', function() {
+            selectedRating = this.getAttribute('data-value');
+            ratingInput.value = selectedRating;
+            updateStars(selectedRating);
+        });
+    });
+
+    function updateStars(rating) {
+        stars.forEach(star => {
+            star.classList.remove('selected');
+            if (star.getAttribute('data-value') <= rating) {
+                star.classList.add('selected');
+            }
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const showFormButton = document.getElementById('show-form-button');
+    const showCommentsButton = document.getElementById('show-comments-button');
+    const feedbackFormContainer = document.getElementById('feedback-form-container');
+    const commentsListContainer = document.getElementById('comments-list-container');
+
+    showFormButton.addEventListener('click', function () {
+        feedbackFormContainer.style.display = 'block';
+        commentsListContainer.style.display = 'none';
+    });
+
+    showCommentsButton.addEventListener('click', function () {
+        feedbackFormContainer.style.display = 'none';
+        commentsListContainer.style.display = 'block';
+    });
+
+    // Código para manipulação das estrelas
+    const stars = document.querySelectorAll('.rating-stars .star');
+    const ratingInput = document.getElementById('rating');
+
+    stars.forEach(star => {
+        star.addEventListener('click', function () {
+            const value = this.getAttribute('data-value');
+            ratingInput.value = value;
+
+            stars.forEach(s => {
+                s.classList.remove('selected');
+                if (s.getAttribute('data-value') <= value) {
+                    s.classList.add('selected');
+                }
+            });
         });
     });
 });

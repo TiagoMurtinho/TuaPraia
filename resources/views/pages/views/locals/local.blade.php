@@ -105,10 +105,89 @@
             <div class="local_description_info_row"><i class="ph ph-tag description_icon"></i><p>{{ ucfirst($local->type) }}</p></div>
             <div class="local_description_info_row"><i class="ph ph-gps description_icon"></i><p>{{ __('local.coordinates') }}: {{ $local->coordinates }}</p></div>
 
+            <div class="feedback-container">
+                <div class="feedback-header">
+                    <h2 class="julee-regular local-subtitle">{{ __('local.feedback') }}</h2>
+                    <!-- Navbar de Comentários -->
+                    <div class="comments-navbar">
+                        <button id="show-form-button" class="comments-nav-button">Deixar Comentário</button>
+                        <button id="show-comments-button" class="comments-nav-button">Ver Comentários</button>
+                    </div>
+                </div>
 
+                <!-- Contêiner para o formulário de feedback -->
+                <div id="feedback-form-container">
+                    <form action="{{ route('feedback.store', $local->id) }}" method="POST">
+                        @csrf
+                        <!-- Avaliação com estrelas -->
+                        <div class="rating-container">
+                            <label for="rating" class="rating-label">{{ __('local.rating') }}:</label>
+                            <div class="rating-stars">
+                                <span data-value="1" class="star">&#9733;</span>
+                                <span data-value="2" class="star">&#9733;</span>
+                                <span data-value="3" class="star">&#9733;</span>
+                                <span data-value="4" class="star">&#9733;</span>
+                                <span data-value="5" class="star">&#9733;</span>
+                            </div>
+                            <input type="hidden" name="rating" id="rating" value="0">
+                        </div>
+
+                        <!-- Campo para comentários -->
+                        <div class="comment-container mt-4">
+                            <label for="comment" class="comment-label">{{ __('local.comment') }}:</label>
+                            <textarea id="comment" name="comment" rows="4" class="comment-textarea" placeholder="{{ __('local.enter_comment') }}"></textarea>
+                        </div>
+                        <div class="feedback-button-container">
+                            <!-- Botão de envio -->
+                            <button type="submit" class="submit-button mt-3">{{ __('local.submit') }}</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Contêiner para a listagem de comentários -->
+                <div id="comments-list-container" class="comments-container" style="display: none;">
+                    <h2>Comentários</h2>
+                    <hr>
+                    @foreach ($local->feedbacks as $feedback)
+                        <div class="comment">
+                            <div class="comment-header">
+                                <!-- Exibição da foto do usuário -->
+                                <div class="comment-user-photo">
+                                    @php
+                                        $mediaUrl = $feedback->user->getFirstMediaUrl('users');
+                                    @endphp
+                                    @if($mediaUrl)
+                                        <img src="{{ $mediaUrl }}" alt="{{ $feedback->user->name }}" class="comment-user-photo-img">
+                                    @else
+                                        <img src="{{ $feedback->user->avatar_url }}" alt="Avatar de {{ $feedback->user->name }}" class="comment-user-photo-img">
+                                    @endif
+                                </div>
+                                <!-- Informações do usuário e data -->
+                                <div class="comment-user-info">
+                                    <strong>{{ $feedback->user->name }}</strong>
+                                    <small>em {{ $feedback->created_at->format('d/m/Y') }}</small>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                @for ($i = 0; $i < $feedback->rating; $i++)
+                                    <span class="star">&#9733;</span>
+                                @endfor
+                            </div>
+                            <p>{{ $feedback->comment }}</p>
+                            <div class="comment-actions">
+                                @if(auth()->check() && auth()->id() === $feedback->users_id || auth()->check() && auth()->user()->hasRole('admin'))
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteCommentModal{{ $feedback->id }}" onclick="confirmDelete('deleteCommentForm{{ $feedback->id }}', '{{ route('feedback.destroy', $feedback->id) }}')">
+                                    <button type="button" class="delete-comment-button">
+                                        <i class="ph ph-trash delete-trash me-1"></i>
+                                    </button>
+                                </a>
+                                @endif
+                            </div>
+                        </div>
+                        @include('pages.views.locals.modals.comments-delete-modal', ['feedback' => $feedback])
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
-
-
-
 @endsection
