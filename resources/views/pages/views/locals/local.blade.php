@@ -31,17 +31,17 @@
             <!-- Atributos destacados -->
             <div class="description-container">
 
-                @if($local->attributes->contains('name', 'Blue Flag') || $local->attributes->contains('name', 'Parking'))
+                @if($local->attributes->contains('name', 'Blue Flag') || $local->attributes->contains('name', 'Parque'))
                     <div class="icon-text-container local_description_info">
-                        @if($local->attributes->contains('name', 'Blue Flag'))
+                        @if($local->attributes->contains('name', 'Bandeira Azul'))
                             <div class="special_attr_info_row">
-                                <img src="{{ asset('assets/img/bandeira_azul.png') }}" alt="Blue Flag" class="attr-image">
+                                <img src="{{ asset('assets/img/bandeira_azul.png') }}" alt="Bandeira Azul" class="attr-image">
                                 <p>{{ __('local.blue_flag') }}</p>
                             </div>
                         @endif
-                        @if($local->attributes->contains('name', 'Parking'))
+                        @if($local->attributes->contains('name', 'Parque'))
                             <div class="local_description_info_row">
-                                <i class="ph ph-letter-circle-p description_icon"></i>
+                                <img src="{{ asset('assets/img/parking.png') }}" alt="Parque" class="attr-image">
                                 <p>{{ __('local.parking') }}</p>
                             </div>
                         @endif
@@ -61,21 +61,21 @@
                     <div class="attribute-pair">
                         @foreach($chunk as $attribute)
                             <div class="local_description_info_row">
-                                @if($attribute->name == 'Disabled Mobility Access')
+                                @if($attribute->name == 'Acesso Mobilidade Reduzida')
                                     <i class="ph ph-wheelchair description_icon"></i>
-                                @elseif($attribute->name == 'Parking')
+                                @elseif($attribute->name == 'Parque')
                                     <i class="ph ph-letter-circle-p description_icon"></i>
-                                @elseif($attribute->name == 'Shower')
+                                @elseif($attribute->name == 'Chuveiro')
                                     <i class="ph ph-shower description_icon"></i>
                                 @elseif($attribute->name == 'WC')
                                     <i class="ph ph-toilet description_icon"></i>
-                                @elseif($attribute->name == 'Lifeguard')
+                                @elseif($attribute->name == 'Nadador Salvador')
                                     <i class="ph ph-binoculars description_icon"></i>
-                                @elseif($attribute->name == 'Blue Flag')
+                                @elseif($attribute->name == 'Bandeira Azul')
                                     <i class="ph ph-flag description_icon"></i>
-                                @elseif($attribute->name == 'Restaurants')
+                                @elseif($attribute->name == 'Restauração')
                                     <i class="ph ph-fork-knife description_icon"></i>
-                                @elseif($attribute->name == 'Activities')
+                                @elseif($attribute->name == 'Atividades')
                                     <i class="ph ph-person-simple-swim description_icon"></i>
                                 @else
                                     <i class="ph ph-smiley-sad description_icon"></i>
