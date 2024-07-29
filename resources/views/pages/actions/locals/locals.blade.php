@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container mt-5">
+    <div class="container py-5">
         <div class="actions-card">
             <div class="card">
                 <div class="card-header d-flex align-items-center">
@@ -74,7 +74,7 @@
                         </table>
 
                             <div class="justify-content-end">
-                                {{ $locals->links() }} <!-- Links de paginação -->
+                                {{ $locals->links('vendor.pagination.bootstrap-5') }} <!-- Links de paginação -->
                             </div>
 
                     </div>
