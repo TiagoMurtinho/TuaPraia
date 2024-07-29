@@ -28,7 +28,7 @@ class RegionController extends Controller
     {
         // Valida os dados do formulário
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:45', // Ajuste o tamanho máximo conforme necessário
+            'name' => 'required|string|max:45',
         ]);
 
         // Se a validação falhar, retorna os erros em formato JSON
@@ -46,8 +46,8 @@ class RegionController extends Controller
         // Retorna uma resposta de sucesso com uma URL de redirecionamento
         return response()->json([
             'success' => true,
-            'redirect' => route('regions.index'), // Ajuste a rota conforme necessário
-            'message' => __('messages.region_added_successfully') // Mensagem de sucesso localizada
+            'redirect' => route('regions.index'),
+            'message' => __('messages.region_added_successfully')
         ]);
     }
 
@@ -64,7 +64,7 @@ class RegionController extends Controller
     {
         // Valida os dados do formulário
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:45', // Ajuste o tamanho máximo conforme necessário
+            'name' => 'required|string|max:45',
         ]);
 
         // Se a validação falhar, retorna os erros em formato JSON
@@ -82,7 +82,7 @@ class RegionController extends Controller
         // Retorna uma resposta de sucesso com uma URL de redirecionamento
         return response()->json([
             'success' => true,
-            'redirect' => route('regions.index'), // Ajuste a rota conforme necessário
+            'redirect' => route('regions.index'),
             'message' => __('messages.region_updated_successfully') // Mensagem de sucesso localizada
         ]);
     }
