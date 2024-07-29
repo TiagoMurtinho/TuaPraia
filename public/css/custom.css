@@ -523,8 +523,6 @@
 .icon-text-container {
     display: flex;
     align-items: center;
-    margin-top: 100px;
-    flex-wrap: wrap;
     gap: 10px; /* Espaçamento entre os ícones */
 }
 
@@ -532,6 +530,12 @@
     font-size: 40px; /* Ajustar o tamanho do ícone conforme necessário */
     height: auto;
     margin-right: 5px; /* Espaçamento entre o ícone e o texto */
+}
+
+.icon-attr-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre os ícones */
 }
 
 .icon-text-container p {
@@ -555,10 +559,6 @@
     max-width: 100%; /* Ajusta a imagem para não ultrapassar o container */
     height: auto; /* Mantém a proporção da imagem */
     display: block; /* Garante que a imagem é um bloco e que aceita margens */
-}
-
-.description-container {
-    margin-left: 50px;
 }
 
 .local-subtitle {
@@ -587,6 +587,15 @@
     width: 30%; /* Permite ajustar a largura onde estão inseridos os serviços, reduzindo ou aumentando o espaço entre os serviços*/
 }
 
+.local_coordinates_info_row {
+    display: flex;
+    align-items: center;
+}
+
+.local_coordinates_info {
+    align-items: flex-start;
+}
+
 .no-image-local {
     display: flex;
     align-items: center;
@@ -597,16 +606,15 @@
 }
 
 .special_attr_info_row {
-    display: flex;
-    flex-direction: column; /* Colocar o texto abaixo da imagem */
-    align-items: center; /* Centralizar o conteúdo */
-    gap: 10px; /* Espaçamento entre a imagem e o texto */
-    width: 10%; /* Ajustar conforme necessário */
+    text-align: center; /* Centraliza o texto abaixo da imagem */
 }
 
 .attr-image {
-    width: 280px; /* Largura da imagem */
-    height: 120px; /* Altura da imagem */
+    width: 200px; /* Largura da imagem */
+    height: auto; /* Altura da imagem */
+    object-fit: contain; /*Mantém a proporção da imagem dentro das dimensões especificadas */
+    display: block; /* Remove espaços indesejados em torno da imagem */
+    margin: 0 auto; /* Centraliza a imagem dentro do contêiner */
 }
 
 .description {
@@ -634,6 +642,11 @@
 
 .local_description_info_row:not(:last-child) {
     margin-right: 6.75%; /* Dar espaçamento entre os serviços mas sem ter a cor de fundo*/
+}
+
+.coordinates_container {
+    display: flex;
+    align-items: center;
 }
 
 .homepage-title {

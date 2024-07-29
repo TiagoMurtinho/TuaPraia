@@ -31,17 +31,17 @@
             <!-- Atributos destacados -->
             <div class="description-container">
 
-                @if($local->attributes->contains('name', 'Blue Flag') || $local->attributes->contains('name', 'Parking'))
-                    <div class="icon-text-container local_description_info">
-                        @if($local->attributes->contains('name', 'Blue Flag'))
+                @if($local->attributes->contains('name', 'Blue Flag') || $local->attributes->contains('name', 'Parque'))
+                    <div class="icon-attr-container local_description_info">
+                        @if($local->attributes->contains('name', 'Bandeira Azul'))
                             <div class="special_attr_info_row">
-                                <img src="{{ asset('assets/img/bandeira_azul.png') }}" alt="Blue Flag" class="attr-image">
+                                <img src="{{ asset('assets/img/bandeira_azul.png') }}" alt="Bandeira Azul" class="attr-image">
                                 <p>{{ __('local.blue_flag') }}</p>
                             </div>
                         @endif
-                        @if($local->attributes->contains('name', 'Parking'))
-                            <div class="local_description_info_row">
-                                <i class="ph ph-letter-circle-p description_icon"></i>
+                        @if($local->attributes->contains('name', 'Parque'))
+                            <div class="special_attr_info_row">
+                                <img src="{{ asset('assets/img/parking.png') }}" alt="Parque" class="attr-image">
                                 <p>{{ __('local.parking') }}</p>
                             </div>
                         @endif
@@ -53,6 +53,13 @@
             </div>
         </div>
 
+        <!-- Descrição -->
+        <div class="description-container mb-5">
+            <h2 class="julee-regular local-subtitle mb-5">{{ __('local.description') }}</h2>
+            <p>{{$local->description}}</p>
+        </div>
+
+
         <!-- Listagem dos atributos -->
         <div class="services-container">
             <h2 class="julee-regular local-subtitle mb-5">{{ __('local.existing_services') }}</h2>
@@ -61,21 +68,21 @@
                     <div class="attribute-pair">
                         @foreach($chunk as $attribute)
                             <div class="local_description_info_row">
-                                @if($attribute->name == 'Disabled Mobility Access')
+                                @if($attribute->name == 'Acesso Mobilidade Reduzida')
                                     <i class="ph ph-wheelchair description_icon"></i>
-                                @elseif($attribute->name == 'Parking')
+                                @elseif($attribute->name == 'Parque')
                                     <i class="ph ph-letter-circle-p description_icon"></i>
-                                @elseif($attribute->name == 'Shower')
+                                @elseif($attribute->name == 'Chuveiro')
                                     <i class="ph ph-shower description_icon"></i>
                                 @elseif($attribute->name == 'WC')
                                     <i class="ph ph-toilet description_icon"></i>
-                                @elseif($attribute->name == 'Lifeguard')
+                                @elseif($attribute->name == 'Nadador Salvador')
                                     <i class="ph ph-binoculars description_icon"></i>
-                                @elseif($attribute->name == 'Blue Flag')
+                                @elseif($attribute->name == 'Bandeira Azul')
                                     <i class="ph ph-flag description_icon"></i>
-                                @elseif($attribute->name == 'Restaurants')
+                                @elseif($attribute->name == 'Restauração')
                                     <i class="ph ph-fork-knife description_icon"></i>
-                                @elseif($attribute->name == 'Activities')
+                                @elseif($attribute->name == 'Atividades')
                                     <i class="ph ph-person-simple-swim description_icon"></i>
                                 @else
                                     <i class="ph ph-smiley-sad description_icon"></i>
@@ -88,22 +95,24 @@
             </div>
         </div>
 
-        <!-- Integração com Google Maps -->
-        <div class="map-container mt-4 mb-4">
-            @if($latitude && $longitude)
-                @php
-                    $mapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12248.057348026508!2d{$longitude}!3d{$latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z{$latitude},{$longitude}!5e0!3m2!1sen!2s!4v1600000000000!5m2!1sen!2s";
-                @endphp
-                <iframe src="{{ $mapUrl }}" width="1000" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            @else
-                <p>{{ __('local.invalid_coordinates') }}</p>
-            @endif
-        </div>
+        <div class="gps_location mt-5">
+            <h2 class="julee-regular local-subtitle mb-5">{{ __('local.how_to_arrive') }}</h2>
+            <!-- Integração com Google Maps -->
+            <div class="map-container mt-4 mb-4">
+                @if($latitude && $longitude)
+                    @php
+                        $mapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12248.057348026508!2d{$longitude}!3d{$latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z{$latitude},{$longitude}!5e0!3m2!1sen!2s!4v1600000000000!5m2!1sen!2s";
+                    @endphp
+                    <iframe src="{{ $mapUrl }}" width="1000" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                @else
+                    <p>{{ __('local.invalid_coordinates') }}</p>
+                @endif
+            </div>
 
-        <!-- Coordenadas -->
-        <div class="icon-text-container local_description_info">
-            <div class="local_description_info_row"><i class="ph ph-tag description_icon"></i><p>{{ ucfirst($local->type) }}</p></div>
-            <div class="local_description_info_row"><i class="ph ph-gps description_icon"></i><p>{{ __('local.coordinates') }}: {{ $local->coordinates }}</p></div>
+            <!-- Coordenadas -->
+            <div class="coordinates_container local_coordinates_info">
+                <div class="local_coordinates_info_row"><i class="ph ph-gps description_icon"></i><p>{{ __('local.coordinates') }}: {{ $local->coordinates }}</p></div>
+        </div>
 
             <div class="feedback-container">
                 <div class="feedback-header">
@@ -144,7 +153,7 @@
                     </form>
                 </div>
 
-                <!-- Contêiner para a listagem de comentários -->
+                <!-- Container para a listagem de comentários -->
                 <div id="comments-list-container" class="comments-container" style="display: none;">
                     <h2>Comentários</h2>
                     <hr>
