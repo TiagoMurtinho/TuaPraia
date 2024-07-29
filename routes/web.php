@@ -25,7 +25,6 @@ Route::middleware('auth')->group(function () {
         Route::delete('{id}', [ProfileController::class, 'destroy'])->name('destroy');
     });
 
-    // Recursos RESTful sem 'show' e 'create'
     Route::resource('attributes', AttributeController::class)->except(['show', 'create']);
     Route::resource('districts', DistrictController::class)->except('show');
     Route::resource('regions', RegionController::class)->except('show');
