@@ -7,5 +7,5 @@ return [
     'search' => 'Pesquisar',
     'blueflag' => 'Praias com Bandeira Azul',
     'zero_pollution' => 'Praias com Zero Poluição',
-    'cascade' => 'Cascatas',
+    'or_quality' => 'Qualidade de Ouro',
 ];

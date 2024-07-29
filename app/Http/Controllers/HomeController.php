@@ -20,17 +20,18 @@ class HomeController extends Controller
 
         $zeroPollution = Local::where('type', 'beach')
             ->whereHas('attributes', function($query) {
-                $query->where('attributes.id', 9);
+                $query->where('attributes.id', 10);
             })->get();
 
-        $fluvials = Local::where('type', 'fluvial')->get();
-        $cascades = Local::where('type', 'cascade')->get();
+        $orQuality = Local::where('type', 'beach')
+            ->whereHas('attributes', function($query) {
+                $query->where('attributes.id', 11);
+            })->get();
 
         return view('home', [
             'blueFlag' => $blueFlag,
             'zeroPollution' => $zeroPollution,
-            'fluvials' => $fluvials,
-            'cascades' => $cascades,
+            'orQuality' => $orQuality,
         ]);
     }
 
