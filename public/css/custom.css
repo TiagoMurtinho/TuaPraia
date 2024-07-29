@@ -534,8 +534,15 @@
 
 .icon-attr-container {
     display: flex;
-    align-items: center;
-    gap: 10px; /* Espaçamento entre os ícones */
+    flex-wrap: wrap;
+    gap: 16px; /* Espaçamento entre os ícones */
+}
+
+.icon-row {
+    display: flex;
+    gap: 16px; /* Espaçamento entre os ícones na linha */
+    flex: 1;
+    justify-content: space-between;
 }
 
 .icon-text-container p {
@@ -606,15 +613,26 @@
 }
 
 .special_attr_info_row {
-    text-align: center; /* Centraliza o texto abaixo da imagem */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    margin: 5rem 0 0 5rem;
+    text-align: center;
 }
 
+.special_attr_info_row p {
+    margin-top: 10px; /* Margem superior para o texto */
+    margin-bottom: 0; /* Remove a margem inferior padrão */
+}
+
+
 .attr-image {
-    width: 200px; /* Largura da imagem */
-    height: auto; /* Altura da imagem */
+    width: 100px; /* Largura da imagem */
+    max-height: 120px; /* Altura da imagem */
     object-fit: contain; /*Mantém a proporção da imagem dentro das dimensões especificadas */
     display: block; /* Remove espaços indesejados em torno da imagem */
-    margin: 0 auto; /* Centraliza a imagem dentro do contêiner */
+    margin: 0; /* Centraliza a imagem dentro do contêiner */
 }
 
 .description {

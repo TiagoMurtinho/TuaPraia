@@ -30,26 +30,26 @@
 
             <!-- Atributos destacados -->
             <div class="description-container">
-
                 @if($local->attributes->contains('name', 'Blue Flag') || $local->attributes->contains('name', 'Parque'))
                     <div class="icon-attr-container local_description_info">
-                        @if($local->attributes->contains('name', 'Bandeira Azul'))
-                            <div class="special_attr_info_row">
-                                <img src="{{ asset('assets/img/bandeira_azul.png') }}" alt="Bandeira Azul" class="attr-image">
-                                <p>{{ __('local.blue_flag') }}</p>
-                            </div>
-                        @endif
-                        @if($local->attributes->contains('name', 'Parque'))
-                            <div class="special_attr_info_row">
-                                <img src="{{ asset('assets/img/parking.png') }}" alt="Parque" class="attr-image">
-                                <p>{{ __('local.parking') }}</p>
-                            </div>
-                        @endif
+                        <div class="icon-row">
+                            @if($local->attributes->contains('name', 'Bandeira Azul'))
+                                <div class="special_attr_info_row">
+                                    <img src="{{ asset('assets/img/bandeira_azul.png') }}" alt="Bandeira Azul" class="attr-image">
+                                    <p>{{ __('local.blue_flag') }}</p>
+                                </div>
+                            @endif
+                            @if($local->attributes->contains('name', 'Parque'))
+                                <div class="special_attr_info_row">
+                                    <img src="{{ asset('assets/img/parking.png') }}" alt="Parque" class="attr-image">
+                                    <p>{{ __('local.parking') }}</p>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 @else
                     <p>{{ __('local.no_special_attributes') }}</p>
                 @endif
-
             </div>
         </div>
 
