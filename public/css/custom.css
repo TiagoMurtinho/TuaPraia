@@ -561,10 +561,6 @@
     display: block; /* Garante que a imagem é um bloco e que aceita margens */
 }
 
-.description-container {
-    margin-left: 50px;
-}
-
 .local-subtitle {
     font-size: 35px;
 }
@@ -589,6 +585,15 @@
     align-items: flex-start !important;
     gap: 10px;
     width: 30%; /* Permite ajustar a largura onde estão inseridos os serviços, reduzindo ou aumentando o espaço entre os serviços*/
+}
+
+.local_coordinates_info_row {
+    display: flex;
+    align-items: center;
+}
+
+.local_coordinates_info {
+    align-items: flex-start;
 }
 
 .no-image-local {
@@ -642,7 +647,6 @@
 .coordinates_container {
     display: flex;
     align-items: center;
-    gap: 10px; /* Espaçamento entre os ícones */
 }
 
 .homepage-title {
