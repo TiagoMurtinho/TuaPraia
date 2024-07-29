@@ -523,8 +523,6 @@
 .icon-text-container {
     display: flex;
     align-items: center;
-    margin-top: 100px;
-    flex-wrap: wrap;
     gap: 10px; /* Espaçamento entre os ícones */
 }
 
@@ -532,6 +530,12 @@
     font-size: 40px; /* Ajustar o tamanho do ícone conforme necessário */
     height: auto;
     margin-right: 5px; /* Espaçamento entre o ícone e o texto */
+}
+
+.icon-attr-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre os ícones */
 }
 
 .icon-text-container p {
@@ -597,16 +601,15 @@
 }
 
 .special_attr_info_row {
-    display: flex;
-    flex-direction: column; /* Colocar o texto abaixo da imagem */
-    align-items: center; /* Centralizar o conteúdo */
-    gap: 10px; /* Espaçamento entre a imagem e o texto */
-    width: 10%; /* Ajustar conforme necessário */
+    text-align: center; /* Centraliza o texto abaixo da imagem */
 }
 
 .attr-image {
-    width: 280px; /* Largura da imagem */
-    height: 120px; /* Altura da imagem */
+    width: 200px; /* Largura da imagem */
+    height: auto; /* Altura da imagem */
+    object-fit: contain; /*Mantém a proporção da imagem dentro das dimensões especificadas */
+    display: block; /* Remove espaços indesejados em torno da imagem */
+    margin: 0 auto; /* Centraliza a imagem dentro do contêiner */
 }
 
 .description {
@@ -634,6 +637,12 @@
 
 .local_description_info_row:not(:last-child) {
     margin-right: 6.75%; /* Dar espaçamento entre os serviços mas sem ter a cor de fundo*/
+}
+
+.coordinates_container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre os ícones */
 }
 
 .homepage-title {

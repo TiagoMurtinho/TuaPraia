@@ -32,7 +32,7 @@
             <div class="description-container">
 
                 @if($local->attributes->contains('name', 'Blue Flag') || $local->attributes->contains('name', 'Parque'))
-                    <div class="icon-text-container local_description_info">
+                    <div class="icon-attr-container local_description_info">
                         @if($local->attributes->contains('name', 'Bandeira Azul'))
                             <div class="special_attr_info_row">
                                 <img src="{{ asset('assets/img/bandeira_azul.png') }}" alt="Bandeira Azul" class="attr-image">
@@ -40,7 +40,7 @@
                             </div>
                         @endif
                         @if($local->attributes->contains('name', 'Parque'))
-                            <div class="local_description_info_row">
+                            <div class="special_attr_info_row">
                                 <img src="{{ asset('assets/img/parking.png') }}" alt="Parque" class="attr-image">
                                 <p>{{ __('local.parking') }}</p>
                             </div>
@@ -101,7 +101,7 @@
         </div>
 
         <!-- Coordenadas -->
-        <div class="icon-text-container local_description_info">
+        <div class="coordinates_container local_description_info">
             <div class="local_description_info_row"><i class="ph ph-tag description_icon"></i><p>{{ ucfirst($local->type) }}</p></div>
             <div class="local_description_info_row"><i class="ph ph-gps description_icon"></i><p>{{ __('local.coordinates') }}: {{ $local->coordinates }}</p></div>
 
