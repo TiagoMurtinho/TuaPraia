@@ -27,7 +27,7 @@
         <section class="homepage-section mt-5">
             <h2 class="section-title py-6 julee-regular">{{__('home.blueflag')}}</h2>
             <div class="row">
-                @foreach($blueFlag as $local)
+                @foreach($blueFlag->take(3) as $local)
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="view-card h-100 position-relative">
                             @php
