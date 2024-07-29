@@ -20,6 +20,7 @@
             <div class="local-image-container mt-4">
                 @php
                     $mediaUrl = $local->getFirstMediaUrl('locals');
+                    dd($mediaUrl);
                 @endphp
                 @if($mediaUrl)
                     <img src="{{ $mediaUrl }}" alt="{{ $local->name }}" class="local-image">
