@@ -23,14 +23,19 @@ class AdminUserSeeder extends Seeder
 
         $adminUsers = [
             [
-                'email' => 'tiago-admin@hotmail.com',
+                'email' => 'admin1@hotmail.com',
                 'name' => 'Admin User-1',
                 'password' => bcrypt('password1'),
             ],
             [
-                'email' => 'joao-admin@hotmail.com',
+                'email' => 'admin2@hotmail.com',
                 'name' => 'Admin User-2',
                 'password' => bcrypt('password2'),
+            ],
+            [
+                'email' => 'global_admin@hotmail.com',
+                'name' => 'Admin Global',
+                'password' => bcrypt('password3'),
             ],
         ];
 
