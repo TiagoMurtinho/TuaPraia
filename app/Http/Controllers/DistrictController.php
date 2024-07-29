@@ -14,17 +14,17 @@ class DistrictController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
-        $districts = District::with('region')->get(); //Uses eager loading that loads all related classes on a same query
         $regions = Region::all();
+        $districts = District::with('region')->paginate(5);
         return view('pages.actions.districts.districts', compact('districts', 'regions'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
         $regions = Region::all();
         return view('pages.actions.districts.modals.add-districts', compact('regions'));

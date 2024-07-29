@@ -33,7 +33,7 @@
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#editDistrictModal{{ $district->id }}">
                                             <i class="ph ph-pencil-simple edit-pencil me-1"></i>
                                         </a>
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteDistrictModal" onclick="confirmDelete('deleteDistrictForm{{ $district->id }}', '{{ route('districts.destroy', $district->id) }}')">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteDistrictModal{{ $district->id }}" onclick="confirmDelete('deleteDistrictForm{{ $district->id }}', '{{ route('districts.destroy', $district->id) }}')">
                                             <i class="ph ph-trash delete-trash me-1"></i>
                                         </a>
                                     </td>
@@ -43,6 +43,11 @@
                             @endforeach
                             </tbody>
                         </table>
+
+                        <div class="justify-content-end">
+                            {{ $districts->links() }} <!-- Links de paginação -->
+                        </div>
+
                     </div>
                 </div>
             </div>

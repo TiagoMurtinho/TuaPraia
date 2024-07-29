@@ -31,7 +31,7 @@
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#editRegionModal{{ $region->id }}">
                                         <i class="ph ph-pencil-simple edit-pencil me-1"></i>
                                     </a>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#deleteRegionModal" onclick="confirmDelete('deleteRegionForm{{ $region->id }}','{{ route('regions.destroy', $region->id) }}')">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#deleteRegionModal{{ $region->id }}" onclick="confirmDelete('deleteRegionForm{{ $region->id }}','{{ route('regions.destroy', $region->id) }}')">
                                         <i class="ph ph-trash delete-trash me-1"></i>
                                     </a>
                                 </td>
@@ -42,10 +42,15 @@
                         </tbody>
                     </table>
 
+                    <div class="justify-content-end">
+                        {{ $regions->links() }} <!-- Links de paginação -->
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+
     @include('pages.actions.regions.modals.regions-edit-modal')
     @include('pages.actions.regions.modals.regions-add-modal')
 @endsection
