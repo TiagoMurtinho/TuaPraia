@@ -91,7 +91,7 @@
                     <li class="page-item dropdown">
                         <a class="page-link dropdown-toggle" href="#" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton" style="max-height: 200px;">
                             @for ($i = 1; $i <= $totalPages; $i++)
                                 @if ($i < $start || $i > $end)
                                     <li>
