@@ -1,12 +1,15 @@
 <?php
 
-use App\Http\Controllers\{AttributeController,
+use App\Http\Controllers\
+{
+    AttributeController,
     DistrictController,
     FeedbackController,
     HomeController,
     ProfileController,
     RegionController,
-    LocalController};
+    LocalController
+};
 use Illuminate\Support\Facades\Route;
 
 // Rota inicial

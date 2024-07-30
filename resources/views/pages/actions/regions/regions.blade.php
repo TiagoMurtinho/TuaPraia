@@ -41,10 +41,9 @@
                         @endforeach
                         </tbody>
                     </table>
-                    
-                    {{--<div class="justify-content-end">
+                    <div class="justify-content-end">
                         {{ $regions->links() }} <!-- Links de paginação -->
-                    </div>--}}
+                    </div>
 
                 </div>
             </div>

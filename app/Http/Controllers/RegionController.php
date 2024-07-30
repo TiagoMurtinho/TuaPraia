@@ -13,8 +13,8 @@ class RegionController extends Controller
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
 
-        $regions = DB::table('regions')->paginate(5);
-        return view('pages.actions.regions.regions', ['regions' => $regions]);
+        $regions = Region::paginate(5);
+        return view('pages.actions.regions.regions', compact('regions'));
     }
 
     public function show($id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
