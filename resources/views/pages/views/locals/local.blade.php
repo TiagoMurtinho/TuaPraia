@@ -30,7 +30,7 @@
 
             <!-- Atributos destacados -->
             <div class="description-container">
-                @if($local->attributes->contains('name', 'Blue Flag') || $local->attributes->contains('name', 'Parque'))
+                @if($local->attributes->contains('name', 'Bandeira Azul') || $local->attributes->contains('name', 'Parque') || $local->attributes->contains('name', 'Zero Poluição') || $local->attributes->contains('name', 'Qualidade de Ouro'))
                     <div class="icon-attr-container local_description_info">
                         <div class="icon-row">
                             @if($local->attributes->contains('name', 'Bandeira Azul'))
@@ -45,6 +45,18 @@
                                     <p>{{ __('local.parking') }}</p>
                                 </div>
                             @endif
+                            @if($local->attributes->contains('name', 'Zero Poluição'))
+                                <div class="special_attr_info_row">
+                                    <img src="{{ asset('assets/img/zero_poluicao.png') }}" alt="Zero Poluição" class="attr-image">
+                                    <p>{{ __('local.zero_polution') }}</p>
+                                </div>
+                                @endif
+                            @if($local->attributes->contains('name', 'Qualidade de Ouro'))
+                                <div class="special_attr_info_row">
+                                    <img src="{{ asset('assets/img/qualidade_ouro.jpg') }}" alt="Qualidade de Ouro" class="attr-image">
+                                    <p>{{ __('local.gold_quality') }}</p>
+                                </div>
+                                @endif
                         </div>
                     </div>
                 @else
