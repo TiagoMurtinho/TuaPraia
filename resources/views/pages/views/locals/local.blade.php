@@ -30,34 +30,29 @@
 
             <!-- Atributos destacados -->
             <div class="description-container">
-                @if($local->attributes->contains('name', 'Bandeira Azul') || $local->attributes->contains('name', 'Parque') || $local->attributes->contains('name', 'Zero Poluição') || $local->attributes->contains('name', 'Qualidade de Ouro'))
+                @php
+                    $highlightedAttributes = collect([
+                        'Bandeira Azul' => ['img' => 'assets/img/bandeira_azul.png', 'text' => __('local.blue_flag')],
+                        'Parque' => ['img' => 'assets/img/parking.png', 'text' => __('local.parking')],
+                        'Zero Poluição' => ['img' => 'assets/img/zero_poluicao.png', 'text' => __('local.zero_polution')],
+                        'Qualidade de Ouro' => ['img' => 'assets/img/qualidade_ouro.jpg', 'text' => __('local.gold_quality')],
+                    ])->filter(function ($value, $key) use ($local) {
+                        return $local->attributes->contains('name', $key);
+                    });
+                @endphp
+
+                @if($highlightedAttributes->isNotEmpty())
                     <div class="icon-attr-container local_description_info">
-                        <div class="icon-row">
-                            @if($local->attributes->contains('name', 'Bandeira Azul'))
-                                <div class="special_attr_info_row">
-                                    <img src="{{ asset('assets/img/bandeira_azul.png') }}" alt="Bandeira Azul" class="attr-image">
-                                    <p>{{ __('local.blue_flag') }}</p>
-                                </div>
-                            @endif
-                            @if($local->attributes->contains('name', 'Parque'))
-                                <div class="special_attr_info_row">
-                                    <img src="{{ asset('assets/img/parking.png') }}" alt="Parque" class="attr-image">
-                                    <p>{{ __('local.parking') }}</p>
-                                </div>
-                            @endif
-                            @if($local->attributes->contains('name', 'Zero Poluição'))
-                                <div class="special_attr_info_row">
-                                    <img src="{{ asset('assets/img/zero_poluicao.png') }}" alt="Zero Poluição" class="attr-image">
-                                    <p>{{ __('local.zero_polution') }}</p>
-                                </div>
-                                @endif
-                            @if($local->attributes->contains('name', 'Qualidade de Ouro'))
-                                <div class="special_attr_info_row">
-                                    <img src="{{ asset('assets/img/qualidade_ouro.jpg') }}" alt="Qualidade de Ouro" class="attr-image">
-                                    <p>{{ __('local.gold_quality') }}</p>
-                                </div>
-                                @endif
-                        </div>
+                        @foreach($highlightedAttributes->chunk(2) as $chunk)
+                            <div class="icon-row">
+                                @foreach($chunk as $key => $attr)
+                                    <div class="special_attr_info_row">
+                                        <img src="{{ asset($attr['img']) }}" alt="{{ $key }}" class="attr-image">
+                                        <p>{{ $attr['text'] }}</p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endforeach
                     </div>
                 @else
                     <p>{{ __('local.no_special_attributes') }}</p>
