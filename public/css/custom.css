@@ -619,6 +619,7 @@
     flex: 1;
     margin: 5rem 0 0 5rem;
     text-align: center;
+    overflow: hidden;
 }
 
 .special_attr_info_row p {
@@ -628,11 +629,11 @@
 
 
 .attr-image {
-    width: 100px; /* Largura da imagem */
-    max-height: 120px; /* Altura da imagem */
-    object-fit: contain; /*Mantém a proporção da imagem dentro das dimensões especificadas */
+    width: 100px !important; /* Largura da imagem */
+    height: 100px !important; /* Altura da imagem */
+    object-fit: cover; /*Mantém a proporção da imagem dentro das dimensões especificadas */
     display: block; /* Remove espaços indesejados em torno da imagem */
-    margin: 0; /* Centraliza a imagem dentro do contêiner */
+    margin: 0; /* Centraliza a imagem dentro do container */
 }
 
 .description {

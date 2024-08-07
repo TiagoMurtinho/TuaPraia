@@ -39,22 +39,22 @@ class RegisteredUserController extends Controller
                 'media' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             ]);
 
-            // Criação do usuário
+            // Criação do user
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
 
-            // Adiciona mídia, se fornecida
+            // Adiciona media, se fornecida
             if ($request->hasFile('media')) {
                 $user->addMediaFromRequest('media')->toMediaCollection('users');
             }
 
-            // Dispara o evento de registro
+            // Dispara o evento de registo
             event(new Registered($user));
 
-            // Loga o usuário
+            // Loga o user
             Auth::login($user);
 
             return response()->json([
