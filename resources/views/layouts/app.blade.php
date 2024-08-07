@@ -16,7 +16,15 @@
 
             <!-- Page Content -->
     <main @if(!isset($navbar) || $navbar != false) id="main" @endif class="main">
+        <!-- Exibe mensagem de sucesso se existir -->
+        @if(session('success'))
+            <div class="alert alert-success global-success-messages mx-auto mt-2">
+                {{ session('success') }}
+            </div>
+        @endif
+
         @yield('content')
+    </main>
 
 
     <a href="#" id="back-to-top" class="btn btn-primary">
