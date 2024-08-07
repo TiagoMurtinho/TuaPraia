@@ -17,7 +17,7 @@
             <!-- Page Content -->
     <main @if(!isset($navbar) || $navbar != false) id="main" @endif class="main">
         @yield('content')
-    </main>
+
 
     <a href="#" id="back-to-top" class="btn btn-primary">
         <i class="ph ph-arrow-up"></i>

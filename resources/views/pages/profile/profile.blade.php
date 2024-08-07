@@ -59,6 +59,7 @@
                                 <i class="ph ph-gear text-primary"></i>
                             </a>
                         </p>
+                        <button type="button" class="btn btn-danger mt-3" data-bs-toggle="modal" data-bs-target="#deleteProfileModal">{{ __('profile.delete_account') }}</button>
                     </div>
                 </div>
             </div>
