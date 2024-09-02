@@ -30,5 +30,10 @@ return [
     'no_info' => 'Sem informações sobre serviços disponíveis.',
     'blue_flag' => 'Bandeira Azul',
     'parking' => 'Parque',
-    'how_to_arrive' => 'Como chegar?'
+    'how_to_arrive' => 'Como chegar?',
+    'feedback' => 'Comentários',
+    'rating' => 'Avaliação',
+    'comment' => 'Comentário',
+    'enter_comment' => 'Escreva aqui o seu comentário',
+    'submit' => 'Enviar'
 ];
