@@ -540,7 +540,7 @@
 
 .icon-row {
     display: flex;
-    gap: 16px; /* Espaçamento entre os ícones na linha */
+   /* gap: 5px; !* Espaçamento entre os ícones na linha *!*/
     flex: 1;
     justify-content: space-between;
 }
@@ -550,15 +550,18 @@
 }
 
 .image-description-container {
+    width: 100%;
     display: flex;
     align-items: flex-start; /* Alinha verticalmente a imagem e o texto */
-    gap: 20px; /* Espaçamento entre a imagem e a descrição */
+    gap: 10px; /* Espaçamento entre a imagem e a descrição */
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .local-image-container {
     flex: 0 0 auto;
-    width: 100%;
     max-width:800px;
+    width: 100%;
     margin: 0;
 }
 
@@ -578,9 +581,10 @@
     margin-right: 5px; /* Espaçamento entre o ícone e o texto */
 }
 
-.description-container .icon-text-container {
+/*.description-container,
+.icon-text-container {
     gap: 10px;
-}
+}*/
 
 .local_description_info {
     flex-direction: column;
@@ -591,7 +595,7 @@
     display: flex; /* Serviu para colocar cada ícone ao lado de cada parágrafo, em vez de ser um por cima do outro */
     align-items: flex-start !important;
     gap: 10px;
-    width: 30%; /* Permite ajustar a largura onde estão inseridos os serviços, reduzindo ou aumentando o espaço entre os serviços*/
+    width: 100%; /* Permite ajustar a largura onde estão inseridos os serviços, reduzindo ou aumentando o espaço entre os serviços*/
 }
 
 .local_coordinates_info_row {
@@ -617,7 +621,8 @@
     flex-direction: column;
     align-items: center;
     flex: 1;
-    margin: 5rem 0 0 5rem;
+    margin-top: 25%;
+    /*margin-left: 10%;*/
     text-align: center;
 }
 
@@ -628,10 +633,10 @@
 
 
 .attr-image {
-    width: 100px; /* Largura da imagem */
-    max-height: 120px; /* Altura da imagem */
-    object-fit: contain; /*Mantém a proporção da imagem dentro das dimensões especificadas */
     display: block; /* Remove espaços indesejados em torno da imagem */
+    width: 30%; /* Largura da imagem */
+    height: auto; /* Altura da imagem */
+    object-fit: contain; /*Mantém a proporção da imagem dentro das dimensões especificadas */
     margin: 0; /* Centraliza a imagem dentro do contêiner */
 }
 
@@ -704,7 +709,7 @@
 .hero-section {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: 300px; /* Ajuste a altura conforme necessário */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -992,6 +997,10 @@
 
 .delete-comment-button:hover {
     color: #c82333;
+}
+
+.map-container{
+    width: 100%;
 }
 
 /*
