@@ -35,5 +35,8 @@ return [
     'rating' => 'Avaliação',
     'comment' => 'Comentário',
     'enter_comment' => 'Escreva aqui o seu comentário',
-    'submit' => 'Enviar'
+    'submit' => 'Enviar',
+    'guarded_beach' => 'Praia Vigiada',
+    'or_quality' => 'Qualidade de Ouro',
+    'zero_polution' => 'Zero Poluição'
 ];

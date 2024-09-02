@@ -33,16 +33,34 @@
                 @if($local->attributes->contains('name', 'Blue Flag') || $local->attributes->contains('name', 'Parque'))
                     <div class="icon-attr-container local_description_info">
                         <div class="icon-row">
+                            @if($local->attributes->contains('name', 'Nadador Salvador'))
+                                <div class="special_attr_info_row">
+                                    <img src="{{ asset('assets/img/rubber-ring.png') }}" alt="Praia Vigiada" class="attr-image">
+                                    <p>{{ __('local.guarded_beach') }}</p>
+                                </div>
+                            @endif
                             @if($local->attributes->contains('name', 'Bandeira Azul'))
                                 <div class="special_attr_info_row">
                                     <img src="{{ asset('assets/img/bandeira_azul.png') }}" alt="Bandeira Azul" class="attr-image">
                                     <p>{{ __('local.blue_flag') }}</p>
                                 </div>
                             @endif
+                            @if($local->attributes->contains('name', 'Qualidade de Ouro'))
+                                <div class="special_attr_info_row">
+                                    <img src="{{ asset('assets/img/qualidade-ouro.png') }}" alt="Qualidade de Ouro" class="attr-image">
+                                    <p>{{ __('local.or_quality') }}</p>
+                                </div>
+                            @endif
+                            @if($local->attributes->contains('name', 'Zero Poluição'))
+                                <div class="special_attr_info_row">
+                                    <img src="{{ asset('assets/img/zero-poluição.png') }}" alt="Zero Poluição" class="attr-image">
+                                    <p>{{ __('local.zero_polution') }}</p>
+                                </div>
+                            @endif
                             @if($local->attributes->contains('name', 'Parque'))
                                 <div class="special_attr_info_row">
-                                    <img src="{{ asset('assets/img/parking.png') }}" alt="Parque" class="attr-image">
-                                    <p>{{ __('local.parking') }}</p>
+                                     <img src="{{ asset('assets/img/parking.png') }}" alt="Parque" class="attr-image">
+                                     <p>{{ __('local.parking') }}</p>
                                 </div>
                             @endif
                         </div>

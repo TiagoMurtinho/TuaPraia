@@ -534,15 +534,22 @@
 
 .icon-attr-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 16px; /* Espaçamento entre os ícones */
+    flex-direction: row; /* Mantém a orientação horizontal por padrão */
+    flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte se necessário */
+    gap: 10px; /* Espaço entre os itens */
+    justify-content: center; /* Centraliza os itens horizontalmente */
 }
 
 .icon-row {
     display: flex;
-   /* gap: 5px; !* Espaçamento entre os ícones na linha *!*/
-    flex: 1;
-    justify-content: space-between;
+    flex-wrap: wrap;
+   /* justify-content: center;*/ /* Centraliza os ícones horizontalmente */
+    align-items: center; /* Alinha os ícones verticalmente no centro */
+    gap: 10%; /* Remove o espaço entre os contêineres dos ícones */
+    padding: 0; /* Remove padding do contêiner */
+    margin-left: 10%;
+    margin-top: 10%;
+    margin-bottom: 10%;
 }
 
 .icon-text-container p {
@@ -561,7 +568,7 @@
 .local-image-container {
     flex: 0 0 auto;
     max-width:800px;
-    width: 100%;
+    width: 60%;
     margin: 0;
 }
 
@@ -581,10 +588,13 @@
     margin-right: 5px; /* Espaçamento entre o ícone e o texto */
 }
 
-/*.description-container,
+.description-container{
+    width: 100%;
+    height: auto;
+}
 .icon-text-container {
     gap: 10px;
-}*/
+}
 
 .local_description_info {
     flex-direction: column;
@@ -620,10 +630,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1;
-    margin-top: 25%;
-    /*margin-left: 10%;*/
+    justify-content: center;
+    margin: 0;
+    padding: 5px; /* Adiciona um pouco de padding para evitar que o texto fique muito próximo ao ícone */
     text-align: center;
+    width: 30%; /* Ajusta a largura ao conteúdo */
+    height: auto; /* Ajusta a altura ao conteúdo */
+    box-sizing: border-box;
 }
 
 .special_attr_info_row p {
@@ -634,7 +647,7 @@
 
 .attr-image {
     display: block; /* Remove espaços indesejados em torno da imagem */
-    width: 30%; /* Largura da imagem */
+    width: 70%; /* Largura da imagem */
     height: auto; /* Altura da imagem */
     object-fit: contain; /*Mantém a proporção da imagem dentro das dimensões especificadas */
     margin: 0; /* Centraliza a imagem dentro do contêiner */
@@ -1006,9 +1019,156 @@
 /*
     Especificações para resoluções inferiores a 700px
 */
-@media (max-width: 700px){
-    .container  {
-        padding-left: 50px!important;
-        padding-right: 50px!important;
+@media (max-width: 700px) {
+    .custom-container {
+        width: 100%;
+        padding-right: 30px!important;
+        padding-left: 30px!important;
+        box-sizing: border-box;
+    }
+
+    .icon-text-container {
+        flex-direction: column; /* Empilha o ícone e o texto verticalmente */
+        align-items: flex-start; /* Alinha ao início */
+        gap: 5px; /* Reduz o espaço entre ícone e texto */
+    }
+
+    .icon-text-container i {
+        font-size: 20px; /* Ajusta o tamanho do ícone para dispositivos móveis */
+    }
+
+    .image-description-container {
+        display: flex; /* Usa flexbox para alinhamento */
+        flex-direction: column; /* Empilha a imagem e a descrição verticalmente */
+        align-items: center; /* Centraliza horizontalmente */
+        gap: 15px; /* Espaço entre a imagem e os ícones */
+    }
+
+    .special_attr_info_row {
+        display: flex; /* Usa flexbox para alinhamento */
+        flex-direction: column; /* Empilha imagem e texto verticalmente */
+        align-items: center; /* Centraliza horizontalmente */
+        text-align: center; /* Centraliza o texto */
+        margin: 5px;
+        height: 80px;
+    }
+
+    .special_attr_info_row img {
+        display: block;
+        max-height: 40px; /* Ajuste a altura máxima para garantir que todos os ícones tenham um tamanho consistente */
+        height: auto;
+        margin-bottom: 5px; /* Espaçamento entre ícone e texto */
+    }
+
+    .special_attr_info_row p {
+        margin: 0; /* Remove margens padrões do parágrafo */
+        line-height: 1.2; /* Ajusta a altura da linha para centralizar o texto em relação ao ícone */
+    }
+
+    .attr-image {
+        width: 50%; /* Reduz o tamanho dos ícones */
+        height: auto; /* Mantém a proporção dos ícones */
+    }
+
+    .description-container h2,
+    .services-container h2,
+    .feedback-header h2 {
+        font-size: 25px; /* Ajusta o tamanho do cabeçalho */
+    }
+
+    .services-container,
+    .feedback-container {
+        padding: 0; /* Remove padding adicional */
+    }
+
+    .attribute-pair {
+        display: flex;
+        flex-direction: column; /* Empilha os ícones em uma coluna */
+        width: 100%;
+    }
+
+    .attribute-pair .local_description_info_row:nth-of-type(odd) {
+        background-color: rgba(176, 196, 222, 0.5); /* Cor de fundo para linhas ímpares */
+    }
+
+    .attribute-pair .local_description_info_row:nth-of-type(even) {
+        background-color: transparent; /* Remove cor de fundo para linhas pares */
+    }
+
+    .icon-row {
+        display: flex; /* Usa flexbox para alinhamento */
+        flex-direction: row; /* Mantém a orientação horizontal */
+        flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte se necessário */
+        justify-content: center; /* Centraliza os itens horizontalmente */
+        gap: 10px; /* Espaço entre os itens */
+        align-items: center; /* Alinha os itens no topo da linha */
+    }
+
+    .local_description_info_row {
+        width: 100%; /* Garante que os ícones e texto ocupem a largura total disponível */
+        text-align: center; /* Centraliza o texto */
+        padding: 10px; /* Adiciona margem vertical entre ícones */
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    .local_description_info_row:not(:last-child) {
+        margin-bottom: 10px; /* Espaçamento vertical entre os serviços */
+    }
+
+    .description_icon {
+        font-size: 24px; /* Ajusta o tamanho dos ícones de descrição */
+    }
+
+    .map-container iframe {
+        height: 100%; /* Reduz a altura do mapa para telas pequenas */
+    }
+
+    .coordinates_container {
+        padding: 10px 0; /* Adiciona padding vertical */
+    }
+
+    .feedback-container {
+        margin-top: 20px; /* Adiciona margem superior */
+    }
+
+    .submit-button {
+        width: 50%; /* Garante que o botão ocupe toda a largura disponível */
+    }
+
+    .comments-container {
+        margin-top: 20px; /* Adiciona margem superior */
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .comment-user-photo img {
+        width: 50px; /* Ajusta o tamanho da foto do usuário */
+        height: 50px; /* Ajusta a altura da foto do usuário */
+    }
+    .comments-navbar {
+        flex-direction: column; /* Empilha os botões verticalmente em telas pequenas */
+        gap: 5px; /* Reduz o espaço entre os botões */
+    }
+
+    .comments-nav-button {
+        width: 100%; /* Garante que os botões ocupem toda a largura disponível */
+        text-align: center; /* Centraliza o texto do botão */
+    }
+    .local-image-container {
+        display: flex;
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente */
+        width: 100%; /* Garante que o contêiner ocupa toda a largura disponível */
+    }
+
+    .description-container {
+        padding: 0; /* Ajusta o padding para não sair do container */
+    }
+
+    .icon-attr-container {
+        display: flex; /* Usa flexbox para alinhamento */
+        flex-direction: column; /* Alinha os ícones e o texto verticalmente */
+        align-items: center; /* Centraliza horizontalmente */
     }
 }
