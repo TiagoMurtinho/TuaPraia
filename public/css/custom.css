@@ -993,3 +993,13 @@
 .delete-comment-button:hover {
     color: #c82333;
 }
+
+/*
+    Especificações para resoluções inferiores a 700px
+*/
+@media (max-width: 700px){
+    .container  {
+        padding-left: 50px!important;
+        padding-right: 50px!important;
+    }
+}
