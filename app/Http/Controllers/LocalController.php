@@ -222,20 +222,4 @@ class LocalController extends Controller
         ];
     }
 
-    public function autocomplete(Request $request): \Illuminate\Http\JsonResponse
-    {
-        $search = $request->get('query');
-        $locals = Local::where('name', 'LIKE', "%{$search}%")->get();
-
-        return response()->json($locals);
-    }
-
-    public function searchResults(Request $request)
-    {
-        $query = $request->input('query');
-        $locals = Local::where('name', 'LIKE', "%{$query}%")->get();
-
-        return view('pages.views.results.search-results', compact('locals', 'query'));
-    }
-
 }

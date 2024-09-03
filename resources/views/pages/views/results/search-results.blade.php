@@ -3,14 +3,15 @@
 @section('content')
 
     <header class="district-header text-center my-4">
-        <h1 class="julee-regular">{{__('result.results_off')}} {{ $query }}</h1>
+        <h1 class="julee-regular">{{__('result.results_off')}} {{--{{ $query }}--}}</h1>
     </header>
 
     <div class="container custom-container">
 
+        @include('components.search-filters')
+
         <section class="districts-section">
             <div class="row">
-
                 @if($locals->isEmpty())
                     <p>{{__('result.no_result')}}</p>
                 @else
