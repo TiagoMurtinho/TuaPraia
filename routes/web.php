@@ -52,22 +52,6 @@ Route::get('/storage/{path}', function ($path) {
     return response()->file(storage_path('app/public/' . $path));
 });
 
-/*Route::get('/test-query', function () {
-    $query = 'praia'; // Substitua pelo termo de pesquisa
-    $filters = ['WC']; // Substitua pelos filtros desejados
-
-    $localsQuery = \App\Models\Local::where('name', 'LIKE', '%' . $query . '%');
-
-    if (in_array('WC', $filters)) {
-        $localsQuery->whereHas('attributes', function ($query) {
-            $query->where('name', 'WC');
-        });
-    }
-
-    $locals = $localsQuery->get();
-    return view('test-view', ['locals' => $locals]);
-});*/
-
 // Requerendo rotas de autenticação padrão
 require __DIR__.'/auth.php';
 
