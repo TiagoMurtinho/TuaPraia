@@ -47,7 +47,7 @@
                             <i class="ph ph-user-circle user"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="guestDropdown">
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">{{__('nav.sign_in')}}</a></li>
+                        <li><a id="loginBtn" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">{{__('nav.sign_in')}}</a></li>
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">{{__('nav.sign_up')}}</a></li>
                     </ul>
                 </div>
@@ -115,4 +115,5 @@
     </div>
     @include('auth.login')
     @include('auth.register')
+    @include('auth.forgot-password')
 </nav>

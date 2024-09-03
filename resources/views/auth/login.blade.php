@@ -29,9 +29,7 @@
                         </label>
                     </div>
                     <div class="flex items-center justify-end mt-4">
-                        @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a>
-                        @endif
+                        <a href="#" id="forgotPasswordLink">{{ __('Forgot your password?') }}</a>
                         <button type="submit" class="btn btn-primary ms-3">{{ __('Log in') }}</button>
                     </div>
                 </form>
