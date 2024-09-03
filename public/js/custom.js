@@ -303,3 +303,27 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+/* Código para manipulação de modal de login e de forgot your password */
+
+document.addEventListener('DOMContentLoaded', function() {
+    var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+    var forgotPasswordModal = new bootstrap.Modal(document.getElementById('forgotPasswordModal'));
+
+    // Abre o modal de login
+    document.getElementById('loginBtn').addEventListener('click', function() {
+        loginModal.show();
+    });
+
+    // Abre o modal de recuperação de senha
+    document.getElementById('forgotPasswordLink').addEventListener('click', function(event) {
+        event.preventDefault();
+        loginModal.hide();
+        forgotPasswordModal.show();
+    });
+
+    // Fecha o modal de recuperação de senha e volta ao modal de login
+    document.getElementById('forgotPasswordModal').addEventListener('hidden.bs.modal', function () {
+        loginModal.show();
+    });
+});
