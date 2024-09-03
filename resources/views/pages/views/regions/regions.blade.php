@@ -7,6 +7,9 @@
         <h1 class="region-header julee-regular">{{__('region.local_region')}} {{ $region->name }}</h1>
     </header>
     <div class="container custom-container">
+
+        @include('components.search-filters')
+
         @foreach($region->districts as $district)
             <section class="regions-section">
                 <h2 class="regions-section py-6 julee-regular">{{__('region.district_region')}} {{ $district->name }}</h2>

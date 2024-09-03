@@ -8,6 +8,8 @@
     </header>
     <div class="container custom-container">
 
+        @include('components.search-filters')
+
         <section class="districts-section">
             <h2 class="districts-section py-6 julee-regular">{{__('district.beach')}}</h2>
             <div class="row">
