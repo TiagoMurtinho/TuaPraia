@@ -1,15 +1,13 @@
 <?php
 
-use App\Http\Controllers\
-{
-    AttributeController,
+use App\Http\Controllers\{AttributeController,
     DistrictController,
     FeedbackController,
     HomeController,
     ProfileController,
     RegionController,
-    LocalController
-};
+    LocalController,
+    SearchController};
 use Illuminate\Support\Facades\Route;
 
 // Rota inicial
@@ -45,13 +43,30 @@ Route::get('/locals/{id}', [LocalController::class, 'show'])->name('locals.show'
 Route::get('/locals/{local}/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
 
 // Rota para autocomplete e resultados de pesquisa
-Route::get('/autocomplete-locals', [LocalController::class, 'autocomplete'])->name('locals.autocomplete');
-Route::get('/search-results', [LocalController::class, 'searchResults'])->name('search.results');
+Route::get('/autocomplete-locals', [SearchController::class, 'autocomplete'])->name('locals.autocomplete');
+Route::get('/search-results', [SearchController::class, 'searchResults'])->name('search.results');
+Route::get('/search-results', [SearchController::class, 'filterResults'])->name('filter.results');
 
 // Rota para acessar arquivos de armazenamento
 Route::get('/storage/{path}', function ($path) {
     return response()->file(storage_path('app/public/' . $path));
 });
+
+/*Route::get('/test-query', function () {
+    $query = 'praia'; // Substitua pelo termo de pesquisa
+    $filters = ['WC']; // Substitua pelos filtros desejados
+
+    $localsQuery = \App\Models\Local::where('name', 'LIKE', '%' . $query . '%');
+
+    if (in_array('WC', $filters)) {
+        $localsQuery->whereHas('attributes', function ($query) {
+            $query->where('name', 'WC');
+        });
+    }
+
+    $locals = $localsQuery->get();
+    return view('test-view', ['locals' => $locals]);
+});*/
 
 // Requerendo rotas de autenticação padrão
 require __DIR__.'/auth.php';
