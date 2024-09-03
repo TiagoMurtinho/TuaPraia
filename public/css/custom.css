@@ -1,3 +1,28 @@
+/* ------------------------------
+    Reset e Ajustes Globais
+--------------------------------*/
+
+
+*, *::before, *::after {
+    box-sizing: border-box; /* Facilita o controle sobre tamanho */
+}
+
+
+/* ------------------------------
+    Tipografia
+--------------------------------*/
+
+
+/* Letra */
+
+.julee-regular {
+    font-family: "Julee", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* User */
+
 .user {
     font-size: 50px;
     margin-left: 8px;
@@ -7,6 +32,95 @@
     font-size: 1.2rem;
     margin-right: 0.5rem;
 }
+
+/* Headers */
+
+.custom-header {
+    margin-bottom: 2rem;
+}
+
+.custom-header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+    padding-top: 5rem;
+}
+
+.card-header {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    background-color: #f8f9fa;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.comment-header {
+    display: flex;
+    align-items: flex-start; /* Alinha itens verticalmente ao centro */
+    margin-right: 1rem;
+}
+
+/* Titulos */
+
+.hero-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adiciona sombra ao texto para melhorar a legibilidade */
+}
+
+.section-title {
+    font-size: 2rem;
+}
+
+.view-card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.homepage-title {
+    font-size: 3rem;
+    margin-top: 6rem;
+    font-weight: bold;
+}
+
+/* Subtitulos */
+
+.local-subtitle {
+    font-size: 35px;
+}
+
+/* h2 */
+
+.custom-section h2 {
+    font-size: 2.5rem;
+}
+
+/* h3 */
+
+.custom-section h3 {
+    font-size: 2rem;
+}
+
+/* Texto das cards */
+
+.view-card-text {
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+}
+
+
+/* ------------------------------
+    Logotipos
+--------------------------------*/
+
 
 .logotipo {
     max-width: 200px;
@@ -19,40 +133,16 @@
     height: auto;
 }
 
-.logotipo-container {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-55%);
-}
 
-#userDropdown::after,
-#guestDropdown::after {
-    display: none !important;
-}
+/* ------------------------------
+    Icons
+--------------------------------*/
 
-.custom-navbar {
-    background-image: url("../assets/img/foto-mar-navbar.jpg");
-}
 
-.custom-btn-sucess {
-    background-image: url("../assets/img/foto-mar-navbar.jpg");
-    color: black !important;
-}
-
-.custom-btn-sucess:hover {
-    color: white !important;
-}
-
-.custom-body-bg,
-.offcanvas-body-bg {
-    background-color: #fcf6e4 !important;
-    font-family: Arial, sans-serif;
-}
-
-.navbar .container-fluid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.description_icon {
+    font-size: 25px;
+    height: auto;
+    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
 }
 
 .plus {
@@ -67,47 +157,344 @@
     font-size: 30px;
 }
 
-.align-middle {
-    vertical-align: middle!important;
+.place_icon {
+    font-size: 40px;
+    height: auto;
+    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
 }
 
-.card-header {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+/* Icons com link */
+
+.custom-icon-link {
+    position: absolute;
+    bottom: 0.1rem;
+    right: 0.5rem;
+    font-size: 2.5rem;
+    color: #007bff;
+    transition: color 0.3s;
 }
 
-.image-center {
+.profile-icon-link {
+    font-size: 2rem;
+    color: #007bff;
+    transition: color 0.3s;
+}
+
+/* Icons com link hover */
+
+.custom-icon-link:hover {
+    color: #0056b3;
+}
+
+.profile-icon-link:hover {
+    color: #0056b3;
+}
+
+/* ------------------------------
+    Containers
+--------------------------------*/
+
+.logotipo-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-55%);
+}
+
+.navbar .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-container {
+    padding-left: 150px!important;
+    padding-right: 150px!important;
+    box-sizing: border-box;
+}
+
+.local-container {
+    margin-left: 150px !important;
+    margin-right: 150px !important;
+}
+
+.icon-text-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre os ícones */
+}
+
+.icon-attr-container {
+    display: flex;
+    flex-direction: row; /* Mantém a orientação horizontal por padrão */
+    flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte se necessário */
+    gap: 10px; /* Espaço entre os itens */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+}
+
+.icon-text-container p {
+    margin: 0; /* Remove a margem padrão do parágrafo para melhor o alinhamento */
+}
+
+.image-description-container {
+    width: 100%;
+    display: flex;
+    align-items: flex-start; /* Alinha verticalmente a imagem e o texto */
+    gap: 10px; /* Espaçamento entre a imagem e a descrição */
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.local-image-container {
+    flex: 0 0 auto;
+    max-width:800px;
+    width: 60%;
+    margin: 0;
+}
+
+.description-container{
+    width: 100%;
+    height: auto;
+}
+.icon-text-container {
+    gap: 10px;
+}
+
+.services-container {
+    margin-top: 20px;
+}
+
+.attributes-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.coordinates_container {
+    display: flex;
+    align-items: center;
+}
+
+.map-container{
+    width: 100%;
+}
+
+.comments-container {
+    margin-top: 2rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    background-color: #f9f9f9;
+}
+
+.feedback-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.comment-container {
+    margin-top: 1rem;
+}
+
+.rating-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.rating-container .rating-label {
+    font-weight: bold;
     display: block;
-    margin: 0 auto;
-    max-width: 80px;
+    font-size: 1.3rem;
 }
 
-.edit-modal {
+.feedback-container {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    width: 100%;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+}
+
+.comments-container .comment {
+    border-bottom: 1px solid #ddd;
+    padding: 0.5rem 0;
+}
+
+.comments-container .rating .star {
+    color: #f5c518;
+}
+
+
+/* ------------------------------
+    Navbar
+--------------------------------*/
+
+
+.custom-navbar {
+    background-image: url("../assets/img/foto-mar-navbar.jpg");
+}
+
+/* Dropdown user da navbar */
+
+#userDropdown::after,
+#guestDropdown::after {
+    display: none !important;
+}
+
+/* Dropdown principal da navbar */
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+    display: none;
+    position: absolute;
+    border: none !important;
+    margin-left: 5%;
+}
+
+.dropdown-submenu:hover .dropdown-menu {
+    display: block;
+}
+
+
+/* ------------------------------
+    Botões
+--------------------------------*/
+
+
+.custom-btn-sucess {
+    background-image: url("../assets/img/foto-mar-navbar.jpg");
+    color: black !important;
+}
+
+.search-button {
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.comments-nav-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    font-size: 0.9rem;
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-comment-button {
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 1.5rem;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    z-index: 1000;
+}
+
+/* Botoões com hover */
+
+.custom-btn-sucess:hover {
+    color: white !important;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+.comments-nav-button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.delete-comment-button:hover {
+    color: #c82333;
+}
+
+#back-to-top:hover {
+    background-color: #0056b3;
+}
+
+#back-to-top.show {
+    opacity: 1;
+}
+
+
+/* ------------------------------
+    Modais
+--------------------------------*/
+
+
+.modal-body {
     max-height: 60vh;
     overflow-y: auto;
 }
 
-.edit-modal::-webkit-scrollbar {
+.modal-body::-webkit-scrollbar {
     width: 8px;
 }
 
-.edit-modal::-webkit-scrollbar-track {
+.modal-body::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 10px;
 }
 
-.edit-modal::-webkit-scrollbar-thumb {
+.modal-body::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 10px;
 }
 
-.edit-modal::-webkit-scrollbar-thumb:hover {
+.modal-body::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
-.custom-select-wrapper {
-    position: relative;
-}
+
+/* ------------------------------
+    Selects
+--------------------------------*/
+
 
 .custom-select {
     appearance: none; /* Remove o estilo padrão do select */
@@ -117,6 +504,10 @@
     padding: 0.5rem 1.5em 0.5rem 1rem; /* Ajuste o padding para espaço para a seta */
     transition: border-color 0.15s ease-in-out; /* Transição suave na borda */
     width: 100%; /* Faz o select ocupar toda a largura */
+}
+
+.custom-select-wrapper {
+    position: relative;
 }
 
 .custom-select:focus {
@@ -140,22 +531,50 @@
     overflow-y: auto;
 }
 
-.actions-card {
-    width: 1000px; /* Largura máxima da card */
-    margin: 0 auto; /* Centraliza horizontalmente, mas remove margens verticais */
-    padding: 0; /* Ajuste conforme necessário */
-    border: 1px solid #dee2e6; /* Borda padrão */
-    border-radius: 0.25rem; /* Bordas arredondadas */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+
+/* ------------------------------
+    SearchBars
+--------------------------------*/
+
+
+#search-results {
+    max-width: 100%;
+    overflow: hidden;
 }
 
-*, *::before, *::after {
-    box-sizing: border-box; /* Facilita o controle sobre tamanho */
+#search-results1 .list-group-item {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%; /* Ajustar a largura máxima */
+    transition: box-shadow 0.3s ease-in-out;
 }
 
-.checkbox-group {
-    margin-top: 10px;
+#search-results2 .list-group-item {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 63%; /* Ajustar a largura máxima */
+    margin-left: 10.5%;
+    transition: box-shadow 0.3s ease-in-out;
 }
+
+#search-results2 .list-group-item {
+    direction: rtl; /* Define a direção do texto da direita para a esquerda */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+#search-results1 .list-group-item:hover,
+#search-results2 .list-group-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    background-color: #f9f9f9; /* Opcional: Adicionar uma cor de fundo diferente no hover para um efeito de destaque */
+}
+
+
+/* ------------------------------
+    Forms
+--------------------------------*/
+
 
 .form-check {
     display: flex;
@@ -196,6 +615,43 @@
     margin-top: 20px; /* Espaço acima do grupo de formulário */
 }
 
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.search-form .search-input.form-control {
+    border: none!important;
+    padding: 0.75rem;
+    width: 100%;
+    font-size: 1rem;
+    color: #000000; /* Cor do texto dentro do campo de pesquisa */
+    background-color: #f9f9f9; /* Cor de fundo do campo de pesquisa */
+    outline: none!important;
+}
+
+.search-form .search-input.form-control:focus {
+    outline: none!important; /* Remove o contorno azul padrão no foco */
+}
+
+.custom-body-bg,
+.offcanvas-body-bg {
+    background-color: #fcf6e4 !important;
+    font-family: Arial, sans-serif;
+}
+
+
+/* ------------------------------
+    Custom input
+--------------------------------*/
+
+
 .custom-file {
     position: relative;
     display: inline-block;
@@ -233,76 +689,19 @@
     content: "Escolher arquivo"; /* Texto padrão */
 }
 
-.modal-body {
-    max-height: 60vh;
-    overflow-y: auto;
-}
 
-.modal-body::-webkit-scrollbar {
-    width: 8px;
-}
+/* ------------------------------
+    Cards
+--------------------------------*/
 
-.modal-body::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
 
-.modal-body::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 10px;
-}
-
-.modal-body::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
-.dropdown-submenu .dropdown-menu {
-    top: 0;
-    left: 100%;
-    margin-top: -1px;
-    display: none;
-    position: absolute;
-    border: none !important;
-    margin-left: 5%;
-}
-
-.dropdown-submenu:hover .dropdown-menu {
-    display: block;
-}
-
-.profile-header {
-    margin-bottom: 2rem;
-}
-
-.profile-header h1 {
-    font-size: 3rem;
-}
-
-.district-header {
-    margin-bottom: 2rem;
-}
-
-.district-header h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    margin: 0;
-    padding-top: 5rem;
-}
-
-.profile-section {
-    margin-bottom: 2rem;
-}
-
-.districts-section {
-    margin-bottom: 2rem;
-}
-
-.districts-section h2 {
-    font-size: 2rem;
-}
-
-.section-title {
-    font-size: 2rem;
+.actions-card {
+    width: 1000px; /* Largura máxima da card */
+    margin: 0 auto; /* Centraliza horizontalmente, mas remove margens verticais */
+    padding: 0; /* Ajuste conforme necessário */
+    border: 1px solid #dee2e6; /* Borda padrão */
+    border-radius: 0.25rem; /* Bordas arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
 .view-card {
@@ -336,94 +735,10 @@
     width: 100%;
 }
 
-.no-image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 150px;
-    background-color: #f4f4f4;
-    color: #888;
-}
-
 .view-card-body {
     padding: 1rem;
     position: relative;
     flex-grow: 1;
-}
-
-.view-card-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-}
-
-.view-card-text {
-    margin-bottom: 1.25rem;
-    flex-grow: 1;
-}
-
-.custom-icon-link {
-    position: absolute;
-    bottom: 0.1rem;
-    right: 0.5rem;
-    font-size: 2.5rem;
-    color: #007bff;
-    transition: color 0.3s;
-}
-
-.custom-icon-link:hover {
-    color: #0056b3;
-}
-
-.julee-regular {
-    font-family: "Julee", cursive;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.custom-container {
-    padding-left: 150px!important;
-    padding-right: 150px!important;
-    box-sizing: border-box;
-}
-
-.region-header {
-    margin-bottom: 2rem;
-}
-
-.region-header h1 {
-    font-size: 3.5rem;
-    font-weight: bold;
-    margin: 0;
-    padding-top: 5rem;
-}
-
-.regions-section {
-    margin-bottom: 2rem;
-}
-
-.regions-section h2 {
-    font-size: 3rem;
-    padding-top: 5rem;
-}
-
-.regions-section h3 {
-    font-size: 2rem;
-}
-
-.section-title {
-    font-size: 2rem;
-}
-
-.profile-header {
-    margin-bottom: 2rem;
-}
-
-.profile-header h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    margin: 0;
-    padding-top: 5rem;
-    padding-bottom: 3rem;
 }
 
 .profile-view-card,
@@ -463,14 +778,19 @@
     margin-left: 5px;
 }
 
-.profile-icon-link {
-    font-size: 2rem;
-    color: #007bff;
-    transition: color 0.3s;
-}
 
-.profile-icon-link:hover {
-    color: #0056b3;
+/* ------------------------------
+    Imagens
+--------------------------------*/
+
+
+.no-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    background-color: #f4f4f4;
+    color: #888;
 }
 
 .navbar-user-image {
@@ -480,96 +800,39 @@
     height: 50px!important;
 }
 
-#search-results {
-    max-width: 100%;
-    overflow: hidden;
+.image-center {
+    display: block;
+    margin: 0 auto;
+    max-width: 80px;
 }
 
-#search-results1 .list-group-item {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 80%; /* Ajustar a largura máxima */
-    transition: box-shadow 0.3s ease-in-out;
-}
-
-#search-results2 .list-group-item {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 63%; /* Ajustar a largura máxima */
-    margin-left: 10.5%;
-    transition: box-shadow 0.3s ease-in-out;
-}
-
-#search-results2 .list-group-item {
-    direction: rtl; /* Define a direção do texto da direita para a esquerda */
-    text-align: left; /* Alinha o texto à esquerda */
-}
-
-#search-results1 .list-group-item:hover,
-#search-results2 .list-group-item:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    background-color: #f9f9f9; /* Opcional: Adicionar uma cor de fundo diferente no hover para um efeito de destaque */
-}
-
-/* View do local específico */
-
-.local-container {
-    margin-left: 150px !important;
-    margin-right: 150px !important;
-}
-
-.icon-text-container {
+.hero-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/img/foto-mar-navbar.jpg'); /* Substitua pelo caminho da sua imagem de fundo */
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
-    gap: 10px; /* Espaçamento entre os ícones */
+    justify-content: center;
 }
 
-.place_icon {
-    font-size: 40px; /* Ajustar o tamanho do ícone conforme necessário */
-    height: auto;
-    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
+.attr-image {
+    display: block; /* Remove espaços indesejados em torno da imagem */
+    width: 70%; /* Largura da imagem */
+    height: auto; /* Altura da imagem */
+    object-fit: contain; /*Mantém a proporção da imagem dentro das dimensões especificadas */
+    margin: 0; /* Centraliza a imagem dentro do contêiner */
 }
 
-.icon-attr-container {
+.no-image-local {
     display: flex;
-    flex-direction: row; /* Mantém a orientação horizontal por padrão */
-    flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte se necessário */
-    gap: 10px; /* Espaço entre os itens */
-    justify-content: center; /* Centraliza os itens horizontalmente */
-}
-
-.icon-row {
-    display: flex;
-    flex-wrap: wrap;
-   /* justify-content: center;*/ /* Centraliza os ícones horizontalmente */
-    align-items: center; /* Alinha os ícones verticalmente no centro */
-    gap: 10%; /* Remove o espaço entre os contêineres dos ícones */
-    padding: 0; /* Remove padding do contêiner */
-    margin-left: 10%;
-    margin-top: 10%;
-    margin-bottom: 10%;
-}
-
-.icon-text-container p {
-    margin: 0; /* Remove a margem padrão do parágrafo para melhor o alinhamento */
-}
-
-.image-description-container {
-    width: 100%;
-    display: flex;
-    align-items: flex-start; /* Alinha verticalmente a imagem e o texto */
-    gap: 10px; /* Espaçamento entre a imagem e a descrição */
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
-
-.local-image-container {
-    flex: 0 0 auto;
-    max-width:800px;
-    width: 60%;
-    margin: 0;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    background-color: #f4f4f4;
+    color: #888;
 }
 
 .local-image {
@@ -578,27 +841,40 @@
     display: block; /* Garante que a imagem é um bloco e que aceita margens */
 }
 
-.local-subtitle {
-    font-size: 35px;
+.comment-user-photo {
+    margin-right: 1rem; /* Espaço entre a foto e as informações do usuário */
 }
 
-.description_icon {
-    font-size: 25px; /* Ajustar o tamanho do ícone conforme necessário */
-    height: auto;
-    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
+.comment-user-photo-img {
+    width: 50px; /* Tamanho da foto */
+    height: 50px; /* Tamanho da foto */
+    object-fit: cover; /* Mantém a proporção da imagem */
+    border-radius: 50%; /* Torna a foto circular */
+    border: 2px solid #007bff; /* Borda para destacar a foto */
 }
 
-.description-container{
-    width: 100%;
-    height: auto;
-}
-.icon-text-container {
-    gap: 10px;
+
+/* ------------------------------
+    Custom
+--------------------------------*/
+
+
+/* Alinhamentos */
+
+.align-middle {
+    vertical-align: middle!important;
 }
 
-.local_description_info {
-    flex-direction: column;
-    align-items: flex-start;
+.icon-row {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center;*/ /* Centraliza os ícones horizontalmente */
+    align-items: center; /* Alinha os ícones verticalmente no centro */
+    gap: 10%; /* Remove o espaço entre os contêineres dos ícones */
+    padding: 0; /* Remove padding do contêiner */
+    margin-left: 10%;
+    margin-top: 10%;
+    margin-bottom: 10%;
 }
 
 .local_description_info_row {
@@ -611,19 +887,6 @@
 .local_coordinates_info_row {
     display: flex;
     align-items: center;
-}
-
-.local_coordinates_info {
-    align-items: flex-start;
-}
-
-.no-image-local {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 300px;
-    background-color: #f4f4f4;
-    color: #888;
 }
 
 .special_attr_info_row {
@@ -644,27 +907,11 @@
     margin-bottom: 0; /* Remove a margem inferior padrão */
 }
 
-
-.attr-image {
-    display: block; /* Remove espaços indesejados em torno da imagem */
-    width: 70%; /* Largura da imagem */
-    height: auto; /* Altura da imagem */
-    object-fit: contain; /*Mantém a proporção da imagem dentro das dimensões especificadas */
-    margin: 0; /* Centraliza a imagem dentro do contêiner */
+.local_description_info_row:not(:last-child) {
+    margin-right: 6.75%; /* Dar espaçamento entre os serviços mas sem ter a cor de fundo*/
 }
 
-.description {
-    margin-top: 20px
-}
-
-.services-container {
-    margin-top: 20px;
-}
-
-.attributes-container {
-    display: flex;
-    flex-wrap: wrap;
-}
+/* Pares */
 
 .attribute-pair {
     display: flex;
@@ -676,185 +923,14 @@
     background-color: rgba(176, 196, 222, 0.5); /* Cor de fundo para os serviços das linhas ímpares (cor desvanecida) */
 }
 
-.local_description_info_row:not(:last-child) {
-    margin-right: 6.75%; /* Dar espaçamento entre os serviços mas sem ter a cor de fundo*/
+/* Estrelas de avaliação de praias */
+
+.rating {
+    margin: 0.2rem 1.5rem; /* Espaço acima e abaixo da avaliação */
 }
 
-.coordinates_container {
-    display: flex;
-    align-items: center;
-}
-
-.homepage-title {
-    font-size: 3.5rem;
-    margin-top: 6rem;
-    font-weight: bold;
-}
-
-#back-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    font-size: 1.5rem;
-    transition: opacity 0.3s ease;
-    opacity: 0;
-    z-index: 1000;
-}
-
-#back-to-top:hover {
-    background-color: #0056b3;
-}
-
-#back-to-top.show {
-    opacity: 1;
-}
-
-.hero-section {
-    position: relative;
-    width: 100%;
-    height: 300px; /* Ajuste a altura conforme necessário */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 8rem;
-    margin-top: 6rem;
-}
-
-.hero-image {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-image: url('../assets/img/foto-mar-navbar.jpg'); /* Substitua pelo caminho da sua imagem de fundo */
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.1); /* Ajuste a opacidade para melhorar a legibilidade */
-}
-
-.hero-content {
-    position: relative;
-    text-align: center;
-    color: #fff; /* Cor do texto branca para contraste com a sobreposição escura */
-}
-
-.hero-title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adiciona sombra ao texto para melhorar a legibilidade */
-}
-
-.search-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 600px;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 0.5rem;
-    overflow: hidden;
-}
-
-.search-form .search-input.form-control {
-    border: none!important;
-    padding: 0.75rem;
-    width: 100%;
-    font-size: 1rem;
-    color: #000000; /* Cor do texto dentro do campo de pesquisa */
-    background-color: #f9f9f9; /* Cor de fundo do campo de pesquisa */
-    outline: none!important;
-}
-
-.search-form .search-input.form-control:focus {
-    outline: none!important; /* Remove o contorno azul padrão no foco */
-}
-
-.search-button {
-    border: none;
-    background-color: #007bff;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.search-button:hover {
-    background-color: #0056b3;
-}
-
-.feedback-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    background-color: #f8f9fa;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.comments-navbar {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.comments-nav-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    font-size: 0.9rem;
-}
-
-.comments-nav-button:hover {
-    background-color: #0056b3;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.feedback-container {
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    background-color: #fff;
-    width: 100%;
-    margin-bottom: 5rem;
-    margin-top: 5rem;
-}
-
-.rating-container {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-}
-
-.rating-container .rating-label {
-    font-weight: bold;
-    display: block;
-    font-size: 1.3rem;
+.star {
+    color: #f5c518; /* Cor das estrelas */
 }
 
 .rating-stars {
@@ -873,8 +949,26 @@
     color: #f5c518;
 }
 
-.comment-container {
-    margin-top: 1rem;
+/* Informações sobre os locais */
+
+.local_description_info {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.local_coordinates_info {
+    align-items: flex-start;
+}
+
+.description {
+    margin-top: 20px
+}
+
+/* Comentários */
+
+.comments-navbar {
+    display: flex;
+    gap: 0.5rem;
 }
 
 .comment-textarea {
@@ -885,44 +979,6 @@
     font-size: 1rem;
 }
 
-.feedback-button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-}
-
-.submit-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.submit-button:hover {
-    background-color: #0056b3;
-}
-
-.comments-container .comment {
-    border-bottom: 1px solid #ddd;
-    padding: 0.5rem 0;
-}
-
-.comments-container .rating .star {
-    color: #f5c518;
-}
-
-.comments-container {
-    margin-top: 2rem;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    background-color: #f9f9f9;
-}
-
-/* Cada comentário individual */
 .comment {
     display: flex;
     align-items: center;
@@ -935,27 +991,6 @@
     border-bottom: none; /* Remove a borda inferior do último comentário */
 }
 
-/* Cabeçalho do comentário (foto do usuário e informações) */
-.comment-header {
-    display: flex;
-    align-items: flex-start; /* Alinha itens verticalmente ao centro */
-    margin-right: 1rem;
-}
-
-/* Foto do usuário */
-.comment-user-photo {
-    margin-right: 1rem; /* Espaço entre a foto e as informações do usuário */
-}
-
-.comment-user-photo-img {
-    width: 50px; /* Tamanho da foto */
-    height: 50px; /* Tamanho da foto */
-    object-fit: cover; /* Mantém a proporção da imagem */
-    border-radius: 50%; /* Torna a foto circular */
-    border: 2px solid #007bff; /* Borda para destacar a foto */
-}
-
-/* Informações do usuário (nome e data) */
 .comment-user-info {
     margin-right: 1rem; /* Espaço entre as informações e o comentário */
     flex-shrink: 0; /* Impede que as informações encolham */
@@ -971,16 +1006,6 @@
     color: #666; /* Cor da data */
 }
 
-/* Avaliação com estrelas */
-.rating {
-    margin: 0.2rem 1.5rem; /* Espaço acima e abaixo da avaliação */
-}
-
-.star {
-    color: #f5c518; /* Cor das estrelas */
-}
-
-/* Comentário */
 .comment p {
     margin: 0; /* Remove margens padrão do parágrafo */
     line-height: 1.5; /* Espaçamento entre linhas */
@@ -1000,25 +1025,46 @@
     z-index: 1; /* Garante que o botão esteja sobre outros elementos */
 }
 
-.delete-comment-button {
-    border: none;
-    border-radius: 0.25rem;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+/* hero */
 
-.delete-comment-button:hover {
-    color: #c82333;
-}
-
-.map-container{
+.hero-section {
+    position: relative;
     width: 100%;
+    height: 300px; /* Ajuste a altura conforme necessário */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8rem;
+    margin-top: 6rem;
 }
 
-/*
-    Especificações para resoluções inferiores a 700px
-*/
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1); /* Ajuste a opacidade para melhorar a legibilidade */
+}
+
+.hero-content {
+    position: relative;
+    text-align: center;
+    color: #fff; /* Cor do texto branca para contraste com a sobreposição escura */
+}
+
+/* checkboxs dos filtros */
+
+.checkbox-group {
+    margin-top: 10px;
+}
+
+
+/* ------------------------------
+    Especificações para ecrãs com largura inferior a 700px
+--------------------------------*/
+
+
 @media (max-width: 700px) {
     .custom-container {
         width: 100%;
