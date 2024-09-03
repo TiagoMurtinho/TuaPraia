@@ -109,5 +109,5 @@ If you have any questions or suggestions, feel free to reach out:
 -----------------------------------------------------------------------------------------------
 
 - **Name:** João Costa
-- **Email:** joaocosta@gmail.com
+- **Email:** contact.jcosta@gmail.com
 - **LinkedIn:** [João Costa](https://www.linkedin.com/in/jo%C3%A3o-pedro-vieira-costa-a45462113/)
