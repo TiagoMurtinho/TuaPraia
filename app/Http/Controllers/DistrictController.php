@@ -65,32 +65,18 @@ class DistrictController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id, Request $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+    public function show(string $id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
-        $district = District::with('region')->findOrFail($id);
-        $filters = $request->input('filters', []); // Obtém os filtros do request
-
-        // Query para buscar locais no distrito com base em filtros e tipo
-        $localsQuery = Local::where('districts_id', $id);
-
-        if (!empty($filters)) {
-            $localsQuery->whereHas('attributes', function ($query) use ($filters) {
-                $query->whereIn('name', $filters);
-            }, '=', count($filters));
-        }
-
-        $beaches = $localsQuery->where('type', 'beach')->get();
-        $fluvials = $localsQuery->where('type', 'fluvial')->get();
-        $cascades = $localsQuery->where('type', 'cascade')->get();
-
-
+        $districts = District::with('region')->findOrFail($id);
+        $cascades = Local::where('districts_id', $id)->where('type', 'cascade')->get();
+        $fluvials = Local::where('districts_id', $id)->where('type', 'fluvial')->get();
+        $beaches = Local::where('districts_id', $id)->where('type', 'beach')->get();
 
         return view('pages.views.districts.districts', [
-            'district' => $district,
+            'district' => $districts,
             'cascades' => $cascades,
             'fluvials' => $fluvials,
-            'beaches' => $beaches,
-            'filters' => $filters,
+            'beaches' => $beaches
         ]);
     }
 
