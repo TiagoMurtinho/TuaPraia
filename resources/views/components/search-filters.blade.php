@@ -1,5 +1,14 @@
 <section class="search-filters my-4">
-    <form id="filterForm" method="GET" action="{{ route('filter.results') }}">
+    <form id="filterForm" method="GET"
+          action="
+      @if(isset($regionId))
+          {{ route('filter.region_results', ['regionId' => $regionId]) }}
+       @elseif(isset($districtId))
+          {{ route('filter.district_results', ['districtId' => $districtId]) }}
+      @else
+          {{ route('filter.results') }}
+      @endif
+      ">
         <div class="row">
             @php
                 $filters = [

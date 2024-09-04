@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <header class="district-header text-center my-4">
+    <header class="custom-header text-center my-4">
         <h1 class="julee-regular">{{__('result.results_off')}} {{--{{ $query }}--}}</h1>
     </header>
 

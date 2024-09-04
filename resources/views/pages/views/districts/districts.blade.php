@@ -8,7 +8,7 @@
     </header>
     <div class="container custom-container">
 
-        @include('components.search-filters')
+        @include('components.search-filters', ['districtId' => $district->id])
 
         <section class="custom-section">
             <h2 class="py-6 julee-regular">{{__('district.beach')}}</h2>

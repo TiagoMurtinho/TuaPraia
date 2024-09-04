@@ -8,7 +8,7 @@
     </header>
     <div class="container custom-container">
 
-        @include('components.search-filters')
+        @include('components.search-filters', ['regionId' => $region->id])
 
         @foreach($region->districts as $district)
             <section class="custom-section">
@@ -17,7 +17,9 @@
                 <!-- Beaches -->
                 <h3 class="py-6 julee-regular">{{__('region.beach')}}</h3>
                 <div class="row">
-                    @foreach($district->locals->where('type', 'beach') as $local)
+                    @foreach($district->locals->filter(function ($local) use ($locals) {
+                        return $locals->contains('id', $local->id) && $local->type === 'beach';
+                    }) as $local)
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="view-card h-100 position-relative">
                                 @php
@@ -41,7 +43,9 @@
                 <!-- Fluvials -->
                 <h3 class="py-6 julee-regular">{{__('region.fluvial')}}</h3>
                 <div class="row">
-                    @foreach($district->locals->where('type', 'fluvial') as $local)
+                    @foreach($district->locals->filter(function ($local) use ($locals) {
+                        return $locals->contains('id', $local->id) && $local->type === 'fluvial';
+                    }) as $local)
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="view-card h-100 position-relative">
                                 @php
@@ -65,7 +69,9 @@
                 <!-- Cascades -->
                 <h3 class="py-6 julee-regular">{{__('region.cascade')}}</h3>
                 <div class="row">
-                    @foreach($district->locals->where('type', 'cascade') as $local)
+                    @foreach($district->locals->filter(function ($local) use ($locals) {
+                        return $locals->contains('id', $local->id) && $local->type === 'cascade';
+                    }) as $local)
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="view-card h-100 position-relative">
                                 @php
