@@ -47,7 +47,6 @@ Route::get('/autocomplete-locals', [SearchController::class, 'autocomplete'])->n
 Route::get('/search-results', [SearchController::class, 'searchResults'])->name('search.results');
 Route::get('/search-results', [SearchController::class, 'filterResults'])->name('filter.results');
 Route::get('/regions/{regionId}/search-results', [SearchController::class, 'filterResults'])->name('filter.region_results');
-
 Route::get('/districts/{districtId}/search-results', [SearchController::class, 'filterResults'])->name('filter.district_results');
 
 // Rota para acessar arquivos de armazenamento
