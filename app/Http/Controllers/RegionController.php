@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Local;
 use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,11 +18,33 @@ class RegionController extends Controller
         return view('pages.actions.regions.regions', compact('regions'));
     }
 
-    public function show($id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+    public function show(Request $request, $id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
         $region = Region::with('districts.locals')->findOrFail($id);
 
-        return view('pages.views.regions.regions', compact('region'));
+        $filters = $request->input('filters', []); // Obtém os filtros do request
+        $query = $request->input('query', ''); // O termo de pesquisa
+
+        // Aplicar filtros se houver
+        $localsQuery = Local::query()
+            ->where('regions_id', $id)
+            ->where('name', 'LIKE', '%' . $query . '%');
+
+        if (!empty($filters)) {
+            $localsQuery->whereHas('attributes', function ($query) use ($filters) {
+                $query->whereIn('name', $filters);
+            }, '=', count($filters));
+        }
+
+        $locals = $localsQuery->distinct()->get();
+
+        return view('pages.views.regions.regions', [
+            'region' => $region,
+            'regionId' => $id,
+            'locals' => $locals, // Passa os locais filtrados para a view
+            'filters' => $filters, // Passa os filtros para a view, se necessário
+            'query' => $query
+        ]);
     }
 
     public function store(Request $request): \Illuminate\Http\JsonResponse

@@ -46,6 +46,8 @@ Route::get('/locals/{local}/feedback', [FeedbackController::class, 'index'])->na
 Route::get('/autocomplete-locals', [SearchController::class, 'autocomplete'])->name('locals.autocomplete');
 Route::get('/search-results', [SearchController::class, 'searchResults'])->name('search.results');
 Route::get('/search-results', [SearchController::class, 'filterResults'])->name('filter.results');
+Route::get('/regions/{regionId}/search-results', [SearchController::class, 'filterResults'])->name('filter.region_results');
+Route::get('/districts/{districtId}/search-results', [SearchController::class, 'filterResults'])->name('filter.district_results');
 
 // Rota para acessar arquivos de armazenamento
 Route::get('/storage/{path}', function ($path) {

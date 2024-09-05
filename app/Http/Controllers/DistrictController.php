@@ -65,18 +65,30 @@ class DistrictController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+    public function show(Request $request, string $id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
-        $districts = District::with('region')->findOrFail($id);
-        $cascades = Local::where('districts_id', $id)->where('type', 'cascade')->get();
-        $fluvials = Local::where('districts_id', $id)->where('type', 'fluvial')->get();
-        $beaches = Local::where('districts_id', $id)->where('type', 'beach')->get();
+        $district = District::with('region')->findOrFail($id);
+
+        $filters = $request->input('filters', []);
+        $query = $request->input('query', '');
+
+        $localsQuery = Local::query()
+            ->where('districts_id', $id)
+            ->where('name', 'LIKE', '%' . $query . '%');
+
+        if (!empty($filters)) {
+            $localsQuery->whereHas('attributes', function ($query) use ($filters) {
+                $query->whereIn('name', $filters);
+            }, '=', count($filters));
+        }
+
+        $locals = $localsQuery->distinct()->get();
 
         return view('pages.views.districts.districts', [
-            'district' => $districts,
-            'cascades' => $cascades,
-            'fluvials' => $fluvials,
-            'beaches' => $beaches
+            'district' => $district,
+            'locals' => $locals,
+            'filters' => $filters,
+            'query' => $query
         ]);
     }
 

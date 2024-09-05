@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\District;
 use App\Models\Local;
+use App\Models\Region;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -86,28 +88,61 @@ class SearchController extends Controller
 
     public function filterResults(Request $request): Factory|View|Application
     {
-        $query = $request->input('query'); // O termo de pesquisa
-        $filters = $request->input('filters', []); // Obtém os filtros do request
+        $regionId = $request->route('regionId');
+        $districtId = $request->route('districtId');
 
+        $query = $request->input('query', '');
+        $filters = $request->input('filters', []);
+
+        Log::info('Region ID: ' . $regionId);
+        Log::info('District ID: ' . $districtId);
         Log::info('Query: ' . $query);
         Log::info('Filters: ', $filters);
 
-        // Query básica para buscar locais que correspondem à consulta
         $localsQuery = Local::query()
             ->where('name', 'LIKE', '%' . $query . '%');
 
-        // Aplicar filtros
         if (!empty($filters)) {
             $localsQuery->whereHas('attributes', function ($query) use ($filters) {
-                // Use a combinação dos filtros diretamente
                 $query->whereIn('name', $filters);
             }, '=', count($filters));
         }
 
-        // Executar a consulta e obter resultados
+        if ($districtId) {
+            $localsQuery->where('districts_id', $districtId);
+        } elseif ($regionId) {
+            $localsQuery->where('regions_id', $regionId);
+        }
+
         $locals = $localsQuery->distinct()->get();
 
         Log::info('Número de locais encontrados: ' . $locals->count());
+
+        if ($districtId) {
+            $district = District::with(['locals' => function ($query) use ($locals) {
+                $query->whereIn('id', $locals->pluck('id'));
+            }])->findOrFail($districtId);
+
+            return view('pages.views.districts.districts', [
+                'district' => $district,
+                'districtId' => $districtId,
+                'locals' => $locals,
+                'filters' => $filters
+            ]);
+        }
+
+        if ($regionId) {
+            $region = Region::with(['districts.locals' => function ($query) use ($locals) {
+                $query->whereIn('id', $locals->pluck('id'));
+            }])->findOrFail($regionId);
+
+            return view('pages.views.regions.regions', [
+                'region' => $region,
+                'regionId' => $regionId,
+                'locals' => $locals,
+                'filters' => $filters
+            ]);
+        }
 
         return view('pages.views.results.search-results', compact('locals', 'query'));
     }
