@@ -7,6 +7,7 @@ return [
     'no_request' => 'Caso não tenha feito o pedido de alteração de Palavra-Passe, pode apagar este e-mail.',
     'subject' => 'Pedido de alteração de Palavra-Passe',
     'greeting' => 'Olá!',
-    'salutation' => 'atenciosamente,',
-    'trouble' => 'Caso esteja com problemas ao carregar no botão "Alterar Palavra-Passe", copie e cole o link em baixo no seu navegador:'
+    'salutation' => 'Atenciosamente,',
+    'trouble' => 'Caso esteja com problemas ao carregar no botão "Alterar Palavra-Passe", copie e cole o link em baixo no seu navegador:',
+    'rights' => 'Todos os direitos reservados.'
 ];

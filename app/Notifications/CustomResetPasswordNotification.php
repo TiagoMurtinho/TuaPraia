@@ -46,7 +46,8 @@ class CustomResetPasswordNotification extends Notification
                     ->action( __('reset-password.button'), url('password/reset', $this->token))
                     ->line( __('reset-password.expire', ['count' => $expiration]))
                     ->line( __('reset-password.no_request'))
-                    ->salutation(__('reset-password.salutation'));
+                    ->line(__('reset-password.salutation'))
+                    ->salutation($appName);
 
     }
 
