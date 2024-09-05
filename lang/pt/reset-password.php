@@ -9,5 +9,10 @@ return [
     'greeting' => 'Olá!',
     'salutation' => 'Atenciosamente,',
     'trouble' => 'Caso esteja com problemas ao carregar no botão "Alterar Palavra-Passe", copie e cole o link em baixo no seu navegador:',
-    'rights' => 'Todos os direitos reservados.'
+    'rights' => 'Todos os direitos reservados.',
+    'title' => 'Redefinição de Palavra-Passe',
+    'email' => 'E-mail',
+    'password' => 'Palavra-Passe',
+    'password_confirmation' => 'Confirmação de Palavra-Passe',
+    'reset_password' => 'Redefinir'
 ];
