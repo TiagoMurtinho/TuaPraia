@@ -14,17 +14,17 @@ class DistrictController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
-        $districts = District::with('region')->get(); //Uses eager loading that loads all related classes on a same query
         $regions = Region::all();
+        $districts = District::with('region')->paginate(5);
         return view('pages.actions.districts.districts', compact('districts', 'regions'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
         $regions = Region::all();
         return view('pages.actions.districts.modals.add-districts', compact('regions'));
@@ -65,18 +65,30 @@ class DistrictController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+    public function show(Request $request, string $id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
-        $districts = District::with('region')->findOrFail($id);
-        $cascades = Local::where('districts_id', $id)->where('type', 'cascade')->get();
-        $fluvials = Local::where('districts_id', $id)->where('type', 'fluvial')->get();
-        $beaches = Local::where('districts_id', $id)->where('type', 'beach')->get();
+        $district = District::with('region')->findOrFail($id);
+
+        $filters = $request->input('filters', []);
+        $query = $request->input('query', '');
+
+        $localsQuery = Local::query()
+            ->where('districts_id', $id)
+            ->where('name', 'LIKE', '%' . $query . '%');
+
+        if (!empty($filters)) {
+            $localsQuery->whereHas('attributes', function ($query) use ($filters) {
+                $query->whereIn('name', $filters);
+            }, '=', count($filters));
+        }
+
+        $locals = $localsQuery->distinct()->get();
 
         return view('pages.views.districts.districts', [
-            'district' => $districts,
-            'cascades' => $cascades,
-            'fluvials' => $fluvials,
-            'beaches' => $beaches
+            'district' => $district,
+            'locals' => $locals,
+            'filters' => $filters,
+            'query' => $query
         ]);
     }
 

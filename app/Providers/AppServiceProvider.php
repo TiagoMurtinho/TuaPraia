@@ -30,6 +30,6 @@ class AppServiceProvider extends ServiceProvider
 
         Paginator::useBootstrapFive();
 
-        View::composer('*', RegionComposer::class);
+        View::composer('layouts.navbar', RegionComposer::class);
     }
 }

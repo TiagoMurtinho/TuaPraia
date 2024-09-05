@@ -16,6 +16,6 @@ return [
     'delete' => 'Excluir',
     'local_district' => 'Locais do distrito de ',
     'beach' => 'Praias',
-    'fluvial' => 'Praias fluvias',
+    'fluvial' => 'Praias fluviais',
     'cascade' => 'Cascatas',
 ];

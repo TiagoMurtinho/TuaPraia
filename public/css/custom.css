@@ -1,3 +1,28 @@
+/* ------------------------------
+    Reset e Ajustes Globais
+--------------------------------*/
+
+
+*, *::before, *::after {
+    box-sizing: border-box; /* Facilita o controle sobre tamanho */
+}
+
+
+/* ------------------------------
+    Tipografia
+--------------------------------*/
+
+
+/* Letra */
+
+.julee-regular {
+    font-family: "Julee", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* User */
+
 .user {
     font-size: 50px;
     margin-left: 8px;
@@ -7,6 +32,95 @@
     font-size: 1.2rem;
     margin-right: 0.5rem;
 }
+
+/* Headers */
+
+.custom-header {
+    margin-bottom: 2rem;
+}
+
+.custom-header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+    padding-top: 5rem;
+}
+
+.card-header {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    background-color: #f8f9fa;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.comment-header {
+    display: flex;
+    align-items: flex-start; /* Alinha itens verticalmente ao centro */
+    margin-right: 1rem;
+}
+
+/* Titulos */
+
+.hero-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adiciona sombra ao texto para melhorar a legibilidade */
+}
+
+.section-title {
+    font-size: 2rem;
+}
+
+.view-card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.homepage-title {
+    font-size: 3rem;
+    margin-top: 6rem;
+    font-weight: bold;
+}
+
+/* Subtitulos */
+
+.local-subtitle {
+    font-size: 35px;
+}
+
+/* h2 */
+
+.custom-section h2 {
+    font-size: 2.5rem;
+}
+
+/* h3 */
+
+.custom-section h3 {
+    font-size: 2rem;
+}
+
+/* Texto das cards */
+
+.view-card-text {
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+}
+
+
+/* ------------------------------
+    Logotipos
+--------------------------------*/
+
 
 .logotipo {
     max-width: 200px;
@@ -19,46 +133,16 @@
     height: auto;
 }
 
-.logotipo-container {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-55%);
-}
 
-#userDropdown::after,
-#guestDropdown::after {
-    display: none !important;
-}
+/* ------------------------------
+    Icons
+--------------------------------*/
 
-.custom-navbar {
-    background-image: url("../assets/img/foto-mar-navbar.jpg");
-}
 
-.custom-btn-sucess {
-    background-image: url("../assets/img/foto-mar-navbar.jpg");
-    color: black !important;
-}
-
-.custom-btn-sucess:hover {
-    color: white !important;
-}
-
-/* Mensagens de sucesso*/
-.global-success-messages {
-    max-width: 500px;
-    text-align: center;
-}
-
-.custom-body-bg,
-.offcanvas-body-bg {
-    background-color: #fcf6e4 !important;
-    font-family: Arial, sans-serif;
-}
-
-.navbar .container-fluid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.description_icon {
+    font-size: 25px;
+    height: auto;
+    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
 }
 
 .plus {
@@ -73,47 +157,386 @@
     font-size: 30px;
 }
 
-.align-middle {
-    vertical-align: middle!important;
+.place_icon {
+    font-size: 40px;
+    height: auto;
+    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
 }
 
-.card-header {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+/* Icons com link */
+
+.custom-icon-link {
+    position: absolute;
+    bottom: 0.1rem;
+    right: 0.5rem;
+    font-size: 2.5rem;
+    color: #007bff;
+    transition: color 0.3s;
 }
 
-.image-center {
+.profile-icon-link {
+    font-size: 2rem;
+    color: #007bff;
+    transition: color 0.3s;
+}
+
+/* Icons com link hover */
+
+.custom-icon-link:hover {
+    color: #0056b3;
+}
+
+.profile-icon-link:hover {
+    color: #0056b3;
+}
+
+/* ------------------------------
+    Containers
+--------------------------------*/
+
+.logotipo-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-55%);
+}
+
+.navbar .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-container {
+    padding-left: 150px!important;
+    padding-right: 150px!important;
+}
+
+.filter-container {
+    padding-left: 70px!important;
+}
+
+.local-container {
+    margin-left: 150px !important;
+    margin-right: 150px !important;
+}
+
+.icon-text-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre os ícones */
+}
+
+.icon-attr-container {
+    display: flex;
+    flex-direction: row; /* Mantém a orientação horizontal por padrão */
+    flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte se necessário */
+    gap: 10px; /* Espaço entre os itens */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+}
+
+.icon-text-container p {
+    margin: 0; /* Remove a margem padrão do parágrafo para melhor o alinhamento */
+}
+
+.image-description-container {
+    width: 100%;
+    display: flex;
+    align-items: flex-start; /* Alinha verticalmente a imagem e o texto */
+    gap: 10px; /* Espaçamento entre a imagem e a descrição */
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.local-image-container {
+    flex: 0 0 auto;
+    max-width:800px;
+    width: 60%;
+    margin: 0;
+}
+
+.description-container{
+    width: 100%;
+    height: auto;
+}
+.icon-text-container {
+    gap: 10px;
+}
+
+.services-container {
+    margin-top: 20px;
+}
+
+.attributes-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.coordinates_container {
+    display: flex;
+    align-items: center;
+}
+
+.map-container{
+    width: 100%;
+}
+
+.comments-container {
+    margin-top: 2rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    background-color: #f9f9f9;
+}
+
+.feedback-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.comment-container {
+    margin-top: 1rem;
+}
+
+.rating-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.rating-container .rating-label {
+    font-weight: bold;
     display: block;
-    margin: 0 auto;
-    max-width: 80px;
+    font-size: 1.3rem;
 }
 
-.edit-modal {
+.feedback-container {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    width: 100%;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+}
+
+.comments-container .comment {
+    border-bottom: 1px solid #ddd;
+    padding: 0.5rem 0;
+}
+
+.comments-container .rating .star {
+    color: #f5c518;
+}
+
+.button-container {
+    position: absolute; /* Posiciona o botão absolutamente dentro do contêiner relativo */
+    bottom: 1rem; /* Alinha ao fundo do contêiner */
+    padding: 0; /* Espaçamento ao redor do botão */
+    margin-right: 6%;
+}
+
+
+/* ------------------------------
+    Navbar
+--------------------------------*/
+
+
+.custom-navbar {
+    background-image: url("../assets/img/foto-mar-navbar.jpg");
+}
+
+/* Dropdown user da navbar */
+
+#userDropdown::after,
+#guestDropdown::after {
+    display: none !important;
+}
+
+/* Dropdown principal da navbar */
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+    display: none;
+    position: absolute;
+    border: none !important;
+    margin-left: 5%;
+}
+
+.dropdown-submenu:hover .dropdown-menu {
+    display: block;
+}
+
+
+/* ------------------------------
+    Botões
+--------------------------------*/
+
+
+.custom-btn-sucess {
+    background-image: url("../assets/img/foto-mar-navbar.jpg");
+    color: black !important;
+}
+
+.search-button {
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Mensagens de sucesso*/
+.global-success-messages {
+    max-width: 500px;
+    text-align: center;
+}
+
+.custom-body-bg,
+.offcanvas-body-bg {
+    background-color: #fcf6e4 !important;
+    font-family: Arial, sans-serif;
+}
+
+.comments-nav-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    font-size: 0.9rem;
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-comment-button {
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 1.5rem;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    z-index: 1000;
+}
+
+/* Botoões com hover */
+
+.custom-btn-sucess:hover {
+    color: white !important;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+.comments-nav-button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.delete-comment-button:hover {
+    color: #c82333;
+}
+
+#back-to-top:hover {
+    background-color: #0056b3;
+}
+
+#back-to-top.show {
+    opacity: 1;
+}
+
+.btn-filter-custom {
+    height: 1.75rem; /* Ajusta a altura do botão */
+    width: 4.5rem; /* Permite que a largura seja ajustada automaticamente */
+    font-size: 1rem; /* Ajusta o tamanho da fonte */
+    display: flex; /* Usa flexbox para layout */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    text-align: center; /* Garante que o texto esteja centralizado horizontalmente */
+    border-radius: 0.5rem; /* Define o arredondamento das bordas */
+    padding: 0; /* Remove padding para evitar interferência no tamanho */
+    line-height: 1.75rem; /* Ajusta a altura da linha para corresponder à altura do botão */
+    box-sizing: border-box; /* Inclui padding e border no cálculo do tamanho total */
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    border: 1px solid transparent; /* Borda transparente para evitar interferências visuais */
+    cursor: pointer; /* Altera o cursor para indicar que o botão é clicável */
+    margin-bottom: 0.7rem; /* Margem inferior */
+    position: relative;
+}
+
+
+/* ------------------------------
+    Modais
+--------------------------------*/
+
+
+.modal-body {
     max-height: 60vh;
     overflow-y: auto;
 }
 
-.edit-modal::-webkit-scrollbar {
+.modal-body::-webkit-scrollbar {
     width: 8px;
 }
 
-.edit-modal::-webkit-scrollbar-track {
+.modal-body::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 10px;
 }
 
-.edit-modal::-webkit-scrollbar-thumb {
+.modal-body::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 10px;
 }
 
-.edit-modal::-webkit-scrollbar-thumb:hover {
+.modal-body::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
-.custom-select-wrapper {
-    position: relative;
-}
+
+/* ------------------------------
+    Selects
+--------------------------------*/
+
 
 .custom-select {
     appearance: none; /* Remove o estilo padrão do select */
@@ -123,6 +546,10 @@
     padding: 0.5rem 1.5em 0.5rem 1rem; /* Ajuste o padding para espaço para a seta */
     transition: border-color 0.15s ease-in-out; /* Transição suave na borda */
     width: 100%; /* Faz o select ocupar toda a largura */
+}
+
+.custom-select-wrapper {
+    position: relative;
 }
 
 .custom-select:focus {
@@ -146,27 +573,55 @@
     overflow-y: auto;
 }
 
-.actions-card {
-    width: 1000px; /* Largura máxima da card */
-    margin: 0 auto; /* Centraliza horizontalmente, mas remove margens verticais */
-    padding: 0; /* Ajuste conforme necessário */
-    border: 1px solid #dee2e6; /* Borda padrão */
-    border-radius: 0.25rem; /* Bordas arredondadas */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+
+/* ------------------------------
+    SearchBars
+--------------------------------*/
+
+
+#search-results {
+    max-width: 100%;
+    overflow: hidden;
 }
 
-*, *::before, *::after {
-    box-sizing: border-box; /* Facilita o controle sobre tamanho */
+#search-results1 .list-group-item {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%; /* Ajustar a largura máxima */
+    transition: box-shadow 0.3s ease-in-out;
 }
 
-.checkbox-group {
-    margin-top: 10px;
+#search-results2 .list-group-item {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 63%; /* Ajustar a largura máxima */
+    margin-left: 10.5%;
+    transition: box-shadow 0.3s ease-in-out;
 }
+
+#search-results2 .list-group-item {
+    direction: rtl; /* Define a direção do texto da direita para a esquerda */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+#search-results1 .list-group-item:hover,
+#search-results2 .list-group-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    background-color: #f9f9f9; /* Opcional: Adicionar uma cor de fundo diferente no hover para um efeito de destaque */
+}
+
+
+/* ------------------------------
+    Forms
+--------------------------------*/
+
 
 .form-check {
     display: flex;
     align-items: center;
-    margin-bottom: 12px; /* Espaço entre as checkboxes */
+    margin-bottom: 12px;
 }
 
 .form-check-input {
@@ -201,6 +656,43 @@
 .form-group {
     margin-top: 20px; /* Espaço acima do grupo de formulário */
 }
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.search-form .search-input.form-control {
+    border: none!important;
+    padding: 0.75rem;
+    width: 100%;
+    font-size: 1rem;
+    color: #000000; /* Cor do texto dentro do campo de pesquisa */
+    background-color: #f9f9f9; /* Cor de fundo do campo de pesquisa */
+    outline: none!important;
+}
+
+.search-form .search-input.form-control:focus {
+    outline: none!important; /* Remove o contorno azul padrão no foco */
+}
+
+.custom-body-bg,
+.offcanvas-body-bg {
+    background-color: #fcf6e4 !important;
+    font-family: Arial, sans-serif;
+}
+
+
+/* ------------------------------
+    Custom input
+--------------------------------*/
+
 
 .custom-file {
     position: relative;
@@ -239,76 +731,19 @@
     content: "Escolher arquivo"; /* Texto padrão */
 }
 
-.modal-body {
-    max-height: 60vh;
-    overflow-y: auto;
-}
 
-.modal-body::-webkit-scrollbar {
-    width: 8px;
-}
+/* ------------------------------
+    Cards
+--------------------------------*/
 
-.modal-body::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
 
-.modal-body::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 10px;
-}
-
-.modal-body::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
-.dropdown-submenu .dropdown-menu {
-    top: 0;
-    left: 100%;
-    margin-top: -1px;
-    display: none;
-    position: absolute;
-    border: none !important;
-    margin-left: 5%;
-}
-
-.dropdown-submenu:hover .dropdown-menu {
-    display: block;
-}
-
-.profile-header {
-    margin-bottom: 2rem;
-}
-
-.profile-header h1 {
-    font-size: 3rem;
-}
-
-.district-header {
-    margin-bottom: 2rem;
-}
-
-.district-header h1 {
-    font-size: 4rem;
-    font-weight: bold;
-    margin: 0;
-    padding-top: 5rem;
-}
-
-.profile-section {
-    margin-bottom: 2rem;
-}
-
-.districts-section {
-    margin-bottom: 2rem;
-}
-
-.districts-section h2 {
-    font-size: 3rem;
-}
-
-.section-title {
-    font-size: 2rem;
+.actions-card {
+    width: 1000px; /* Largura máxima da card */
+    margin: 0 auto; /* Centraliza horizontalmente, mas remove margens verticais */
+    padding: 0; /* Ajuste conforme necessário */
+    border: 1px solid #dee2e6; /* Borda padrão */
+    border-radius: 0.25rem; /* Bordas arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
 .view-card {
@@ -342,94 +777,10 @@
     width: 100%;
 }
 
-.no-image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 150px;
-    background-color: #f4f4f4;
-    color: #888;
-}
-
 .view-card-body {
     padding: 1rem;
     position: relative;
     flex-grow: 1;
-}
-
-.view-card-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-}
-
-.view-card-text {
-    margin-bottom: 1.25rem;
-    flex-grow: 1;
-}
-
-.custom-icon-link {
-    position: absolute;
-    bottom: 0.1rem;
-    right: 0.5rem;
-    font-size: 2.5rem;
-    color: #007bff;
-    transition: color 0.3s;
-}
-
-.custom-icon-link:hover {
-    color: #0056b3;
-}
-
-.julee-regular {
-    font-family: "Julee", cursive;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.custom-container {
-    padding-left: 150px!important;
-    padding-right: 150px!important;
-    box-sizing: border-box;
-}
-
-.region-header {
-    margin-bottom: 2rem;
-}
-
-.region-header h1 {
-    font-size: 5rem;
-    font-weight: bold;
-    margin: 0;
-    padding-top: 5rem;
-}
-
-.regions-section {
-    margin-bottom: 2rem;
-}
-
-.regions-section h2 {
-    font-size: 4rem;
-    padding-top: 5rem;
-}
-
-.regions-section h3 {
-    font-size: 3rem;
-}
-
-.section-title {
-    font-size: 2rem;
-}
-
-.profile-header {
-    margin-bottom: 2rem;
-}
-
-.profile-header h1 {
-    font-size: 4rem;
-    font-weight: bold;
-    margin: 0;
-    padding-top: 5rem;
-    padding-bottom: 3rem;
 }
 
 .profile-view-card,
@@ -469,14 +820,19 @@
     margin-left: 5px;
 }
 
-.profile-icon-link {
-    font-size: 2rem;
-    color: #007bff;
-    transition: color 0.3s;
-}
 
-.profile-icon-link:hover {
-    color: #0056b3;
+/* ------------------------------
+    Imagens
+--------------------------------*/
+
+
+.no-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    background-color: #f4f4f4;
+    color: #888;
 }
 
 .navbar-user-image {
@@ -486,112 +842,30 @@
     height: 50px!important;
 }
 
-#search-results {
-    max-width: 100%;
-    overflow: hidden;
+.image-center {
+    display: block;
+    margin: 0 auto;
+    max-width: 80px;
 }
 
-#search-results1 .list-group-item {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 80%; /* Ajustar a largura máxima */
-    transition: box-shadow 0.3s ease-in-out;
-}
-
-#search-results2 .list-group-item {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 63%; /* Ajustar a largura máxima */
-    margin-left: 10.5%;
-    transition: box-shadow 0.3s ease-in-out;
-}
-
-#search-results2 .list-group-item {
-    direction: rtl; /* Define a direção do texto da direita para a esquerda */
-    text-align: left; /* Alinha o texto à esquerda */
-}
-
-#search-results1 .list-group-item:hover,
-#search-results2 .list-group-item:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    background-color: #f9f9f9; /* Opcional: Adicionar uma cor de fundo diferente no hover para um efeito de destaque */
-}
-
-/* View do local específico */
-
-.local-container {
-    margin-left: 150px !important;
-    margin-right: 150px !important;
-}
-
-.icon-text-container {
+.hero-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/img/foto-mar-navbar.jpg');
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
-    margin-top: 100px;
-    flex-wrap: wrap;
-    gap: 10px; /* Espaçamento entre os ícones */
+    justify-content: center;
 }
 
-.place_icon {
-    font-size: 40px; /* Ajustar o tamanho do ícone conforme necessário */
-    height: auto;
-    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
-}
-
-.icon-text-container p {
-    margin: 0; /* Remove a margem padrão do parágrafo para melhor o alinhamento */
-}
-
-.image-description-container {
-    display: flex;
-    align-items: flex-start; /* Alinha verticalmente a imagem e o texto */
-    gap: 20px; /* Espaçamento entre a imagem e a descrição */
-}
-
-.local-image-container {
-    text-align: center; /* Centraliza a imagem dentro do container */
-    flex: 1;
-    width: 100%;
-    max-width:800px;
-    margin: auto;
-}
-
-.local-image {
-    max-width: 100%; /* Ajusta a imagem para não ultrapassar o container */
-    height: auto; /* Mantém a proporção da imagem */
-    display: block; /* Garante que a imagem é um bloco e que aceita margens */
-}
-
-.description-container {
-    margin-left: 50px;
-}
-
-.local-subtitle {
-    font-size: 35px;
-}
-
-.description_icon {
-    font-size: 25px; /* Ajustar o tamanho do ícone conforme necessário */
-    height: auto;
-    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
-}
-
-.description-container .icon-text-container {
-    gap: 10px;
-}
-
-.local_description_info {
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.local_description_info_row {
-    display: flex; /* Serviu para colocar cada ícone ao lado de cada parágrafo, em vez de ser um por cima do outro */
-    align-items: flex-start !important;
-    gap: 10px;
-    width: 30%; /* Permite ajustar a largura onde estão inseridos os serviços, reduzindo ou aumentando o espaço entre os serviços*/
+.attr-image {
+    display: block; /* Remove espaços indesejados em torno da imagem */
+    width: 70%; /* Largura da imagem */
+    height: auto; /* Altura da imagem */
+    object-fit: contain; /*Mantém a proporção da imagem dentro das dimensões especificadas */
+    margin: 0; /* Centraliza a imagem dentro do contêiner */
 }
 
 .no-image-local {
@@ -603,31 +877,83 @@
     color: #888;
 }
 
-.special_attr_info_row {
-    display: flex;
-    flex-direction: column; /* Colocar o texto abaixo da imagem */
-    align-items: center; /* Centralizar o conteúdo */
-    gap: 10px; /* Espaçamento entre a imagem e o texto */
-    width: 10%; /* Ajustar conforme necessário */
+.local-image {
+    max-width: 100%; /* Ajusta a imagem para não ultrapassar o container */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Garante que a imagem é um bloco e que aceita margens */
 }
 
-.attr-image {
-    width: 280px; /* Largura da imagem */
-    height: 120px; /* Altura da imagem */
+.comment-user-photo {
+    margin-right: 1rem; /* Espaço entre a foto e as informações do usuário */
 }
 
-.description {
-    margin-top: 20px
+.comment-user-photo-img {
+    width: 50px; /* Tamanho da foto */
+    height: 50px; /* Tamanho da foto */
+    object-fit: cover; /* Mantém a proporção da imagem */
+    border-radius: 50%; /* Torna a foto circular */
+    border: 2px solid #007bff; /* Borda para destacar a foto */
 }
 
-.services-container {
-    margin-top: 20px;
+
+/* ------------------------------
+    Custom
+--------------------------------*/
+
+
+/* Alinhamentos */
+
+.align-middle {
+    vertical-align: middle!important;
 }
 
-.attributes-container {
+.icon-row {
     display: flex;
     flex-wrap: wrap;
+    /* justify-content: center;*/ /* Centraliza os ícones horizontalmente */
+    align-items: center; /* Alinha os ícones verticalmente no centro */
+    gap: 10%; /* Remove o espaço entre os contêineres dos ícones */
+    padding: 0; /* Remove padding do contêiner */
+    margin-left: 10%;
+    margin-top: 10%;
+    margin-bottom: 10%;
 }
+
+.local_description_info_row {
+    display: flex; /* Serviu para colocar cada ícone ao lado de cada parágrafo, em vez de ser um por cima do outro */
+    align-items: flex-start !important;
+    gap: 10px;
+    width: 100%; /* Permite ajustar a largura onde estão inseridos os serviços, reduzindo ou aumentando o espaço entre os serviços*/
+}
+
+.local_coordinates_info_row {
+    display: flex;
+    align-items: center;
+}
+
+.special_attr_info_row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 5px; /* Adiciona um pouco de padding para evitar que o texto fique muito próximo ao ícone */
+    text-align: center;
+    width: 30%; /* Ajusta a largura ao conteúdo */
+    height: auto; /* Ajusta a altura ao conteúdo */
+    box-sizing: border-box;
+}
+
+.special_attr_info_row p {
+    margin-top: 10px; /* Margem superior para o texto */
+    margin-bottom: 0; /* Remove a margem inferior padrão */
+}
+
+.local_description_info_row:not(:last-child) {
+    margin-right: 6.75%; /* Dar espaçamento entre os serviços mas sem ter a cor de fundo*/
+}
+
+/* Pares */
 
 .attribute-pair {
     display: flex;
@@ -639,42 +965,119 @@
     background-color: rgba(176, 196, 222, 0.5); /* Cor de fundo para os serviços das linhas ímpares (cor desvanecida) */
 }
 
-.local_description_info_row:not(:last-child) {
-    margin-right: 6.75%; /* Dar espaçamento entre os serviços mas sem ter a cor de fundo*/
+/* Estrelas de avaliação de praias */
+
+.rating {
+    margin: 0.2rem 1.5rem; /* Espaço acima e abaixo da avaliação */
 }
 
-.homepage-title {
-    font-size: 3.5rem;
-    margin-top: 6rem;
-    font-weight: bold;
+.star {
+    color: #f5c518; /* Cor das estrelas */
 }
 
-#back-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
+.rating-stars {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.rating-stars .star {
+    cursor: pointer;
+    font-size: 2rem;
+    color: #ccc;
+    transition: color 0.3s;
+}
+
+.rating-stars .star.selected {
+    color: #f5c518;
+}
+
+/* Informações sobre os locais */
+
+.local_description_info {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.local_coordinates_info {
+    align-items: flex-start;
+}
+
+.description {
+    margin-top: 20px
+}
+
+/* Comentários */
+
+.comments-navbar {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.comment-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+.comment {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+    position: relative;
+}
+
+.comment:last-child {
+    border-bottom: none; /* Remove a borda inferior do último comentário */
+}
+
+.comment-user-info {
+    margin-right: 1rem; /* Espaço entre as informações e o comentário */
+    flex-shrink: 0; /* Impede que as informações encolham */
+}
+
+.comment-user-info strong {
+    display: block; /* Coloca o nome em linha própria */
+    font-size: 1rem; /* Tamanho da fonte do nome */
+}
+
+.comment-user-info small {
+    display: block; /* Coloca a data em linha própria */
+    color: #666; /* Cor da data */
+}
+
+.comment p {
+    margin: 0; /* Remove margens padrão do parágrafo */
+    line-height: 1.5; /* Espaçamento entre linhas */
+}
+
+.comment-content {
+    margin-right: 4rem; /* Espaço para o botão de exclusão à direita */
+}
+
+.comment-actions {
+    display: flex;
+    justify-content: flex-end; /* Alinha o botão de exclusão à direita */
+    align-items: center;
+    position: absolute; /* Posiciona o botão fora do fluxo normal do layout */
+    right: 1rem; /* Espaço à direita do contêiner de comentário */
+    top: 1rem; /* Alinha o botão na parte superior do contêiner */
+    z-index: 1; /* Garante que o botão esteja sobre outros elementos */
+}
+
+/* hero */
+
+.filter_hero_section{
+    position: relative;
+    width: 100%;
+    height: 100px; /* Ajuste a altura conforme necessário */
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    font-size: 1.5rem;
-    transition: opacity 0.3s ease;
-    opacity: 0;
-    z-index: 1000;
-}
-
-#back-to-top:hover {
-    background-color: #0056b3;
-}
-
-#back-to-top.show {
-    opacity: 1;
+    margin-bottom: 8rem;
+    margin-top: 6rem;
 }
 
 .hero-section {
@@ -688,18 +1091,6 @@
     margin-top: 6rem;
 }
 
-.hero-image {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-image: url('../assets/img/foto-mar-navbar.jpg'); /* Substitua pelo caminho da sua imagem de fundo */
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -711,51 +1102,178 @@
 
 .hero-content {
     position: relative;
-    text-align: center;
+    text-align: start;
     color: #fff; /* Cor do texto branca para contraste com a sobreposição escura */
 }
 
-.hero-title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adiciona sombra ao texto para melhorar a legibilidade */
+.sticky-section {
+    position: sticky;
+    top: 0; /* Define a distância do topo onde a seção se torna fixa */
+    z-index: 1000; /* Garante que a seção fique acima de outros conteúdos */
 }
 
-.search-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 600px;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 0.5rem;
-    overflow: hidden;
+/* checkboxs dos filtros */
+
+.checkbox-group {
+    margin-top: 10px;
 }
 
-.search-form .search-input.form-control {
-    border: none!important;
-    padding: 0.75rem;
-    width: 100%;
-    font-size: 1rem;
-    color: #000000; /* Cor do texto dentro do campo de pesquisa */
-    background-color: #f9f9f9; /* Cor de fundo do campo de pesquisa */
-    outline: none!important;
-}
 
-.search-form .search-input.form-control:focus {
-    outline: none!important; /* Remove o contorno azul padrão no foco */
-}
+/* ------------------------------
+    Especificações para ecrãs com largura inferior a 700px
+--------------------------------*/
 
-.search-button {
-    border: none;
-    background-color: #007bff;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
 
-.search-button:hover {
-    background-color: #0056b3;
+@media (max-width: 700px) {
+    .custom-container {
+        width: 100%;
+        padding-right: 30px!important;
+        padding-left: 30px!important;
+        box-sizing: border-box;
+    }
+
+    .icon-text-container {
+        flex-direction: column; /* Empilha o ícone e o texto verticalmente */
+        align-items: flex-start; /* Alinha ao início */
+        gap: 5px; /* Reduz o espaço entre ícone e texto */
+    }
+
+    .icon-text-container i {
+        font-size: 20px; /* Ajusta o tamanho do ícone para dispositivos móveis */
+    }
+
+    .image-description-container {
+        display: flex; /* Usa flexbox para alinhamento */
+        flex-direction: column; /* Empilha a imagem e a descrição verticalmente */
+        align-items: center; /* Centraliza horizontalmente */
+        gap: 15px; /* Espaço entre a imagem e os ícones */
+    }
+
+    .special_attr_info_row {
+        display: flex; /* Usa flexbox para alinhamento */
+        flex-direction: column; /* Empilha imagem e texto verticalmente */
+        align-items: center; /* Centraliza horizontalmente */
+        text-align: center; /* Centraliza o texto */
+        margin: 5px;
+        height: 80px;
+    }
+
+    .special_attr_info_row img {
+        display: block;
+        max-height: 40px; /* Ajuste a altura máxima para garantir que todos os ícones tenham um tamanho consistente */
+        height: auto;
+        margin-bottom: 5px; /* Espaçamento entre ícone e texto */
+    }
+
+    .special_attr_info_row p {
+        margin: 0; /* Remove margens padrões do parágrafo */
+        line-height: 1.2; /* Ajusta a altura da linha para centralizar o texto em relação ao ícone */
+    }
+
+    .attr-image {
+        width: 50%; /* Reduz o tamanho dos ícones */
+        height: auto; /* Mantém a proporção dos ícones */
+    }
+
+    .description-container h2,
+    .services-container h2,
+    .feedback-header h2 {
+        font-size: 25px; /* Ajusta o tamanho do cabeçalho */
+    }
+
+    .services-container,
+    .feedback-container {
+        padding: 0; /* Remove padding adicional */
+    }
+
+    .attribute-pair {
+        display: flex;
+        flex-direction: column; /* Empilha os ícones em uma coluna */
+        width: 100%;
+    }
+
+    .attribute-pair .local_description_info_row:nth-of-type(odd) {
+        background-color: rgba(176, 196, 222, 0.5); /* Cor de fundo para linhas ímpares */
+    }
+
+    .attribute-pair .local_description_info_row:nth-of-type(even) {
+        background-color: transparent; /* Remove cor de fundo para linhas pares */
+    }
+
+    .icon-row {
+        display: flex; /* Usa flexbox para alinhamento */
+        flex-direction: row; /* Mantém a orientação horizontal */
+        flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte se necessário */
+        justify-content: center; /* Centraliza os itens horizontalmente */
+        gap: 10px; /* Espaço entre os itens */
+        align-items: center; /* Alinha os itens no topo da linha */
+    }
+
+    .local_description_info_row {
+        width: 100%; /* Garante que os ícones e texto ocupem a largura total disponível */
+        text-align: center; /* Centraliza o texto */
+        padding: 10px; /* Adiciona margem vertical entre ícones */
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    .local_description_info_row:not(:last-child) {
+        margin-bottom: 10px; /* Espaçamento vertical entre os serviços */
+    }
+
+    .description_icon {
+        font-size: 24px; /* Ajusta o tamanho dos ícones de descrição */
+    }
+
+    .map-container iframe {
+        height: 100%; /* Reduz a altura do mapa para telas pequenas */
+    }
+
+    .coordinates_container {
+        padding: 10px 0; /* Adiciona padding vertical */
+    }
+
+    .feedback-container {
+        margin-top: 20px; /* Adiciona margem superior */
+    }
+
+    .submit-button {
+        width: 50%; /* Garante que o botão ocupe toda a largura disponível */
+    }
+
+    .comments-container {
+        margin-top: 20px; /* Adiciona margem superior */
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .comment-user-photo img {
+        width: 50px; /* Ajusta o tamanho da foto do usuário */
+        height: 50px; /* Ajusta a altura da foto do usuário */
+    }
+    .comments-navbar {
+        flex-direction: column; /* Empilha os botões verticalmente em telas pequenas */
+        gap: 5px; /* Reduz o espaço entre os botões */
+    }
+
+    .comments-nav-button {
+        width: 100%; /* Garante que os botões ocupem toda a largura disponível */
+        text-align: center; /* Centraliza o texto do botão */
+    }
+    .local-image-container {
+        display: flex;
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente */
+        width: 100%; /* Garante que o contêiner ocupa toda a largura disponível */
+    }
+
+    .description-container {
+        padding: 0; /* Ajusta o padding para não sair do container */
+    }
+
+    .icon-attr-container {
+        display: flex; /* Usa flexbox para alinhamento */
+        flex-direction: column; /* Alinha os ícones e o texto verticalmente */
+        align-items: center; /* Centraliza horizontalmente */
+    }
 }

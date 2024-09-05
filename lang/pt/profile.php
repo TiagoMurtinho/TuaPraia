@@ -23,5 +23,9 @@ return [
     'delete_with_pass_confirmation' => 'Por favor, insira a sua palavra-passe para confirmar que gostaria de apagar permanentemente a sua conta.',
     'password' => 'Palavra-Passe',
     'cancel' => 'Cancelar',
-
+    'update_profile_photo' => 'Atualizar foto de perfil',
+    'upload_photo' => 'Atualizar',
+    'save_changes' => 'Guardar',
+    'confirm_new_password' => 'Confirmar Palavra-Passe',
+    'edit_profile_password' => 'Atualizar Palavra-Passe',
 ];

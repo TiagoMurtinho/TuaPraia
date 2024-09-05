@@ -140,8 +140,6 @@ document.addEventListener('DOMContentLoaded', function() { // Garante que todo o
                     xhr.send();
                 }
             });
-        } else {
-            console.error('Elemento de busca ou formulário não encontrado');
         }
     });
 });
@@ -293,4 +291,100 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 10000); // 10 segundos
     }
 });
+    const stars = document.querySelectorAll('.rating-stars .star');
+    const ratingInput = document.getElementById('rating');
+    let selectedRating = 0;
 
+    stars.forEach(star => {
+        star.addEventListener('mouseover', function() {
+            const value = this.getAttribute('data-value');
+            updateStars(value);
+        });
+
+        star.addEventListener('mouseout', function() {
+            updateStars(selectedRating);
+        });
+
+        star.addEventListener('click', function() {
+            selectedRating = this.getAttribute('data-value');
+            ratingInput.value = selectedRating;
+            updateStars(selectedRating);
+        });
+    });
+
+    function updateStars(rating) {
+        stars.forEach(star => {
+            star.classList.remove('selected');
+            if (star.getAttribute('data-value') <= rating) {
+                star.classList.add('selected');
+            }
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const showFormButton = document.getElementById('show-form-button');
+    const showCommentsButton = document.getElementById('show-comments-button');
+    const feedbackFormContainer = document.getElementById('feedback-form-container');
+    const commentsListContainer = document.getElementById('comments-list-container');
+
+    showFormButton.addEventListener('click', function () {
+        feedbackFormContainer.style.display = 'block';
+        commentsListContainer.style.display = 'none';
+    });
+
+    showCommentsButton.addEventListener('click', function () {
+        feedbackFormContainer.style.display = 'none';
+        commentsListContainer.style.display = 'block';
+    });
+
+    // Código para manipulação das estrelas
+    const stars = document.querySelectorAll('.rating-stars .star');
+    const ratingInput = document.getElementById('rating');
+
+    stars.forEach(star => {
+        star.addEventListener('click', function () {
+            const value = this.getAttribute('data-value');
+            ratingInput.value = value;
+
+            stars.forEach(s => {
+                s.classList.remove('selected');
+                if (s.getAttribute('data-value') <= value) {
+                    s.classList.add('selected');
+                }
+            });
+        });
+    });
+});
+
+/* Código para manipulação de modal de login e de forgot your password */
+
+document.addEventListener('DOMContentLoaded', function() {
+    var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+    var forgotPasswordModal = new bootstrap.Modal(document.getElementById('forgotPasswordModal'));
+
+    // Abre o modal de login
+    document.getElementById('loginBtn').addEventListener('click', function() {
+        loginModal.show();
+    });
+
+    // Abre o modal de recuperação de senha
+    document.getElementById('forgotPasswordLink').addEventListener('click', function(event) {
+        event.preventDefault();
+        loginModal.hide();
+        forgotPasswordModal.show();
+    });
+
+    // Fecha o modal de recuperação de senha e volta ao modal de login
+    document.getElementById('forgotPasswordModal').addEventListener('hidden.bs.modal', function () {
+        loginModal.show();
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('showResetPasswordModal')) {
+        const resetPasswordModal = new bootstrap.Modal(document.getElementById('resetPasswordModal'));
+        resetPasswordModal.show();
+    }
+});

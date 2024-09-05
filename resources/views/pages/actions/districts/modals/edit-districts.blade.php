@@ -21,7 +21,7 @@
                             <label for="editDistrictModalRegion{{ $district->id }}" class="form-label">{{ __('district.region') }}</label>
                             <select name="regions_id" id="editDistrictModalRegion{{ $district->id }}" class="form-select form-select-sm">
                                 @foreach($regions as $region)
-                                    <option value="{{ $region->id }}" {{ $region->id == $district->region_id ? 'selected' : '' }}>{{ $region->name }}</option>
+                                    <option value="{{ $region->id }}" {{ $region->id == $district->regions_id ? 'selected' : '' }}>{{ $region->name }}</option>
                                 @endforeach
                             </select>
                             <div id="editDistrictModal{{ $district->id }}Region_idError" class="alert alert-danger mt-2 d-none"></div>

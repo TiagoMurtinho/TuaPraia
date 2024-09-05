@@ -71,4 +71,7 @@ return [
             'auth' => 'Falha na verificação de autenticação.'
         ],
     ],
+    'validation' => [
+        'uploaded' => 'Falha ao carregar o arquivo.',
+    ],
 ];

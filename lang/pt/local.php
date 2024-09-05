@@ -27,5 +27,16 @@ return [
     'image_of_local' => 'Imagem do local',
     'existing_services' => 'Serviços existentes',
     'invalid_coordinates' => 'Coordenadas inválidas. Mapa não disponível.',
-    'no_info' => 'Sem informações sobre serviços disponíveis.'
+    'no_info' => 'Sem informações sobre serviços disponíveis.',
+    'blue_flag' => 'Bandeira Azul',
+    'parking' => 'Parque',
+    'how_to_arrive' => 'Como chegar?',
+    'feedback' => 'Comentários',
+    'rating' => 'Avaliação',
+    'comment' => 'Comentário',
+    'enter_comment' => 'Escreva aqui o seu comentário',
+    'submit' => 'Enviar',
+    'guarded_beach' => 'Praia Vigiada',
+    'or_quality' => 'Qualidade de Ouro',
+    'zero_polution' => 'Zero Poluição'
 ];

@@ -61,7 +61,7 @@ class ProfileController extends Controller
         } catch (\Exception $e) {
             // Retorna um erro se a atualização falhar
             return response()->json([
-                'message' => __('validation.custom.name.update_failed') // Mensagem de falha traduzida
+                'message' => __('validation.custom.name.update_failed') // Mensagem de erro traduzida
             ], 500);
         }
 

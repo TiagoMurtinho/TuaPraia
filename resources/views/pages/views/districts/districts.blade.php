@@ -3,15 +3,18 @@
 @section('title', 'Locais do Distrito de ' . $district->name)
 
 @section('content')
-    <header class="district-header text-center my-4">
-        <h1 class="julee-regular">{{__('district.local_district')}} {{ $district->name }}</h1>
+    <header class="custom-header text-center my-4">
+        <h1 class="julee-regular">{{ __('district.local_district') }} {{ $district->name }}</h1>
     </header>
+
+    @include('components.search-filters', ['districtId' => $district->id])
+
     <div class="container custom-container">
 
-        <section class="districts-section">
-            <h2 class="districts-section py-6 julee-regular">{{__('district.beach')}}</h2>
+        <section class="custom-section">
+            <h2 class="py-6 julee-regular">{{ __('district.beach') }}</h2>
             <div class="row">
-                @foreach($beaches as $local)
+                @foreach($locals->where('type', 'beach') as $local)
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="view-card h-100 position-relative">
                             @php
@@ -33,10 +36,10 @@
             </div>
         </section>
 
-        <section class="districts-section">
-            <h2 class="districts-section py-6 julee-regular">{{__('district.fluvial')}}</h2>
+        <section class="custom-section">
+            <h2 class="py-6 julee-regular">{{ __('district.fluvial') }}</h2>
             <div class="row">
-                @foreach($fluvials as $local)
+                @foreach($locals->where('type', 'fluvial') as $local)
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="view-card h-100 position-relative">
                             @php
@@ -58,10 +61,10 @@
             </div>
         </section>
 
-        <section class="districts-section">
-            <h2 class="districts-section py-6 julee-regular">{{__('district.cascade')}}</h2>
+        <section class="custom-section">
+            <h2 class="py-6 julee-regular">{{ __('district.cascade') }}</h2>
             <div class="row">
-                @foreach($cascades as $local)
+                @foreach($locals->where('type', 'cascade') as $local)
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="view-card h-100 position-relative">
                             @php

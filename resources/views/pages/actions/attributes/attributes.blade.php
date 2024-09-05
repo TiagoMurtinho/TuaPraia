@@ -31,7 +31,7 @@
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#editAttributeModal{{ $attribute->id }}">
                                             <i class="ph ph-pencil-simple edit-pencil me-1"></i>
                                         </a>
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteAttributeModal" onclick="confirmDelete('deleteAttributeForm{{ $attribute->id }}', '{{ route('attributes.destroy', $attribute->id) }}')">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteAttributeModal{{ $attribute->id }}" onclick="confirmDelete('deleteAttributeForm{{ $attribute->id }}', '{{ route('attributes.destroy', $attribute->id) }}')">
                                             <i class="ph ph-trash delete-trash me-1"></i>
                                         </a>
                                     </td>
@@ -40,6 +40,11 @@
                             @endforeach
                             </tbody>
                         </table>
+
+                        <div class="justify-content-end">
+                            {{ $attributes->links() }} <!-- Links de paginação -->
+                        </div>
+
                     </div>
                 </div>
             </div>

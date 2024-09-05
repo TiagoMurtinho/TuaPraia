@@ -4,8 +4,8 @@
 
 @section('content')
 
-    <header class="profile-header text-center">
-        <h1 class="profile-header julee-regular">{{ __('profile.profile_of') }} {{ $user->name }}</h1>
+    <header class="custom-header text-center">
+        <h1 class="julee-regular">{{ __('profile.profile_of') }} {{ $user->name }}</h1>
     </header>
 
     <div class="container profile-container">

@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements HasMedia
+class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
     use HasFactory, Notifiable, InteractsWithMedia, HasRoles;
 
@@ -48,6 +50,11 @@ class User extends Authenticatable implements HasMedia
         ];
     }
 
+    public function feedback(): HasMany
+    {
+        return $this->hasMany(Feedback::class, 'feedback_id','id');
+    }
+
     public function getAvatarUrlAttribute(): string
     {
         if ($this->avatar) {
@@ -56,6 +63,11 @@ class User extends Authenticatable implements HasMedia
 
         $name = urlencode($this->name);
         return "https://ui-avatars.com/api/?name={$name}&background=random";
+    }
+
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new CustomResetPasswordNotification($token));
     }
 
 }

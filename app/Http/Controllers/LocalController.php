@@ -94,7 +94,7 @@ class LocalController extends Controller
         // Retorna uma resposta de sucesso com uma URL de redirecionamento
         return response()->json([
             'success' => true,
-            'redirect' => route('locals.index'), // Ajuste a rota conforme necessário
+            'redirect' => route('locals.index'),
             'message' => __('messages.local_created_successfully') // Mensagem de sucesso localizada
         ]);
     }
@@ -194,7 +194,7 @@ class LocalController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Local atualizado com sucesso!',
-            'redirect' => route('locals.index') // Ajuste a rota conforme necessário
+            'redirect' => route('locals.index')
         ]);
     }
 
@@ -220,23 +220,6 @@ class LocalController extends Controller
             'regions' => $regions,
             'districts' => $districts,
         ];
-    }
-
-    //Completar as sugestões na barra de pesquisa da navbar
-    public function autocomplete(Request $request): \Illuminate\Http\JsonResponse
-    {
-        $search = $request->get('query');
-        $locals = Local::where('name', 'LIKE', "%{$search}%")->get();
-
-        return response()->json($locals);
-    }
-
-    public function searchResults(Request $request)
-    {
-        $query = $request->input('query');
-        $locals = Local::where('name', 'LIKE', "%{$query}%")->get();
-
-        return view('pages.views.results.search-results', compact('locals', 'query'));
     }
 
 }

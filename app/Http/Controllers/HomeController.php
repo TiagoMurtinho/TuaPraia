@@ -15,22 +15,23 @@ class HomeController extends Controller
         // Obtém todos os locais e filtra por tipo e atributo
         $blueFlag = Local::where('type', 'beach')
             ->whereHas('attributes', function($query) {
-                $query->where('attributes.id', 23); // Substitua 1 pelo ID real do atributo 'blue_flag'
+                $query->where('attributes.id', 6);
             })->get();
 
         $zeroPollution = Local::where('type', 'beach')
             ->whereHas('attributes', function($query) {
-                $query->where('attributes.id', 24); // Substitua 2 pelo ID real do atributo 'zero_pollution'
+                $query->where('attributes.id', 10);
             })->get();
 
-        $fluvials = Local::where('type', 'fluvial')->get();
-        $cascades = Local::where('type', 'cascade')->get();
+        $orQuality = Local::where('type', 'beach')
+            ->whereHas('attributes', function($query) {
+                $query->where('attributes.id', 11);
+            })->get();
 
         return view('home', [
             'blueFlag' => $blueFlag,
             'zeroPollution' => $zeroPollution,
-            'fluvials' => $fluvials,
-            'cascades' => $cascades,
+            'orQuality' => $orQuality,
         ]);
     }
 

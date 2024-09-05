@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\{
-    AttributeController,
+use App\Http\Controllers\{AttributeController,
     DistrictController,
+    FeedbackController,
     HomeController,
     ProfileController,
     RegionController,
-    LocalController
-};
+    LocalController,
+    SearchController};
 use Illuminate\Support\Facades\Route;
 
 // Rota inicial
@@ -26,21 +26,28 @@ Route::middleware('auth')->group(function () {
         Route::delete('{id}', [ProfileController::class, 'destroy'])->name('destroy');
     });
 
-    // Recursos RESTful sem 'show' e 'create'
     Route::resource('attributes', AttributeController::class)->except(['show', 'create']);
     Route::resource('districts', DistrictController::class)->except('show');
     Route::resource('regions', RegionController::class)->except('show');
     Route::resource('locals', LocalController::class)->except('show');
+    Route::get('/feedback/{id}/edit', [FeedbackController::class, 'edit'])->name('feedback.edit');
+    Route::put('/feedback/{id}', [FeedbackController::class, 'update'])->name('feedback.update');
+    Route::delete('/feedback/{id}', [FeedbackController::class, 'destroy'])->name('feedback.destroy');
+    Route::post('/local/{id}/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 });
 
 // Rotas públicas para visualizar recursos individuais
 Route::get('/districts/{district}', [DistrictController::class, 'show'])->name('districts.show');
 Route::get('/regions/{id}', [RegionController::class, 'show'])->name('regions.show');
 Route::get('/locals/{id}', [LocalController::class, 'show'])->name('locals.show');
+Route::get('/locals/{local}/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
 
 // Rota para autocomplete e resultados de pesquisa
-Route::get('/autocomplete-locals', [LocalController::class, 'autocomplete'])->name('locals.autocomplete');
-Route::get('/search-results', [LocalController::class, 'searchResults'])->name('search.results');
+Route::get('/autocomplete-locals', [SearchController::class, 'autocomplete'])->name('locals.autocomplete');
+Route::get('/search-results', [SearchController::class, 'searchResults'])->name('search.results');
+Route::get('/search-results', [SearchController::class, 'filterResults'])->name('filter.results');
+Route::get('/regions/{regionId}/search-results', [SearchController::class, 'filterResults'])->name('filter.region_results');
+Route::get('/districts/{districtId}/search-results', [SearchController::class, 'filterResults'])->name('filter.district_results');
 
 // Rota para acessar arquivos de armazenamento
 Route::get('/storage/{path}', function ($path) {
