@@ -38,12 +38,13 @@ class CustomResetPasswordNotification extends Notification
     {
         $expiration = config('auth.passwords.users.expire', 5);
         $appName = config('app.name');
+        $resetPasswordUrl = route('home') . '?showResetPasswordModal=1&token=' . $this->token . '&email=' . urlencode($notifiable->getEmailForPasswordReset());
 
         return (new MailMessage)
                     ->subject( __('reset-password.subject'))
                     ->greeting( __('reset-password.greeting'))
                     ->line( __('reset-password.introduction'))
-                    ->action( __('reset-password.button'), url('password/reset', $this->token))
+                    ->action( __('reset-password.button'), $resetPasswordUrl)
                     ->line( __('reset-password.expire', ['count' => $expiration]))
                     ->line( __('reset-password.no_request'))
                     ->line( __('reset-password.salutation'))

@@ -327,3 +327,11 @@ document.addEventListener('DOMContentLoaded', function() {
         loginModal.show();
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('showResetPasswordModal')) {
+        const resetPasswordModal = new bootstrap.Modal(document.getElementById('resetPasswordModal'));
+        resetPasswordModal.show();
+    }
+});

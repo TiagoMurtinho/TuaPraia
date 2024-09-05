@@ -102,4 +102,6 @@
         </section>
 
     </div>
+    @include('auth.reset-password')
+
 @endsection

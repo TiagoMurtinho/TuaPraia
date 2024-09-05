@@ -3,7 +3,7 @@
 @section('title', $local->name)
 
 @section('content')
-    <header class="district-header text-center my-4">
+    <header class="custom-header text-center my-4">
         <h1 class="julee-regular">{{ $local->name }}</h1>
     </header>
     <div class="custom-container">
