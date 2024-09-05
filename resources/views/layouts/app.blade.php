@@ -14,6 +14,13 @@
         </header><!-- End Header -->
     @endif
 
+    <!-- Exibe mensagem de sucesso se existir -->
+    @if(session('success'))
+        <div class="alert alert-success global-success-messages mx-auto mt-2">
+            {{ session('success') }}
+        </div>
+    @endif
+
             <!-- Page Content -->
     <main @if(!isset($navbar) || $navbar != false) id="main" @endif class="main">
         @yield('content')

@@ -3,6 +3,17 @@
 @section('title', 'Homepage')
 
 @section('content')
+
+    @php
+        $messageKey = request()->query('message_key');
+    @endphp
+
+    @if($messageKey)
+        <div class="alert alert-success">
+            {{ __('success.' . $messageKey) }}
+        </div>
+    @endif
+
     <header class="homepage-header text-center my-4">
         <h1 class="homepage-title julee-regular">{{__('home.title')}}</h1>
     </header>

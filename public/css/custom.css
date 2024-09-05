@@ -391,6 +391,18 @@
     transition: background-color 0.3s;
 }
 
+/* Mensagens de sucesso*/
+.global-success-messages {
+    max-width: 500px;
+    text-align: center;
+}
+
+.custom-body-bg,
+.offcanvas-body-bg {
+    background-color: #fcf6e4 !important;
+    font-family: Arial, sans-serif;
+}
+
 .comments-nav-button {
     background-color: #007bff;
     color: #fff;
