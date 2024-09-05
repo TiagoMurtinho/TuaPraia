@@ -2,7 +2,7 @@
 
 @section('title', 'Locais do Distrito de ' . $district->name)
 
-
+@section('content')
     <header class="custom-header text-center my-4">
         <h1 class="julee-regular">{{ __('district.local_district') }} {{ $district->name }}</h1>
     </header>
