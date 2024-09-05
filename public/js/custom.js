@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Seleciona a mensagem de sucesso
+    // Bloco para mensagem de sucesso
     var successMessage = document.querySelector('.alert-success-custom');
 
     if (successMessage) {
@@ -290,7 +290,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 500); // Tempo para a animação de desaparecimento
         }, 10000); // 10 segundos
     }
-});
+
+    // Bloco para as estrelas de avaliação
     const stars = document.querySelectorAll('.rating-stars .star');
     const ratingInput = document.getElementById('rating');
     let selectedRating = 0;
