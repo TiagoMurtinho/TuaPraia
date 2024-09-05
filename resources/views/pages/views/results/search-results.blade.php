@@ -6,9 +6,9 @@
         <h1 class="julee-regular">{{__('result.results_off')}} {{--{{ $query }}--}}</h1>
     </header>
 
-    <div class="container custom-container">
+    @include('components.search-filters')
 
-        @include('components.search-filters')
+    <div class="container custom-container">
 
         <section class="districts-section">
             <div class="row">

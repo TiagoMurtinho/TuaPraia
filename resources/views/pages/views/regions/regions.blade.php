@@ -6,9 +6,10 @@
     <header class="custom-header text-center my-4">
         <h1 class="julee-regular">{{__('region.local_region')}} {{ $region->name }}</h1>
     </header>
-    <div class="container custom-container">
 
-        @include('components.search-filters', ['regionId' => $region->id])
+    @include('components.search-filters', ['regionId' => $region->id])
+
+    <div class="container custom-container">
 
         @foreach($region->districts as $district)
             <section class="custom-section">
