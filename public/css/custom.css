@@ -209,7 +209,10 @@
 .custom-container {
     padding-left: 150px!important;
     padding-right: 150px!important;
-    box-sizing: border-box;
+}
+
+.filter-container {
+    padding-left: 70px!important;
 }
 
 .local-container {
@@ -325,6 +328,13 @@
 
 .comments-container .rating .star {
     color: #f5c518;
+}
+
+.button-container {
+    position: absolute; /* Posiciona o botão absolutamente dentro do contêiner relativo */
+    bottom: 1rem; /* Alinha ao fundo do contêiner */
+    padding: 0; /* Espaçamento ao redor do botão */
+    margin-right: 6%;
 }
 
 
@@ -461,6 +471,26 @@
     opacity: 1;
 }
 
+.btn-filter-custom {
+    height: 1.75rem; /* Ajusta a altura do botão */
+    width: 4.5rem; /* Permite que a largura seja ajustada automaticamente */
+    font-size: 1rem; /* Ajusta o tamanho da fonte */
+    display: flex; /* Usa flexbox para layout */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    text-align: center; /* Garante que o texto esteja centralizado horizontalmente */
+    border-radius: 0.5rem; /* Define o arredondamento das bordas */
+    padding: 0; /* Remove padding para evitar interferência no tamanho */
+    line-height: 1.75rem; /* Ajusta a altura da linha para corresponder à altura do botão */
+    box-sizing: border-box; /* Inclui padding e border no cálculo do tamanho total */
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    border: 1px solid transparent; /* Borda transparente para evitar interferências visuais */
+    cursor: pointer; /* Altera o cursor para indicar que o botão é clicável */
+    margin-bottom: 0.7rem; /* Margem inferior */
+    position: relative;
+}
+
 
 /* ------------------------------
     Modais
@@ -579,7 +609,7 @@
 .form-check {
     display: flex;
     align-items: center;
-    margin-bottom: 12px; /* Espaço entre as checkboxes */
+    margin-bottom: 12px;
 }
 
 .form-check-input {
@@ -810,7 +840,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    background-image: url('../assets/img/foto-mar-navbar.jpg'); /* Substitua pelo caminho da sua imagem de fundo */
+    background-image: url('../assets/img/foto-mar-navbar.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -1027,6 +1057,17 @@
 
 /* hero */
 
+.filter_hero_section{
+    position: relative;
+    width: 100%;
+    height: 100px; /* Ajuste a altura conforme necessário */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8rem;
+    margin-top: 6rem;
+}
+
 .hero-section {
     position: relative;
     width: 100%;
@@ -1049,8 +1090,14 @@
 
 .hero-content {
     position: relative;
-    text-align: center;
+    text-align: start;
     color: #fff; /* Cor do texto branca para contraste com a sobreposição escura */
+}
+
+.sticky-section {
+    position: sticky;
+    top: 0; /* Define a distância do topo onde a seção se torna fixa */
+    z-index: 1000; /* Garante que a seção fique acima de outros conteúdos */
 }
 
 /* checkboxs dos filtros */

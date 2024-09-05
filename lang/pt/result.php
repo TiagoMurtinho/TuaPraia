@@ -13,5 +13,6 @@ return [
     'filter_parque' => 'Parque',
     'filter_bandeira_azul' => 'Bandeira Azul',
     'filter_zero_poluição' => 'Zero Poluição',
-    'apply_filters' => 'Aplicar'
+    'apply_filters' => 'Aplicar',
+    'filter_title' => 'Filtros'
 ];
