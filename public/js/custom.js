@@ -288,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 successMessage.style.display = 'none';
             }, 500); // Tempo para a animação de desaparecimento
-        }, 10000); // 10 segundos
+        }, 5000); // 10 segundos
     }
 
     // Bloco para as estrelas de avaliação
