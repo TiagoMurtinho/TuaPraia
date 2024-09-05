@@ -40,13 +40,13 @@ class CustomResetPasswordNotification extends Notification
         $appName = config('app.name');
 
         return (new MailMessage)
-                    ->subject(__('reset-password.subject'))
-                    ->greeting(__('reset-password.greeting'))
-                    ->line( __ ('reset-password.introduction'))
+                    ->subject( __('reset-password.subject'))
+                    ->greeting( __('reset-password.greeting'))
+                    ->line( __('reset-password.introduction'))
                     ->action( __('reset-password.button'), url('password/reset', $this->token))
                     ->line( __('reset-password.expire', ['count' => $expiration]))
                     ->line( __('reset-password.no_request'))
-                    ->line(__('reset-password.salutation'))
+                    ->line( __('reset-password.salutation'))
                     ->salutation($appName);
 
     }
