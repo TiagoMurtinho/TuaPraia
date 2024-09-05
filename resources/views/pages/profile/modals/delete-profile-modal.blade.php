@@ -7,7 +7,6 @@
             </div>
 
             <div class="modal-body">
-                <div id="deleteProfileMessage" class="d-none"></div>
 
                 <form action="{{ route('profile.destroy', Auth::id()) }}" method="POST">
                     @csrf

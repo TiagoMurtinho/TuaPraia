@@ -216,20 +216,28 @@ class ProfileController extends Controller
     {
         $user = User::findOrFail($id); // Encontre o usuário pelo ID
 
+        // Validação
         $request->validate([
             'password' => 'required',
         ]);
 
+        // Verificação da senha
         if (!Hash::check($request->password, $user->password)) {
-            return redirect()->route('profile.index', Auth::id())
-                ->with('error', 'Senha incorreta. A conta não foi apagada.');
+            return response()->json([
+                'success' => false,
+                'message' => 'Senha incorreta. A conta não foi apagada.'
+            ], 400); // 400 Bad Request
         }
 
+        // Logout e exclusão do usuário
         Auth::logout();
         $user->delete();
 
-        return redirect()->route('home')
-            ->with('success', 'Conta apagada com sucesso.');
+        // Retornar resposta JSON
+        return response()->json([
+            'success' => true,
+            'redirect' => route('home') . '?message_key=account_deleted'
+        ]);
     }
 
 }

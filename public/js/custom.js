@@ -219,6 +219,46 @@ $(document).ready(function() {
     });
 });
 
+$(document).ready(function() {
+    function handleSuccessMessages(modalId) {
+        var $modal = $('#' + modalId);
+        var $form = $modal.find('form');
+
+        $form.on('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            var actionUrl = $form.attr('action');
+
+            // Limpa mensagens de sucesso anteriores
+            $modal.find('.alert.alert-success').empty().addClass('d-none');
+
+            $.ajax({
+                url: actionUrl,
+                method: 'POST',
+                data: new FormData($form[0]),
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    if (response.success) {
+                        // Redirecionar para a página home com a chave da mensagem
+                        if (response.redirect) {
+                            window.location.href = response.redirect;
+                        }
+                    } else {
+                        console.log('Resposta não marcada como sucesso:', response);
+                    }
+                },
+                error: function(xhr) {
+                    console.log('Erro ao processar a solicitação:', xhr.responseJSON); // Debug: Verificar a resposta do servidor
+                }
+            });
+        });
+    }
+
+    // Inicializa o gerenciamento de formulários para modais específicos
+    handleSuccessMessages('deleteProfileModal');
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     var backToTopButton = document.getElementById('back-to-top');
 
@@ -237,5 +277,20 @@ document.addEventListener('DOMContentLoaded', function () {
             behavior: 'smooth'
         });
     });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Seleciona a mensagem de sucesso
+    var successMessage = document.querySelector('.alert-success-custom');
+
+    if (successMessage) {
+        // Configura um timeout para esconder a mensagem após 10 segundos
+        setTimeout(function() {
+            successMessage.style.opacity = 0;
+            setTimeout(function() {
+                successMessage.style.display = 'none';
+            }, 500); // Tempo para a animação de desaparecimento
+        }, 10000); // 10 segundos
+    }
 });
 
