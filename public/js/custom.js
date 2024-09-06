@@ -546,7 +546,7 @@ Em resumo, o código permite o envio de formulários de forma assíncrona, forne
 
 
 $(document).ready(function() {
-    $('form').on('submit', function(event) {
+    $('.ajax-form').on('submit', function(event) {
         event.preventDefault(); // Impede o envio padrão do formulário
 
         var url = $(this).attr('action');

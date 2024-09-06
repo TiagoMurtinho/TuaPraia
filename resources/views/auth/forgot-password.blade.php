@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="alert alert-success d-none" id="forgotPasswordSuccess"></div>
-                <form method="POST" action="{{ route('password.email') }}">
+                <form class="ajax-form" method="POST" action="{{ route('password.email') }}">
                     @csrf
                     <!-- Email Address -->
                     <div>
