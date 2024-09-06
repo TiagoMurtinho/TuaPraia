@@ -23,22 +23,26 @@ class PasswordResetLinkController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): \Illuminate\Http\JsonResponse
     {
         $request->validate([
-            'email' => ['required', 'email'],
+            'email' => 'required', 'email',
         ]);
 
-        // We will send the password reset link to this user. Once we have attempted
-        // to send the link, we will examine the response then see the message we
-        // need to show to the user. Finally, we'll send out a proper response.
+        // Tentamos enviar o link de redefinição de senha
         $status = Password::sendResetLink(
             $request->only('email')
         );
 
-        return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+        if ($status == Password::RESET_LINK_SENT) {
+            return response()->json([
+                'success' => true,
+                'redirect' => route('home', absolute: false) . '?message_key=mail_sent'
+            ]);
+        } else {
+            return response()->json([
+                'error' => __('We cannot find a user with that e-mail address.'),
+            ], 422); // Status HTTP 422 Unprocessable Entity
+        }
     }
 }

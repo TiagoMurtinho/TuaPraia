@@ -1,16 +1,16 @@
-/*
+/* ----------------------------------------------------------------------
     Esta função recebe 2 parâmetros, "formID" e "url"
     - formId: o ID do formulário a ser modificado.
     - url: a URL para a qual o formulário será enviado quando submetido.
     Por exemplo :
     onclick="confirmDelete('deleteRegionForm','{{ route('regions.destroy', $region->id) }}')
-*/
+------------------------------------------------------------------------ */
 
 function confirmDelete(formId, url) {
     document.getElementById(formId).action = url;
 }
 
-/*
+/* ----------------------------------------------------------------------
     Este código aguarda o carregamento completo do DOM antes de executar.
     Ele seleciona todos os elementos com a classe 'custom-file-input' e adiciona um evento de 'change' a cada um deles.
     Quando um arquivo é selecionado:
@@ -19,7 +19,7 @@ function confirmDelete(formId, url) {
     - Verifica se há uma imagem com a classe 'img-thumbnail' e, se existir, usa seu atributo 'alt' como texto do rótulo;
     - Se não houver imagem, define um texto padrão 'Escolher arquivo...'.
     Se o input ou o rótulo não forem encontrados, registra uma mensagem no console.
-*/
+------------------------------------------------------------------------- */
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -429,6 +429,38 @@ $(document).ready(function() {
             },
             error: function(xhr) {
                 console.log('Erro ao processar a solicitação:', xhr.responseJSON); // Verificar a resposta do servidor
+            }
+        });
+    });
+});
+
+$(document).ready(function() {
+    $('form').on('submit', function(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        var url = $(this).attr('action');
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                if (response.success) {
+                    // Redireciona para a URL fornecida
+                    window.location.href = response.redirect;
+                } else if (response.error) {
+                    alert(response.error);
+                }
+            },
+            error: function(xhr) {
+                console.error('Erro:', xhr.responseJSON);
+                alert('Ocorreu um erro ao processar a solicitação.');
             }
         });
     });

@@ -17,5 +17,6 @@ return [
     'login_success' => 'Login efetuado com sucesso.',
     'register_success' => 'Registro efetuado com sucesso',
     'confirmation_email_sent' => 'E-mail de verificação enviado.',
-    'password_reset_success' => 'Palavra-Passe redefinida com sucesso.'
+    'password_reset_success' => 'Palavra-Passe redefinida com sucesso.',
+    'mail_sent' => 'E-mail enviado com sucesso.'
 ];
