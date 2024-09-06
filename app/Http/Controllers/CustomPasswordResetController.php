@@ -13,11 +13,18 @@ class CustomPasswordResetController extends Controller
     public function reset(Request $request): JsonResponse
     {
         // Validação dos dados do formulário
-        $request->validate([
+        $validator = \Validator::make($request->all(), [
             'token' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed',
         ]);
+
+        // Se a validação falhar, retorne erros de validação
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422); // Status HTTP 422 Unprocessable Entity
+        }
 
         // Tentativa de resetar a senha
         $response = Password::reset(
@@ -37,11 +44,10 @@ class CustomPasswordResetController extends Controller
             ]);
         } else {
             return response()->json([
-                'success' => false,
                 'errors' => [
-                    'email' => __($response)
+                    'email' => __($response) // Mensagem de erro específica
                 ]
-            ], 422);
+            ], 422); // Status HTTP 422 Unprocessable Entity
         }
     }
 }

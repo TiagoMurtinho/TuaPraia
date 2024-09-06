@@ -188,12 +188,7 @@ $(document).ready(function() {
                 contentType: false,
                 success: function(response) {
                     if (response.success) {
-                        if (showSuccess) {
-                            $successAlert.text(response.message || 'Operação realizada com sucesso!').removeClass('d-none');
-                        }
-                        if (response.redirect) {
                             window.location.href = response.redirect;
-                        }
                     } else {
                         console.log('Resposta não marcada como sucesso:', response);
                     }
@@ -242,7 +237,8 @@ $(document).ready(function() {
     handleFormSubmission('editAttributeModal', false, true);
     handleFormSubmission('editDistrictModal', false, true);
     handleFormSubmission('editRegionModal', false, true);
-    handleFormSubmission('resetPasswordModal', false, true);
+    handleFormSubmission('resetPasswordModal', true, true);
+    handleFormSubmission('forgotPasswordModal', false, true);
 
     $('.dynamic-modal').each(function() {
         var modalId = $(this).attr('id');
@@ -515,13 +511,7 @@ $(document).ready(function() {
             success: function(response) {
                 if (response.success) {
                     window.location.href = response.redirect;
-                } else if (response.error) {
-                    alert(response.error);
                 }
-            },
-            error: function(xhr) {
-                console.error('Erro:', xhr.responseJSON);
-                alert('Ocorreu um erro ao processar a solicitação.');
             }
         });
     });

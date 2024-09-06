@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class PasswordResetLinkController extends Controller
@@ -23,13 +25,20 @@ class PasswordResetLinkController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): \Illuminate\Http\JsonResponse
+    public function store(Request $request): JsonResponse
     {
-        $request->validate([
-            'email' => 'required', 'email',
+        // Valida o e-mail
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
         ]);
 
-        // Tentamos enviar o link de redefinição de senha
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422); // Status HTTP 422 Unprocessable Entity
+        }
+
+        // Tenta enviar o link de redefinição de senha
         $status = Password::sendResetLink(
             $request->only('email')
         );
@@ -41,7 +50,9 @@ class PasswordResetLinkController extends Controller
             ]);
         } else {
             return response()->json([
-                'error' => __('We cannot find a user with that e-mail address.'),
+                'errors' => [
+                    'email' => [__('validation.custom.email.not_found')]
+                ]
             ], 422); // Status HTTP 422 Unprocessable Entity
         }
     }
