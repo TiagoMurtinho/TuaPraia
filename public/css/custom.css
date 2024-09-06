@@ -1119,6 +1119,7 @@
 }
 
 .alert-success-custom {
+    text-align: center;
     margin-top: 20px; /* Ajuste o valor conforme necessário */
     width: 35%; /* Ajuste o valor conforme necessário */
     max-width: 500px; /* Ajuste o valor conforme necessário */
