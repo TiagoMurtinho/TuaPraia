@@ -6,9 +6,11 @@
     onclick="confirmDelete('deleteRegionForm','{{ route('regions.destroy', $region->id) }}')
 ------------------------------------------------------------------------ */
 
+
 function confirmDelete(formId, url) {
     document.getElementById(formId).action = url;
 }
+
 
 /* ----------------------------------------------------------------------
     Este código aguarda o carregamento completo do DOM antes de executar.
@@ -20,6 +22,7 @@ function confirmDelete(formId, url) {
     - Se não houver imagem, define um texto padrão 'Escolher arquivo...'.
     Se o input ou o rótulo não forem encontrados, registra uma mensagem no console.
 ------------------------------------------------------------------------- */
+
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -144,6 +147,18 @@ document.addEventListener('DOMContentLoaded', function() { // Garante que todo o
     });
 });
 
+
+/* --------------------------------------------------------------------------------------
+
+Este código serve para exibir mensagens de erro.
+Ele via dados para o servidor sem recarregar a página via AJAX.
+Dependendo da resposta do servidor ele vai tratar das mensagens de erro de duas formas.
+Mostra mensagens de erro gerais como falha de login e mostra erros especificos como erros de validação de formulários.
+Além disso o código pode ser aplicado tanto em modais estáticos, como em modais dinâmicos com a classe .dynamic-modal.
+
+--------------------------------------------------------------------------------------- */
+
+
 $(document).ready(function() {
     function handleFormSubmission(modalId, isGlobal) {
         var $modal = $('#' + modalId);
@@ -217,6 +232,15 @@ $(document).ready(function() {
     });
 });
 
+
+/* --------------------------------------------------------------------------------------
+
+Este código tem como foco exibir mensagens de sucesso.
+Caso o servidor indique que o envio foi bem-sucedido ele verifica se há uma rota de redirecionamento, caso exista, ele redireciona o user para a view dessa rota e exibe uma mensagem de sucesso na view para onde é direcionado.
+
+--------------------------------------------------------------------------------------- */
+
+
 $(document).ready(function() {
     function handleSuccessMessages(modalId) {
         var $modal = $('#' + modalId);
@@ -275,11 +299,44 @@ $(document).ready(function() {
     handleSuccessMessages('resetPasswordModal');
 });
 
+
+/* ------------------------------------------------------------------------------
+
+Este código recebe a mensagem de sucesso exibida,
+cado essa mensagem tenha a classe ".alert-success-custom" ela será exibida por 5 segundos, em seguida a sua opacidade é reduzida gradualmente até desaparecer.
+
+-------------------------------------------------------------------------------- */
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Bloco para mensagem de sucesso
+    var successMessage = document.querySelector('.alert-success-custom');
+
+    if (successMessage) {
+        // Configura um timeout para esconder a mensagem após 5 segundos
+        setTimeout(function() {
+            successMessage.style.opacity = 0;
+            setTimeout(function() {
+                successMessage.style.display = 'none';
+            }, 500); // Tempo para a animação de desaparecimento
+        }, 5000); // 5 segundos
+    }
+});
+
+
+/* -----------------------------------------------------------------------------------------
+
+Esre código é responsável por exibir e controlar o comportamento do botão " voltar para o topo "
+Quando o conteúdo da view é carregado ele adiciona um listener para controlar a scroll da página,
+Se o user fizer scroll mais de 200 pixels para baixo o botão aparece, ao fazer scroll para cima caso estiver a menos de 200 pixels ele desaparece.
+Quando o botão é clicado ele impede o comportamento padrão e faz com que a página volte suavemente ao topo
+
+------------------------------------------------------------------------------------------ */
 document.addEventListener('DOMContentLoaded', function () {
     var backToTopButton = document.getElementById('back-to-top');
 
     window.addEventListener('scroll', function () {
-        if (window.scrollY > 200) { // Ajuste a quantidade de rolagem antes de mostrar o botão
+        if (window.scrollY > 200) {
             backToTopButton.classList.add('show');
         } else {
             backToTopButton.classList.remove('show');
@@ -295,20 +352,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+/* ----------------------------------------------------------------------------------------
+
+Este código é responsável por criar o sistema de avaliação por estrelas.
+Ele começa por selecionar todos os elementos de estrela dentro do container com a classe
+" . rating-stars " e o campo oculto com o id "#rating".
+Quando o user passa o rato sobre uma estrela, o código captura o valor associado a essa estrela alem de modificar a aparência da estrela. Isso ajuda o user a ver a classificação que está a selecionar.
+Se retirar o rato das estrelas, o sistema retorna às estrelas destacadas conforme a classificação que já tinha sido selecionada, o que assegura que a seleção anterior permanece visível.
+Ao clicar em uma estrela, o valor da estrela é armazenado e atribuído ao campo oculto o que permite que o valor da avaliação seja enviado com o comentário.
+
+------------------------------------------------------------------------------------------ */
+
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Bloco para mensagem de sucesso
-    var successMessage = document.querySelector('.alert-success-custom');
-
-    if (successMessage) {
-        // Configura um timeout para esconder a mensagem após 10 segundos
-        setTimeout(function() {
-            successMessage.style.opacity = 0;
-            setTimeout(function() {
-                successMessage.style.display = 'none';
-            }, 500); // Tempo para a animação de desaparecimento
-        }, 5000); // 10 segundos
-    }
-
     // Bloco para as estrelas de avaliação
     const stars = document.querySelectorAll('.rating-stars .star');
     const ratingInput = document.getElementById('rating');
@@ -340,6 +397,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+/* ----------------------------------------------------------------------------------------
+
+Este código faz a gestão da exibição de dois comportamentos distintos, o formulário de feedback
+e a lista de comentários.
+Basicamente o código é responsavel por permitir alternar entre o formulário de feedback
+e a lista de comentários dentro do mesmo container através de dois botões.
+
+---------------------------------------------------------------------------------------- */
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const showFormButton = document.getElementById('show-form-button');
@@ -376,7 +444,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-/* Código para manipulação de modal de login e de forgot your password */
+/* -------------------------------------------------------------------------------------
+
+Este código faz a gestão entre dois modais.
+Quando o user clica no botão com id "#loginBtn" o modal de login é exibido,
+ao clicar no link com o id "#forgotPasswordLink" o código impede o comportamento padrão do
+link e fecha o modal de login exibindo de seguida o modal de recuperação de pass.
+Caso o modal de recuperação seja fechado voluntáriamente ou seja sem fazer o processo de
+recuperação, ele faz com que o modal de login seja reexibido automaticamente.
+
+--------------------------------------------------------------------------------------- */
+
 
 document.addEventListener('DOMContentLoaded', function() {
     var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
@@ -400,6 +478,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+/* ----------------------------------------------------------------------------------
+
+Este código verifica se o parâmetro "showResetPasswordModal" está presente e se o seu
+valor é igual a 1.
+Caso esteja presente e seja igual a 1 o código cria uma instância do modal para ser
+exibido automaticamente na tela.
+
+------------------------------------------------------------------------------------- */
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const showResetPasswordModal = urlParams.get('showResetPasswordModal');
@@ -411,6 +500,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+
+/* ---------------------------------------------------------------------------------------
+
+Este código assegura que o formulário de redefinição de password não seja enviado da forma
+tradicional e em vez disso ele realiza uma requisição AJAX para a ulr /password/reset com o
+método POST
+
+------------------------------------------------------------------------------------------ */
+
+
 $(document).ready(function() {
     $('#resetPasswordForm').on('submit', function(event) {
         event.preventDefault(); // Impede o envio padrão do formulário
@@ -419,6 +518,8 @@ $(document).ready(function() {
             url: '/password/reset', // URL da sua API
             method: 'POST',
             data: $(this).serialize(), // Serializa os dados do formulário
+            processData: false,
+            contentType: false,
             success: function(response) {
                 if (response.success) {
                     window.location.href = response.redirect; // Redirecionar, se necessário
@@ -433,6 +534,16 @@ $(document).ready(function() {
         });
     });
 });
+
+
+/* --------------------------------------------------------------------------------
+
+Este código está projetado para interceptar o envio de qualquer formulário e
+processar o envio de forma assíncrona utilizando AJAX.
+Em resumo, o código permite o envio de formulários de forma assíncrona, fornecendo feedback e redirecionamento baseados na resposta do servidor, além de lidar com possíveis erros de forma adequada.
+
+----------------------------------------------------------------------------------------- */
+
 
 $(document).ready(function() {
     $('form').on('submit', function(event) {
@@ -452,7 +563,6 @@ $(document).ready(function() {
             },
             success: function(response) {
                 if (response.success) {
-                    // Redireciona para a URL fornecida
                     window.location.href = response.redirect;
                 } else if (response.error) {
                     alert(response.error);
