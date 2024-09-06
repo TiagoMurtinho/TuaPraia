@@ -240,7 +240,8 @@ $(document).ready(function() {
                 contentType: false,
                 success: function(response) {
                     if (response.success) {
-                        // Redirecionar para a página home com a chave da mensagem
+                        var $alert = $modal.find('.alert.alert-success');
+                        $alert.empty().removeClass('d-none');
                         if (response.redirect) {
                             window.location.href = response.redirect;
                         }
@@ -268,6 +269,10 @@ $(document).ready(function() {
     handleSuccessMessages('addRegionModal');
     handleSuccessMessages('editRegionModal');
     handleSuccessMessages('addLocalModal');
+    handleSuccessMessages('loginModal');
+    handleSuccessMessages('loginModal');
+    handleSuccessMessages('registerModal');
+    handleSuccessMessages('resetPasswordModal');
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -397,8 +402,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('showResetPasswordModal')) {
+    const showResetPasswordModal = urlParams.get('showResetPasswordModal');
+
+    if (showResetPasswordModal === '1') {
         const resetPasswordModal = new bootstrap.Modal(document.getElementById('resetPasswordModal'));
+        console.log('Showing modal');
         resetPasswordModal.show();
     }
+});
+
+$(document).ready(function() {
+    $('#resetPasswordForm').on('submit', function(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        $.ajax({
+            url: '/password/reset', // URL da sua API
+            method: 'POST',
+            data: $(this).serialize(), // Serializa os dados do formulário
+            success: function(response) {
+                if (response.success) {
+                    window.location.href = response.redirect; // Redirecionar, se necessário
+                } else {
+                    console.log('Erros:', response.errors);
+                    // Exibir erros na interface do usuário
+                }
+            },
+            error: function(xhr) {
+                console.log('Erro ao processar a solicitação:', xhr.responseJSON); // Verificar a resposta do servidor
+            }
+        });
+    });
 });

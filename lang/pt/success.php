@@ -13,5 +13,9 @@ return [
     'region_inserted' => 'Região inserida com sucesso.',
     'region_changed' => 'Região alterada com sucesso.',
     'local_inserted' => 'Local inserido com sucesso.',
-    'local_changed' => 'Local alterado com sucesso.'
+    'local_changed' => 'Local alterado com sucesso.',
+    'login_success' => 'Login efetuado com sucesso.',
+    'register_success' => 'Registro efetuado com sucesso',
+    'confirmation_email_sent' => 'E-mail de verificação enviado.',
+    'password_reset_success' => 'Palavra-Passe redefinida com sucesso.'
 ];

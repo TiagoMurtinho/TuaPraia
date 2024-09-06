@@ -59,7 +59,7 @@ class RegisteredUserController extends Controller
 
             return response()->json([
                 'success' => true,
-                'redirect' => route('home', absolute: false)
+                'redirect' => route('home', absolute: false) . '?message_key=register_success'
             ]);
         } catch (ValidationException $e) {
             // Captura exceções de validação e retorna erros personalizados no formato JSON

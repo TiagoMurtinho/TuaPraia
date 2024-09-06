@@ -12,7 +12,7 @@ return [
     'rights' => 'Todos os direitos reservados.',
     'title' => 'Redefinição de Palavra-Passe',
     'email' => 'E-mail',
-    'password' => 'Palavra-Passe',
+    'password' => 'Nova Palavra-Passe',
     'password_confirmation' => 'Confirmação de Palavra-Passe',
     'reset_password' => 'Redefinir'
 ];

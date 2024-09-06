@@ -27,7 +27,7 @@ class AuthenticatedSessionController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return response()->json(['success' => true, 'redirect' => route('home', absolute: false)]);
+            return response()->json(['success' => true, 'redirect' => route('home', absolute: false) . '?message_key=login_success' ]);
         }
 
         return response()->json(['message' => __('validation.custom.auth.auth')], 401);
@@ -44,6 +44,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')->with('success', 'logout successfully!');
     }
 }

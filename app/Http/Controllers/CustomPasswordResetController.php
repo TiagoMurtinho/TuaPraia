@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
@@ -9,14 +10,16 @@ use Illuminate\Support\Str;
 
 class CustomPasswordResetController extends Controller
 {
-    public function reset(Request $request): \Illuminate\Http\RedirectResponse
+    public function reset(Request $request): JsonResponse
     {
+        // Validação dos dados do formulário
         $request->validate([
             'token' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed',
         ]);
 
+        // Tentativa de resetar a senha
         $response = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) {
@@ -26,10 +29,19 @@ class CustomPasswordResetController extends Controller
             }
         );
 
+        // Verifica se a senha foi resetada com sucesso
         if ($response == Password::PASSWORD_RESET) {
-            return redirect()->route('home')->with('status', __('Password has been reset!'));
+            return response()->json([
+                'success' => true,
+                'redirect' => route('home') . '?message_key=password_reset_sucess'
+            ]);
         } else {
-            return redirect()->back()->withErrors(['email' => __($response)]);
+            return response()->json([
+                'success' => false,
+                'errors' => [
+                    'email' => __($response)
+                ]
+            ], 422);
         }
     }
 }

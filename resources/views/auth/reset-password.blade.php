@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 <div class="alert alert-danger d-none" id="resetPasswordGlobalError"></div>
-                <form method="POST" action="{{ route('password.update') }}">
+                <form id="resetPasswordForm" method="POST" action="{{ route('password.update') }}">
                     @csrf
                     <!-- Password Reset Token -->
                     <input type="hidden" name="token" value="{{ request('token') }}">
