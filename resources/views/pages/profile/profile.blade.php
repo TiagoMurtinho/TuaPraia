@@ -4,6 +4,16 @@
 
 @section('content')
 
+    @php
+        $messageKey = request()->query('message_key');
+    @endphp
+
+    @if($messageKey)
+        <div class="alert alert-success alert-success-custom">
+            {{ __('success.' . $messageKey) }}
+        </div>
+    @endif
+
     <header class="custom-header text-center">
         <h1 class="julee-regular">{{ __('profile.profile_of') }} {{ $user->name }}</h1>
     </header>

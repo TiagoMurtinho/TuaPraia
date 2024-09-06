@@ -16,6 +16,7 @@ return [
             'unique' => 'Este e-mail já está em uso.',
             'max' => 'O e-mail não pode ter mais de 255 caracteres.',
             'success_updated' => 'O e-mail foi atualizado com sucesso!',
+            'not_found' => 'Este e-mail não se encontra no nosso sistema!'
         ],
         'password' => [
             'required' => 'A senha é obrigatória.',

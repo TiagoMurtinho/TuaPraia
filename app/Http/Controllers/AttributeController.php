@@ -54,7 +54,7 @@ class AttributeController extends Controller
         // Retorna uma resposta de sucesso
         return response()->json([
             'success' => true,
-            'redirect' => route('attributes.index')
+            'redirect' => route('attributes.index') . '?message_key=attribute_inserted'
         ]);
     }
 
@@ -101,19 +101,21 @@ class AttributeController extends Controller
         // Retorna uma resposta JSON com mensagem de sucesso
         return response()->json([
             'success' => true,
-            'redirect' => route('attributes.index'),
-            'message' => __('messages.attribute_updated_successfully') // Mensagem de sucesso localizada
+            'redirect' => route('attributes.index') . '?message_key=attribute_changed'
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Attribute $attribute):RedirectResponse
+    public function destroy(Attribute $attribute): \Illuminate\Http\JsonResponse
     {
 
         $attribute->delete();
 
-        return redirect()->route('attributes.index')->with('success', 'Attribute deleted successfully!');
+        return response()->json([
+            'success' => true,
+            'redirect' => route('attributes.index') . '?message_key=attribute_deleted'
+        ]);
     }
 }

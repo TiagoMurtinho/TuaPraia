@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Local;
 use App\Models\Region;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
@@ -47,7 +48,7 @@ class RegionController extends Controller
         ]);
     }
 
-    public function store(Request $request): \Illuminate\Http\JsonResponse
+    public function store(Request $request): JsonResponse
     {
         // Valida os dados do formulário
         $validator = Validator::make($request->all(), [
@@ -69,8 +70,7 @@ class RegionController extends Controller
         // Retorna uma resposta de sucesso com uma URL de redirecionamento
         return response()->json([
             'success' => true,
-            'redirect' => route('regions.index'),
-            'message' => __('messages.region_added_successfully')
+            'redirect' => route('regions.index') . '?message_key=region_inserted'
         ]);
     }
 
@@ -83,7 +83,7 @@ class RegionController extends Controller
         ]);
     }
 
-    public function update(Request $request, int $id): \Illuminate\Http\JsonResponse
+    public function update(Request $request, int $id): JsonResponse
     {
         // Valida os dados do formulário
         $validator = Validator::make($request->all(), [
@@ -105,16 +105,18 @@ class RegionController extends Controller
         // Retorna uma resposta de sucesso com uma URL de redirecionamento
         return response()->json([
             'success' => true,
-            'redirect' => route('regions.index'),
-            'message' => __('messages.region_updated_successfully') // Mensagem de sucesso localizada
+            'redirect' => route('regions.index') . '?message_key=region_changed'
         ]);
     }
 
-    public function destroy(Region $region):RedirectResponse
+    public function destroy(Region $region): JsonResponse
     {
         $region->delete();
 
-        return redirect(route('regions.index'))->with('success', 'Região excluída com sucesso!');
+        return response()->json([
+            'success' => true,
+            'redirect' => route('regions.index') . '?message_key=region_deleted'
+        ]);
     }
 
 }

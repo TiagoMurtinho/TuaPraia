@@ -10,7 +10,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('region.cancel')}}</button>
-                <form id="deleteRegionForm{{ $region->id }}" method="POST" action="">
+                <form class="ajax-form" id="deleteRegionForm{{ $region->id }}" method="POST" action="">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">{{__('region.delete')}}</button>

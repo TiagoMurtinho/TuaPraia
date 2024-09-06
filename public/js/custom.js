@@ -1,16 +1,18 @@
-/*
+/* ----------------------------------------------------------------------
     Esta função recebe 2 parâmetros, "formID" e "url"
     - formId: o ID do formulário a ser modificado.
     - url: a URL para a qual o formulário será enviado quando submetido.
     Por exemplo :
     onclick="confirmDelete('deleteRegionForm','{{ route('regions.destroy', $region->id) }}')
-*/
+------------------------------------------------------------------------ */
+
 
 function confirmDelete(formId, url) {
     document.getElementById(formId).action = url;
 }
 
-/*
+
+/* ----------------------------------------------------------------------
     Este código aguarda o carregamento completo do DOM antes de executar.
     Ele seleciona todos os elementos com a classe 'custom-file-input' e adiciona um evento de 'change' a cada um deles.
     Quando um arquivo é selecionado:
@@ -19,7 +21,8 @@ function confirmDelete(formId, url) {
     - Verifica se há uma imagem com a classe 'img-thumbnail' e, se existir, usa seu atributo 'alt' como texto do rótulo;
     - Se não houver imagem, define um texto padrão 'Escolher arquivo...'.
     Se o input ou o rótulo não forem encontrados, registra uma mensagem no console.
-*/
+------------------------------------------------------------------------- */
+
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -144,19 +147,38 @@ document.addEventListener('DOMContentLoaded', function() { // Garante que todo o
     });
 });
 
+
+/* --------------------------------------------------------------------------------------
+
+Este código é responsável por gerenciar a exibição de mensagens de erro e sucesso durante o
+envio de formulários via AJAX, sem recarregar a página. Quando um formulário é enviado, ele
+limpa quaisquer mensagens de erro ou sucesso anteriores e, em seguida, envia os dados para o
+servidor. Dependendo da resposta do servidor, o código trata as mensagens de erro de duas
+formas: exibe mensagens de erro gerais, como falhas de login ou mensagens de erro globais, e
+exibe erros específicos de validação associados aos campos do formulário. Além disso, o código é
+flexível, podendo ser aplicado tanto a modais com IDs específicos quanto a modais dinâmicos
+identificados pela classe .dynamic-modal. Se a resposta do servidor indica sucesso, o código
+pode também exibir uma mensagem de sucesso e redirecionar o usuário para uma nova página, se
+necessário.
+
+--------------------------------------------------------------------------------------- */
+
+
 $(document).ready(function() {
-    function handleFormSubmission(modalId, isGlobal) {
+    function handleFormSubmission(modalId, isGlobal, showSuccess) {
         var $modal = $('#' + modalId);
         var $form = $modal.find('form');
         var $globalError = $modal.find('#' + modalId + 'GlobalError');
+        var $successAlert = $modal.find('.alert.alert-success');
 
         $form.on('submit', function(event) {
             event.preventDefault(); // Impede o envio padrão do formulário
 
             var actionUrl = $form.attr('action');
 
-            // Limpa erros anteriores
+            // Limpa erros e mensagens de sucesso anteriores
             $modal.find('.alert.alert-danger').empty().addClass('d-none');
+            $successAlert.empty().addClass('d-none');
 
             $.ajax({
                 url: actionUrl,
@@ -166,11 +188,13 @@ $(document).ready(function() {
                 contentType: false,
                 success: function(response) {
                     if (response.success) {
-                        window.location.href = response.redirect;
+                            window.location.href = response.redirect;
+                    } else {
+                        console.log('Resposta não marcada como sucesso:', response);
                     }
                 },
                 error: function(xhr) {
-                    console.log('Erro de validação:', xhr.responseJSON); // Debug: Verificar a resposta do servidor
+                    console.log('Erro ao processar a solicitação:', xhr.responseJSON); // Debug: Verificar a resposta do servidor
 
                     if (isGlobal) {
                         // Exibir erros globais
@@ -185,7 +209,6 @@ $(document).ready(function() {
                         $.each(errors, function(key, messages) {
                             // Construa o ID do campo de erro correspondente
                             var errorDivId = modalId + key.charAt(0).toUpperCase() + key.slice(1) + 'Error';
-                            console.log('Buscando por ID:', '#' + errorDivId);
                             var errorDiv = $modal.find('#' + errorDivId);
                             if (errorDiv.length) {
                                 errorDiv.text(messages.join(', ')).removeClass('d-none');
@@ -199,69 +222,68 @@ $(document).ready(function() {
         });
     }
 
-    // Inicializa o gerenciamento de formulários para modais de registro e login
-    handleFormSubmission('registerModal', false);
-    handleFormSubmission('loginModal', true);
-    handleFormSubmission('editProfileEmailModal', false);
-    handleFormSubmission('editProfileInfoModal', false);
-    handleFormSubmission('editProfilePasswordModal', false);
-    handleFormSubmission('editProfilePhotoModal', false);
-    handleFormSubmission('addAttributeModal', false);
-    handleFormSubmission('addRegionModal', false);
-    handleFormSubmission('addDistrictModal', false);
-    handleFormSubmission('addLocalModal', false);
+    // Inicializa o gerenciamento de formulários para modais
+    handleFormSubmission('registerModal', false, true);
+    handleFormSubmission('loginModal', true, true);
+    handleFormSubmission('editProfileEmailModal', false, true);
+    handleFormSubmission('editProfileInfoModal', false, true);
+    handleFormSubmission('editProfilePasswordModal', false, true);
+    handleFormSubmission('editProfilePhotoModal', false, true);
+    handleFormSubmission('addAttributeModal', false, true);
+    handleFormSubmission('addRegionModal', false, true);
+    handleFormSubmission('addDistrictModal', false, true);
+    handleFormSubmission('addLocalModal', false, true);
+    handleFormSubmission('deleteProfileModal', false, true);
+    handleFormSubmission('editAttributeModal', false, true);
+    handleFormSubmission('editDistrictModal', false, true);
+    handleFormSubmission('editRegionModal', false, true);
+    handleFormSubmission('resetPasswordModal', true, true);
+    handleFormSubmission('forgotPasswordModal', false, true);
 
     $('.dynamic-modal').each(function() {
         var modalId = $(this).attr('id');
-        handleFormSubmission(modalId, false);
+        handleFormSubmission(modalId, false, true);
     });
 });
 
-$(document).ready(function() {
-    function handleSuccessMessages(modalId) {
-        var $modal = $('#' + modalId);
-        var $form = $modal.find('form');
 
-        $form.on('submit', function(event) {
-            event.preventDefault(); // Impede o envio padrão do formulário
+/* ------------------------------------------------------------------------------
 
-            var actionUrl = $form.attr('action');
+Este código recebe a mensagem de sucesso exibida,
+cado essa mensagem tenha a classe ".alert-success-custom" ela será exibida por 5 segundos, em seguida a sua opacidade é reduzida gradualmente até desaparecer.
 
-            // Limpa mensagens de sucesso anteriores
-            $modal.find('.alert.alert-success').empty().addClass('d-none');
+-------------------------------------------------------------------------------- */
 
-            $.ajax({
-                url: actionUrl,
-                method: 'POST',
-                data: new FormData($form[0]),
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.success) {
-                        // Redirecionar para a página home com a chave da mensagem
-                        if (response.redirect) {
-                            window.location.href = response.redirect;
-                        }
-                    } else {
-                        console.log('Resposta não marcada como sucesso:', response);
-                    }
-                },
-                error: function(xhr) {
-                    console.log('Erro ao processar a solicitação:', xhr.responseJSON); // Debug: Verificar a resposta do servidor
-                }
-            });
-        });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Bloco para mensagem de sucesso
+    var successMessage = document.querySelector('.alert-success-custom');
+
+    if (successMessage) {
+        // Configura um timeout para esconder a mensagem após 5 segundos
+        setTimeout(function() {
+            successMessage.style.opacity = 0;
+            setTimeout(function() {
+                successMessage.style.display = 'none';
+            }, 500); // Tempo para a animação de desaparecimento
+        }, 5000); // 5 segundos
     }
-
-    // Inicializa o gerenciamento de formulários para modais específicos
-    handleSuccessMessages('deleteProfileModal');
 });
 
+
+/* -----------------------------------------------------------------------------------------
+
+Esre código é responsável por exibir e controlar o comportamento do botão " voltar para o topo "
+Quando o conteúdo da view é carregado ele adiciona um listener para controlar a scroll da página,
+Se o user fizer scroll mais de 200 pixels para baixo o botão aparece, ao fazer scroll para cima caso estiver a menos de 200 pixels ele desaparece.
+Quando o botão é clicado ele impede o comportamento padrão e faz com que a página volte suavemente ao topo
+
+------------------------------------------------------------------------------------------ */
 document.addEventListener('DOMContentLoaded', function () {
     var backToTopButton = document.getElementById('back-to-top');
 
     window.addEventListener('scroll', function () {
-        if (window.scrollY > 200) { // Ajuste a quantidade de rolagem antes de mostrar o botão
+        if (window.scrollY > 200) {
             backToTopButton.classList.add('show');
         } else {
             backToTopButton.classList.remove('show');
@@ -277,20 +299,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+/* ----------------------------------------------------------------------------------------
+
+Este código é responsável por criar o sistema de avaliação por estrelas.
+Ele começa por selecionar todos os elementos de estrela dentro do container com a classe
+" . rating-stars " e o campo oculto com o id "#rating".
+Quando o user passa o rato sobre uma estrela, o código captura o valor associado a essa estrela alem de modificar a aparência da estrela. Isso ajuda o user a ver a classificação que está a selecionar.
+Se retirar o rato das estrelas, o sistema retorna às estrelas destacadas conforme a classificação que já tinha sido selecionada, o que assegura que a seleção anterior permanece visível.
+Ao clicar em uma estrela, o valor da estrela é armazenado e atribuído ao campo oculto o que permite que o valor da avaliação seja enviado com o comentário.
+
+------------------------------------------------------------------------------------------ */
+
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Bloco para mensagem de sucesso
-    var successMessage = document.querySelector('.alert-success-custom');
-
-    if (successMessage) {
-        // Configura um timeout para esconder a mensagem após 10 segundos
-        setTimeout(function() {
-            successMessage.style.opacity = 0;
-            setTimeout(function() {
-                successMessage.style.display = 'none';
-            }, 500); // Tempo para a animação de desaparecimento
-        }, 5000); // 10 segundos
-    }
-
     // Bloco para as estrelas de avaliação
     const stars = document.querySelectorAll('.rating-stars .star');
     const ratingInput = document.getElementById('rating');
@@ -322,6 +344,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+/* ----------------------------------------------------------------------------------------
+
+Este código faz a gestão da exibição de dois comportamentos distintos, o formulário de feedback
+e a lista de comentários.
+Basicamente o código é responsavel por permitir alternar entre o formulário de feedback
+e a lista de comentários dentro do mesmo container através de dois botões.
+
+---------------------------------------------------------------------------------------- */
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const showFormButton = document.getElementById('show-form-button');
@@ -358,7 +391,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-/* Código para manipulação de modal de login e de forgot your password */
+/* -------------------------------------------------------------------------------------
+
+Este código faz a gestão entre dois modais.
+Quando o user clica no botão com id "#loginBtn" o modal de login é exibido,
+ao clicar no link com o id "#forgotPasswordLink" o código impede o comportamento padrão do
+link e fecha o modal de login exibindo de seguida o modal de recuperação de pass.
+Caso o modal de recuperação seja fechado voluntáriamente ou seja sem fazer o processo de
+recuperação, ele faz com que o modal de login seja reexibido automaticamente.
+
+--------------------------------------------------------------------------------------- */
+
 
 document.addEventListener('DOMContentLoaded', function() {
     var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
@@ -382,10 +425,94 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+/* ----------------------------------------------------------------------------------
+
+Este código verifica se o parâmetro "showResetPasswordModal" está presente e se o seu
+valor é igual a 1.
+Caso esteja presente e seja igual a 1 o código cria uma instância do modal para ser
+exibido automaticamente na tela.
+
+------------------------------------------------------------------------------------- */
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('showResetPasswordModal')) {
+    const showResetPasswordModal = urlParams.get('showResetPasswordModal');
+
+    if (showResetPasswordModal === '1') {
         const resetPasswordModal = new bootstrap.Modal(document.getElementById('resetPasswordModal'));
+        console.log('Showing modal');
         resetPasswordModal.show();
     }
+});
+
+
+/* ---------------------------------------------------------------------------------------
+
+Este código assegura que o formulário de redefinição de password não seja enviado da forma
+tradicional e em vez disso ele realiza uma requisição AJAX para a ulr /password/reset com o
+método POST
+
+------------------------------------------------------------------------------------------ */
+
+
+$(document).ready(function() {
+    $('#resetPasswordForm').on('submit', function(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        $.ajax({
+            url: '/password/reset', // URL da sua API
+            method: 'POST',
+            data: $(this).serialize(), // Serializa os dados do formulário
+            success: function(response) {
+                if (response.success) {
+                    window.location.href = response.redirect; // Redirecionar, se necessário
+                } else {
+                    console.log('Erros:', response.errors);
+                    // Exibir erros na interface do usuário
+                }
+            },
+            error: function(xhr) {
+                console.log('Erro ao processar a solicitação:', xhr.responseJSON); // Verificar a resposta do servidor
+            }
+        });
+    });
+});
+
+
+/* --------------------------------------------------------------------------------
+
+Este código está projetado para interceptar o envio de qualquer formulário e
+processar o envio de forma assíncrona utilizando AJAX.
+Em resumo, o código permite o envio de formulários de forma assíncrona, fornecendo feedback e redirecionamento baseados na resposta do servidor, além de lidar com possíveis erros de forma adequada.
+
+----------------------------------------------------------------------------------------- */
+
+
+$(document).ready(function() {
+    $('.ajax-form').on('submit', function(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        var $form = $(this);
+        var url = $form.attr('action');
+        var method = $form.find('input[name="_method"]').val() || 'POST'; // Pega o método especificado ou usa POST como padrão
+
+        $.ajax({
+            url: url,
+            method: method, // Usa o método especificado pelo formulário
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                if (response.success) {
+                    window.location.href = response.redirect;
+                }
+            }
+        });
+    });
 });

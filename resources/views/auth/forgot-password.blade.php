@@ -12,13 +12,13 @@
                 </div>
 
                 <div class="alert alert-success d-none" id="forgotPasswordSuccess"></div>
-                <form method="POST" action="{{ route('password.email') }}">
+                <form class="ajax-form" method="POST" action="{{ route('password.email') }}">
                     @csrf
                     <!-- Email Address -->
                     <div>
-                        <label for="forgotPasswordEmail" class="form-label">{{ __('forgot-password.email') }}</label>
-                        <input id="forgotPasswordEmail" type="email" class="form-control" name="email" required>
-                        <div id="forgotPasswordEmailError" class="alert alert-danger d-none"></div>
+                        <label for="forgotPasswordModalEmail" class="form-label">{{ __('forgot-password.email') }}</label>
+                        <input id="forgotPasswordModalEmail" type="email" class="form-control" name="email" required>
+                        <div id="forgotPasswordModalEmailError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
                     <div class="flex items-center justify-end mt-4">
                         <button type="submit" class="btn btn-primary">{{ __('forgot-password.send_link') }}</button>

@@ -68,8 +68,7 @@ class ProfileController extends Controller
         // Retorna uma resposta JSON com sucesso
         return response()->json([
             'success' => true,
-            'message' => __('validation.custom.name.updated_successfully'), // Mensagem de sucesso traduzida
-            'redirect' => route('profile.index', ['id' => $user->id])
+            'redirect' => route('profile.index', ['id' => $user->id]) . '?message_key=name_changed'
         ]);
     }
 
@@ -105,8 +104,7 @@ class ProfileController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => __('validation.custom.email.success_updated'), // Mensagem de sucesso traduzida
-            'redirect' => route('profile.index', ['id' => $id])
+            'redirect' => route('profile.index', ['id' => $id]) . '?message_key=email_changed'
         ]);
     }
 
@@ -149,8 +147,7 @@ class ProfileController extends Controller
         // Retorna uma resposta JSON com sucesso
         return response()->json([
             'success' => true,
-            'message' => __('validation.custom.password.updated_successfully'), // Mensagem de sucesso traduzida
-            'redirect' => route('profile.index', ['id' => $id])
+            'redirect' => route('profile.index', ['id' => $id]) . '?message_key=password_changed'
         ]);
     }
 
@@ -186,33 +183,15 @@ class ProfileController extends Controller
         // Retorna uma resposta JSON com sucesso
         return response()->json([
             'success' => true,
-            'message' => __('profile.photo_updated_successfully'), // Mensagem de sucesso traduzida
-            'redirect' => route('profile.index', ['id' => $user->id])
+            'redirect' => route('profile.index', ['id' => $user->id]) . '?message_key=photo_changed'
         ]);
     }
 
     /**
      * Delete the user's account.
      */
-    /*public function destroy(Request $request, $id): RedirectResponse
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
 
-        $user = User::findOrFail($id);
-
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
-    }*/
-
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, $id): \Illuminate\Http\JsonResponse
     {
         $user = User::findOrFail($id); // Encontre o usuário pelo ID
 

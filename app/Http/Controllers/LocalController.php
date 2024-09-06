@@ -6,6 +6,7 @@ use App\Models\Attribute;
 use App\Models\Local;
 use App\Models\District;
 use App\Models\Region;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
@@ -49,7 +50,7 @@ class LocalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): \Illuminate\Http\JsonResponse
+    public function store(Request $request): JsonResponse
     {
         // Valida os dados do formulário
         $validator = Validator::make($request->all(), [
@@ -94,8 +95,7 @@ class LocalController extends Controller
         // Retorna uma resposta de sucesso com uma URL de redirecionamento
         return response()->json([
             'success' => true,
-            'redirect' => route('locals.index'),
-            'message' => __('messages.local_created_successfully') // Mensagem de sucesso localizada
+            'redirect' => route('locals.index'). '?message_key=local_inserted'
         ]);
     }
 
@@ -140,7 +140,7 @@ class LocalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Local $local): \Illuminate\Http\JsonResponse
+    public function update(Request $request, Local $local): JsonResponse
     {
         // Valida os dados recebidos
         $validator = Validator::make($request->all(), [
@@ -193,22 +193,24 @@ class LocalController extends Controller
         // Retorna uma resposta JSON com sucesso
         return response()->json([
             'success' => true,
-            'message' => 'Local atualizado com sucesso!',
-            'redirect' => route('locals.index')
+            'redirect' => route('locals.index') . '?message_key=local_changed'
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Local $local)
+    public function destroy(Local $local): JsonResponse
     {
         $local->delete();
 
-        return redirect()->route('locals.index')->with('success', 'Local deleted successfully!');
+        return response()->json([
+            'success' => true,
+            'redirect' => route('locals.index') . '?message_key=local_deleted'
+        ]);
     }
 
-    public function addLocalModalData()
+    public function addLocalModalData(): array
     {
         $regions = Region::all(); // Obtém todas as regiões do banco de dados.
         $districts = District::all(); // Obtém todos os distritos do banco de dados.
