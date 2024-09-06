@@ -57,8 +57,7 @@ class DistrictController extends Controller
         // Retorna uma resposta de sucesso com uma URL de redirecionamento
         return response()->json([
             'success' => true,
-            'redirect' => route('districts.index'),
-            'message' => __('messages.district_added_successfully') // Mensagem de sucesso localizada
+            'redirect' => route('districts.index') . '?message_key=district_inserted'
         ]);
     }
 
@@ -126,8 +125,7 @@ class DistrictController extends Controller
         // Retorna uma resposta de sucesso
         return response()->json([
             'success' => true,
-            'redirect' => route('districts.index'),
-            'message' => __('messages.district_updated_successfully') // Mensagem de sucesso localizada
+            'redirect' => route('districts.index') . '?message_key=district_changed'
         ]);
     }
 

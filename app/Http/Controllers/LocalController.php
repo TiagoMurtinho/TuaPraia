@@ -94,8 +94,7 @@ class LocalController extends Controller
         // Retorna uma resposta de sucesso com uma URL de redirecionamento
         return response()->json([
             'success' => true,
-            'redirect' => route('locals.index'),
-            'message' => __('messages.local_created_successfully') // Mensagem de sucesso localizada
+            'redirect' => route('locals.index'). '?message_key=local_inserted'
         ]);
     }
 
@@ -193,8 +192,7 @@ class LocalController extends Controller
         // Retorna uma resposta JSON com sucesso
         return response()->json([
             'success' => true,
-            'message' => 'Local atualizado com sucesso!',
-            'redirect' => route('locals.index')
+            'redirect' => route('locals.index') . '?message_key=local_changed'
         ]);
     }
 

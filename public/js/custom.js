@@ -222,6 +222,8 @@ $(document).ready(function() {
         var $modal = $('#' + modalId);
         var $form = $modal.find('form');
 
+        $form.off('submit');
+
         $form.on('submit', function(event) {
             event.preventDefault(); // Impede o envio padrão do formulário
 
@@ -255,6 +257,17 @@ $(document).ready(function() {
 
     // Inicializa o gerenciamento de formulários para modais específicos
     handleSuccessMessages('deleteProfileModal');
+    handleSuccessMessages('editProfilePhotoModal');
+    handleSuccessMessages('editProfilePasswordModal');
+    handleSuccessMessages('editProfileEmailModal');
+    handleSuccessMessages('editProfileInfoModal');
+    handleSuccessMessages('editAttributeModal');
+    handleSuccessMessages('addAttributeModal');
+    handleSuccessMessages('addDistrictModal');
+    handleSuccessMessages('editDistrictModal');
+    handleSuccessMessages('addRegionModal');
+    handleSuccessMessages('editRegionModal');
+    handleSuccessMessages('addLocalModal');
 });
 
 document.addEventListener('DOMContentLoaded', function () {

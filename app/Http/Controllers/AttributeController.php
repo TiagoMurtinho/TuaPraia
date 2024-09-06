@@ -54,7 +54,7 @@ class AttributeController extends Controller
         // Retorna uma resposta de sucesso
         return response()->json([
             'success' => true,
-            'redirect' => route('attributes.index')
+            'redirect' => route('attributes.index') . '?message_key=attribute_inserted'
         ]);
     }
 
@@ -101,8 +101,7 @@ class AttributeController extends Controller
         // Retorna uma resposta JSON com mensagem de sucesso
         return response()->json([
             'success' => true,
-            'redirect' => route('attributes.index'),
-            'message' => __('messages.attribute_updated_successfully') // Mensagem de sucesso localizada
+            'redirect' => route('attributes.index') . '?message_key=attribute_changed'
         ]);
     }
 

@@ -69,8 +69,7 @@ class RegionController extends Controller
         // Retorna uma resposta de sucesso com uma URL de redirecionamento
         return response()->json([
             'success' => true,
-            'redirect' => route('regions.index'),
-            'message' => __('messages.region_added_successfully')
+            'redirect' => route('regions.index') . '?message_key=region_inserted'
         ]);
     }
 
@@ -105,8 +104,7 @@ class RegionController extends Controller
         // Retorna uma resposta de sucesso com uma URL de redirecionamento
         return response()->json([
             'success' => true,
-            'redirect' => route('regions.index'),
-            'message' => __('messages.region_updated_successfully') // Mensagem de sucesso localizada
+            'redirect' => route('regions.index') . '?message_key=region_changed'
         ]);
     }
 

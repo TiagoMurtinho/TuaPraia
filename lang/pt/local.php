@@ -38,5 +38,6 @@ return [
     'submit' => 'Enviar',
     'guarded_beach' => 'Praia Vigiada',
     'or_quality' => 'Qualidade de Ouro',
-    'zero_polution' => 'Zero Poluição'
+    'zero_polution' => 'Zero Poluição',
+    'no_attributes' => 'Sem atributos'
 ];
