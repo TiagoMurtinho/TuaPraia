@@ -4,15 +4,7 @@
 
 @section('content')
 
-    @php
-        $messageKey = request()->query('message_key');
-    @endphp
-
-    @if($messageKey)
-        <div class="alert alert-success alert-success-custom">
-            {{ __('success.' . $messageKey) }}
-        </div>
-    @endif
+    @include('components.success-message')
 
     <header class="homepage-header text-center my-4">
         <h1 class="homepage-title julee-regular">{{__('home.title')}}</h1>

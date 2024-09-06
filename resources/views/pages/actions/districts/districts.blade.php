@@ -2,15 +2,7 @@
 
 @section('content')
 
-    @php
-        $messageKey = request()->query('message_key');
-    @endphp
-
-    @if($messageKey)
-        <div class="alert alert-success alert-success-custom">
-            {{ __('success.' . $messageKey) }}
-        </div>
-    @endif
+    @include('components.success-message')
 
     <div class="container mt-5">
         <div class="actions-card">
