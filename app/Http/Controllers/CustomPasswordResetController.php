@@ -33,7 +33,7 @@ class CustomPasswordResetController extends Controller
         if ($response == Password::PASSWORD_RESET) {
             return response()->json([
                 'success' => true,
-                'redirect' => route('home') . '?message_key=password_reset_sucess'
+                'redirect' => route('home') . '?message_key=password_reset_success'
             ]);
         } else {
             return response()->json([
