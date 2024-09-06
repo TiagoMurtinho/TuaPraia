@@ -518,8 +518,6 @@ $(document).ready(function() {
             url: '/password/reset', // URL da sua API
             method: 'POST',
             data: $(this).serialize(), // Serializa os dados do formulário
-            processData: false,
-            contentType: false,
             success: function(response) {
                 if (response.success) {
                     window.location.href = response.redirect; // Redirecionar, se necessário
