@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\District;
 use App\Models\Local;
 use App\Models\Region;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -33,7 +34,7 @@ class DistrictController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): \Illuminate\Http\JsonResponse
+    public function store(Request $request): JsonResponse
     {
         // Valida os dados do formulário
         $validator = Validator::make($request->all(), [
@@ -102,7 +103,7 @@ class DistrictController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, District $district): \Illuminate\Http\JsonResponse
+    public function update(Request $request, District $district): JsonResponse
     {
         // Valida os dados do formulário
         $validator = Validator::make($request->all(), [
@@ -132,10 +133,13 @@ class DistrictController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(District $district):RedirectResponse
+    public function destroy(District $district): JsonResponse
     {
         $district->delete();
 
-        return redirect()->route('districts.index')->with('success', 'District deleted successfully!');
+        return response()->json([
+            'success' => true,
+            'redirect' => route('districts.index') . '?message_key=district_deleted'
+        ]);
     }
 }

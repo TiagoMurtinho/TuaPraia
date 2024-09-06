@@ -10,7 +10,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('local.cancel')}}</button>
-                <form id="deleteLocalForm{{ $local->id }}" action="{{ route('locals.destroy', $local->id) }}" method="POST">
+                <form class="ajax-form" id="deleteLocalForm{{ $local->id }}" action="{{ route('locals.destroy', $local->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">{{__('local.delete')}}</button>

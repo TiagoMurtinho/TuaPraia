@@ -547,11 +547,13 @@ $(document).ready(function() {
     $('.ajax-form').on('submit', function(event) {
         event.preventDefault(); // Impede o envio padrão do formulário
 
-        var url = $(this).attr('action');
+        var $form = $(this);
+        var url = $form.attr('action');
+        var method = $form.find('input[name="_method"]').val() || 'POST'; // Pega o método especificado ou usa POST como padrão
 
         $.ajax({
             url: url,
-            method: 'POST',
+            method: method, // Usa o método especificado pelo formulário
             data: new FormData(this),
             processData: false,
             contentType: false,
