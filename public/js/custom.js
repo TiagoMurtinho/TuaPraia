@@ -150,28 +150,35 @@ document.addEventListener('DOMContentLoaded', function() { // Garante que todo o
 
 /* --------------------------------------------------------------------------------------
 
-Este código serve para exibir mensagens de erro.
-Ele via dados para o servidor sem recarregar a página via AJAX.
-Dependendo da resposta do servidor ele vai tratar das mensagens de erro de duas formas.
-Mostra mensagens de erro gerais como falha de login e mostra erros especificos como erros de validação de formulários.
-Além disso o código pode ser aplicado tanto em modais estáticos, como em modais dinâmicos com a classe .dynamic-modal.
+Este código é responsável por gerenciar a exibição de mensagens de erro e sucesso durante o
+envio de formulários via AJAX, sem recarregar a página. Quando um formulário é enviado, ele
+limpa quaisquer mensagens de erro ou sucesso anteriores e, em seguida, envia os dados para o
+servidor. Dependendo da resposta do servidor, o código trata as mensagens de erro de duas
+formas: exibe mensagens de erro gerais, como falhas de login ou mensagens de erro globais, e
+exibe erros específicos de validação associados aos campos do formulário. Além disso, o código é
+flexível, podendo ser aplicado tanto a modais com IDs específicos quanto a modais dinâmicos
+identificados pela classe .dynamic-modal. Se a resposta do servidor indica sucesso, o código
+pode também exibir uma mensagem de sucesso e redirecionar o usuário para uma nova página, se
+necessário.
 
 --------------------------------------------------------------------------------------- */
 
 
 $(document).ready(function() {
-    function handleFormSubmission(modalId, isGlobal) {
+    function handleFormSubmission(modalId, isGlobal, showSuccess) {
         var $modal = $('#' + modalId);
         var $form = $modal.find('form');
         var $globalError = $modal.find('#' + modalId + 'GlobalError');
+        var $successAlert = $modal.find('.alert.alert-success');
 
         $form.on('submit', function(event) {
             event.preventDefault(); // Impede o envio padrão do formulário
 
             var actionUrl = $form.attr('action');
 
-            // Limpa erros anteriores
+            // Limpa erros e mensagens de sucesso anteriores
             $modal.find('.alert.alert-danger').empty().addClass('d-none');
+            $successAlert.empty().addClass('d-none');
 
             $.ajax({
                 url: actionUrl,
@@ -181,11 +188,18 @@ $(document).ready(function() {
                 contentType: false,
                 success: function(response) {
                     if (response.success) {
-                        window.location.href = response.redirect;
+                        if (showSuccess) {
+                            $successAlert.text(response.message || 'Operação realizada com sucesso!').removeClass('d-none');
+                        }
+                        if (response.redirect) {
+                            window.location.href = response.redirect;
+                        }
+                    } else {
+                        console.log('Resposta não marcada como sucesso:', response);
                     }
                 },
                 error: function(xhr) {
-                    console.log('Erro de validação:', xhr.responseJSON); // Debug: Verificar a resposta do servidor
+                    console.log('Erro ao processar a solicitação:', xhr.responseJSON); // Debug: Verificar a resposta do servidor
 
                     if (isGlobal) {
                         // Exibir erros globais
@@ -200,7 +214,6 @@ $(document).ready(function() {
                         $.each(errors, function(key, messages) {
                             // Construa o ID do campo de erro correspondente
                             var errorDivId = modalId + key.charAt(0).toUpperCase() + key.slice(1) + 'Error';
-                            console.log('Buscando por ID:', '#' + errorDivId);
                             var errorDiv = $modal.find('#' + errorDivId);
                             if (errorDiv.length) {
                                 errorDiv.text(messages.join(', ')).removeClass('d-none');
@@ -214,89 +227,27 @@ $(document).ready(function() {
         });
     }
 
-    // Inicializa o gerenciamento de formulários para modais de registro e login
-    handleFormSubmission('registerModal', false);
-    handleFormSubmission('loginModal', true);
-    handleFormSubmission('editProfileEmailModal', false);
-    handleFormSubmission('editProfileInfoModal', false);
-    handleFormSubmission('editProfilePasswordModal', false);
-    handleFormSubmission('editProfilePhotoModal', false);
-    handleFormSubmission('addAttributeModal', false);
-    handleFormSubmission('addRegionModal', false);
-    handleFormSubmission('addDistrictModal', false);
-    handleFormSubmission('addLocalModal', false);
+    // Inicializa o gerenciamento de formulários para modais
+    handleFormSubmission('registerModal', false, true);
+    handleFormSubmission('loginModal', true, true);
+    handleFormSubmission('editProfileEmailModal', false, true);
+    handleFormSubmission('editProfileInfoModal', false, true);
+    handleFormSubmission('editProfilePasswordModal', false, true);
+    handleFormSubmission('editProfilePhotoModal', false, true);
+    handleFormSubmission('addAttributeModal', false, true);
+    handleFormSubmission('addRegionModal', false, true);
+    handleFormSubmission('addDistrictModal', false, true);
+    handleFormSubmission('addLocalModal', false, true);
+    handleFormSubmission('deleteProfileModal', false, true);
+    handleFormSubmission('editAttributeModal', false, true);
+    handleFormSubmission('editDistrictModal', false, true);
+    handleFormSubmission('editRegionModal', false, true);
+    handleFormSubmission('resetPasswordModal', false, true);
 
     $('.dynamic-modal').each(function() {
         var modalId = $(this).attr('id');
-        handleFormSubmission(modalId, false);
+        handleFormSubmission(modalId, false, true);
     });
-});
-
-
-/* --------------------------------------------------------------------------------------
-
-Este código tem como foco exibir mensagens de sucesso.
-Caso o servidor indique que o envio foi bem-sucedido ele verifica se há uma rota de redirecionamento, caso exista, ele redireciona o user para a view dessa rota e exibe uma mensagem de sucesso na view para onde é direcionado.
-
---------------------------------------------------------------------------------------- */
-
-
-$(document).ready(function() {
-    function handleSuccessMessages(modalId) {
-        var $modal = $('#' + modalId);
-        var $form = $modal.find('form');
-
-        $form.off('submit');
-
-        $form.on('submit', function(event) {
-            event.preventDefault(); // Impede o envio padrão do formulário
-
-            var actionUrl = $form.attr('action');
-
-            // Limpa mensagens de sucesso anteriores
-            $modal.find('.alert.alert-success').empty().addClass('d-none');
-
-            $.ajax({
-                url: actionUrl,
-                method: 'POST',
-                data: new FormData($form[0]),
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.success) {
-                        var $alert = $modal.find('.alert.alert-success');
-                        $alert.empty().removeClass('d-none');
-                        if (response.redirect) {
-                            window.location.href = response.redirect;
-                        }
-                    } else {
-                        console.log('Resposta não marcada como sucesso:', response);
-                    }
-                },
-                error: function(xhr) {
-                    console.log('Erro ao processar a solicitação:', xhr.responseJSON); // Debug: Verificar a resposta do servidor
-                }
-            });
-        });
-    }
-
-    // Inicializa o gerenciamento de formulários para modais específicos
-    handleSuccessMessages('deleteProfileModal');
-    handleSuccessMessages('editProfilePhotoModal');
-    handleSuccessMessages('editProfilePasswordModal');
-    handleSuccessMessages('editProfileEmailModal');
-    handleSuccessMessages('editProfileInfoModal');
-    handleSuccessMessages('editAttributeModal');
-    handleSuccessMessages('addAttributeModal');
-    handleSuccessMessages('addDistrictModal');
-    handleSuccessMessages('editDistrictModal');
-    handleSuccessMessages('addRegionModal');
-    handleSuccessMessages('editRegionModal');
-    handleSuccessMessages('addLocalModal');
-    handleSuccessMessages('loginModal');
-    handleSuccessMessages('loginModal');
-    handleSuccessMessages('registerModal');
-    handleSuccessMessages('resetPasswordModal');
 });
 
 
