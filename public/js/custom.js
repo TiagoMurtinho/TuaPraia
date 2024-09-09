@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 successMessage.style.display = 'none';
             }, 500); // Tempo para a animação de desaparecimento
-        }, 5000); // 5 segundos
+        }, 1000); // 1 segundo
     }
 });
 
@@ -492,7 +492,7 @@ Em resumo, o código permite o envio de formulários de forma assíncrona, forne
 
 $(document).ready(function() {
     $('.ajax-form').on('submit', function(event) {
-        event.preventDefault(); // Impede o envio padrão do formulário
+        event.preventDefault();
 
         var $form = $(this);
         var url = $form.attr('action');
