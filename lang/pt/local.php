@@ -44,5 +44,6 @@ return [
     'local_coordinates' => 'Coordenadas*',
     'local_type' => 'Tipo*',
     'local_district' => 'Distrito*',
-    'local_region' => 'Região*'
+    'local_region' => 'Região*',
+    'modal_description' => 'Campos obrigatórios assinalados com *.'
 ];

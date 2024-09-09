@@ -13,5 +13,6 @@ return [
     'edit' => 'Editar',
     'attribute_delete' => 'Excluir atributo',
     'sure_to_delete' => 'Você tem certeza que deseja excluir o atributo',
-    'delete' => 'Excluir'
+    'delete' => 'Excluir',
+    'description' => 'Campos obrigatórios assinalados com *.'
 ];

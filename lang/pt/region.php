@@ -19,4 +19,5 @@ return [
     'beach' => 'Praias',
     'fluvial' => 'Praias fluviais',
     'cascade' => 'Cascatas',
+    'description' => 'Campos obrigarórios assinalados com *.'
 ];
