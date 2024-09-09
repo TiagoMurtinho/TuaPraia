@@ -6,7 +6,7 @@ return [
     'created_at' => 'Criado em:',
     'updated_at' => 'Atualizado em:',
     'add_attribute' => 'Adicionar atributo',
-    'attribute_name' => 'Nome do atributo',
+    'attribute_name' => 'Nome*',
     'cancel' => 'Cancelar',
     'add' => 'Adicionar',
     'attribute_edit' => 'Editar atributo',
