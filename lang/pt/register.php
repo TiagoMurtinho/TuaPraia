@@ -9,5 +9,7 @@ return [
     'upload' => 'Foto de perfil',
     'upload_photo' => 'Escolher arquivo...',
     'cancel' => 'Cancelar',
-    'confirm_register' => 'Confirmar'
+    'confirm_register' => 'Confirmar',
+    'description' => 'Campos obrigatórios assinalados com *.',
+    'confirmation_mail' => 'Um e-mail de verificação será enviado.'
 ];

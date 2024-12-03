@@ -6,17 +6,22 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
+                <div class="mb-4 text-sm text-gray-600">
+                    {{ __('district.description') }}
+                </div>
+
                 <form id="addDistrictForm" method="POST" action="{{ route('districts.store') }}">
                     @csrf
 
                     <div class="mb-3">
-                        <label for="addDistrictModalName" class="form-label">{{ __('district.name') }}</label>
+                        <label for="addDistrictModalName" class="form-label">{{ __('district.district_name') }}</label>
                         <input id="addDistrictModalName" class="form-control" type="text" name="name">
                         <div id="addDistrictModalNameError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="addDistrictModalRegion" class="form-label">{{ __('district.region') }}</label>
+                        <label for="addDistrictModalRegion" class="form-label">{{ __('district.district_region') }}</label>
                         <select name="regions_id" id="addDistrictModalRegion" class="form-select form-select-sm">
                             @foreach($regions as $region)
                                 <option value="{{ $region->id }}">{{ $region->name }}</option>

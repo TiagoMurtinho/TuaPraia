@@ -6,6 +6,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
+                <div class="mb-4 text-sm text-gray-600">
+                    {{ __('local.modal_description') }}
+                </div>
+
                 <form id="editLocalForm{{ $local->id }}" method="POST" action="{{ route('locals.update', $local->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -17,19 +22,19 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="editLocalModalDescription{{ $local->id }}" class="form-label">{{ __('local.description') }}</label>
+                        <label for="editLocalModalDescription{{ $local->id }}" class="form-label">{{ __('local.local_description') }}</label>
                         <textarea id="editLocalModalDescription{{ $local->id }}" class="form-control" name="description" rows="3">{{ $local->description }}</textarea>
                         <div id="editLocalModal{{ $local->id }}DescriptionError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="editLocalModalCoordinates{{ $local->id }}" class="form-label">{{ __('local.coordinates') }}</label>
+                        <label for="editLocalModalCoordinates{{ $local->id }}" class="form-label">{{ __('local.local_coordinates') }}</label>
                         <input id="editLocalModalCoordinates{{ $local->id }}" class="form-control" type="text" name="coordinates" value="{{ $local->coordinates }}">
                         <div id="editLocalModal{{ $local->id }}CoordinatesError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="editLocalModalType{{ $local->id }}" class="form-label">{{ __('local.type') }}</label>
+                        <label for="editLocalModalType{{ $local->id }}" class="form-label">{{ __('local.local_type') }}</label>
                         <select id="editLocalModalType{{ $local->id }}" class="form-select" name="type">
                             @foreach(\App\Models\Local::LOCALTYPES as $type)
                                 <option value="{{ $type }}" {{ $type == $local->type ? 'selected' : '' }}>{{ ucfirst($type) }}</option>
@@ -39,7 +44,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="editLocalModalDistrict{{ $local->id }}" class="form-label">{{ __('local.district') }}</label>
+                        <label for="editLocalModalDistrict{{ $local->id }}" class="form-label">{{ __('local.local_district') }}</label>
                         <select id="editLocalModalDistrict{{ $local->id }}" class="form-select" name="districts_id">
                             @foreach ($districts as $district)
                                 <option value="{{ $district->id }}" {{ $district->id == $local->districts_id ? 'selected' : '' }}>{{ $district->name }}</option>
@@ -49,7 +54,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="editLocalModalRegion{{ $local->id }}" class="form-label">{{ __('local.region') }}</label>
+                        <label for="editLocalModalRegion{{ $local->id }}" class="form-label">{{ __('local.local_region') }}</label>
                         <select id="editLocalModalRegion{{ $local->id }}" class="form-select" name="regions_id">
                             @foreach ($regions as $region)
                                 <option value="{{ $region->id }}" {{ $region->id == $local->regions_id ? 'selected' : '' }}>{{ $region->name }}</option>

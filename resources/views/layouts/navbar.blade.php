@@ -31,12 +31,11 @@
                         <li><a class="dropdown-item" href="#">{{__('nav.config')}}</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <form method="POST" action="{{ route('logout') }}">
+                            <form class="ajax-form" method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault(); this.closest('form').submit();">
-                                    {{__('nav.exit')}}
-                                </a>
+                                <button type="submit" class="dropdown-item">
+                                    {{ __('nav.exit') }}
+                                </button>
                             </form>
                         </li>
                     </ul>

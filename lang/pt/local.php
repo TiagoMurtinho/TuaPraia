@@ -11,7 +11,7 @@ return [
     'district' => 'Distrito',
     'region' => 'Região',
     'add_local' => 'Adicionar Local',
-    'local_name' => 'Nome do Local',
+    'local_name' => 'Nome do Local*',
     'cancel' => 'Cancelar',
     'add' => 'Adicionar',
     'edit_local' => 'Editar Local',
@@ -39,5 +39,11 @@ return [
     'guarded_beach' => 'Praia Vigiada',
     'or_quality' => 'Qualidade de Ouro',
     'zero_polution' => 'Zero Poluição',
-    'no_attributes' => 'Sem atributos'
+    'no_attributes' => 'Sem atributos',
+    'local_description' => 'Descrição*',
+    'local_coordinates' => 'Coordenadas*',
+    'local_type' => 'Tipo*',
+    'local_district' => 'Distrito*',
+    'local_region' => 'Região*',
+    'modal_description' => 'Campos obrigatórios assinalados com *.'
 ];

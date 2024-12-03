@@ -6,6 +6,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
+                <div class="mb-4 text-sm text-gray-600">
+                    {{ __('attribute.description') }}
+                </div>
+
                 <form method="POST" action="{{ route('attributes.store') }}">
                     @csrf
 

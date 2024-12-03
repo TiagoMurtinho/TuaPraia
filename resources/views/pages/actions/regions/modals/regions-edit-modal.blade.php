@@ -10,6 +10,11 @@
                     @csrf
                     @method('PATCH')
                     <div class="modal-body">
+
+                        <div class="mb-4 text-sm text-gray-600">
+                            {{ __('region.description') }}
+                        </div>
+
                         <div class="mb-3">
                             <label for="editRegionModalName{{ $region->id }}" class="form-label">{{ __('region.region_name') }}</label>
                             <input id="editRegionModalName{{ $region->id }}" class="form-control" type="text" name="name" value="{{ $region->name }}">

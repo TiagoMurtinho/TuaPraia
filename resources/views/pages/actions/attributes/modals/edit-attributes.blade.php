@@ -10,6 +10,11 @@
                     @csrf
                     @method('PATCH')
                     <div class="modal-body">
+
+                        <div class="mb-4 text-sm text-gray-600">
+                            {{ __('attribute.description') }}
+                        </div>
+
                         <div class="mb-3">
                             <label for="editAttributeModalName{{ $attribute->id }}" class="form-label">{{ __('attribute.attribute_name') }}</label>
                             <input id="editAttributeModalName{{ $attribute->id }}" class="form-control" type="text" name="name" value="{{ $attribute->name }}">

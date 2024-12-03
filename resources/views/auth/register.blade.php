@@ -6,6 +6,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
+                <div class="mb-4 text-sm text-gray-600">
+                    {{ __('register.description') }}<br>
+                    {{ __('register.confirmation_mail') }}
+                </div>
+
                 <form id="registerForm" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
 

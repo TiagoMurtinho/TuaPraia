@@ -3,7 +3,9 @@
 return [
     'title' => 'Distritos',
     'name' => 'Nome',
+    'district_name' => 'Nome*',
     'region' => 'Região',
+    'district_region' => 'Região*',
     'created_at' => 'Criado em',
     'updated_at' => 'Atualizado em',
     'add_district' => 'Adicionar distrito',
@@ -18,4 +20,5 @@ return [
     'beach' => 'Praias',
     'fluvial' => 'Praias fluviais',
     'cascade' => 'Cascatas',
+    'description' => 'Campos obrigatórios assinalados com *.'
 ];

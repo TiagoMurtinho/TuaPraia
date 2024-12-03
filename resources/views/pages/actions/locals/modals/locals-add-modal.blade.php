@@ -6,6 +6,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
+                <div class="mb-4 text-sm text-gray-600">
+                    {{ __('local.modal_description') }}
+                </div>
+
                 <form id="addLocalForm" method="POST" action="{{ route('locals.store') }}" enctype="multipart/form-data">
                     @csrf
 
@@ -16,19 +21,19 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="addLocalModalDescription" class="form-label">{{ __('local.description') }}</label>
+                        <label for="addLocalModalDescription" class="form-label">{{ __('local.local_description') }}</label>
                         <textarea id="addLocalModalDescription" class="form-control" name="description" rows="3"></textarea>
                         <div id="addLocalModalDescriptionError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="addLocalModalCoordinates" class="form-label">{{ __('local.coordinates') }}</label>
+                        <label for="addLocalModalCoordinates" class="form-label">{{ __('local.local_coordinates') }}</label>
                         <input id="addLocalModalCoordinates" class="form-control" type="text" name="coordinates">
                         <div id="addLocalModalCoordinatesError" class="alert alert-danger mt-2 d-none"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="addLocalModalType" class="form-label">{{ __('local.type') }}</label>
+                        <label for="addLocalModalType" class="form-label">{{ __('local.local_type') }}</label>
                         <select id="addLocalModalType" class="form-select" name="type">
                             @foreach(\App\Models\Local::LOCALTYPES as $type)
                                 <option value="{{ $type }}">{{ ucfirst($type) }}</option>
@@ -38,7 +43,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="addLocalModalDistrict" class="form-label">{{ __('local.district') }}</label>
+                        <label for="addLocalModalDistrict" class="form-label">{{ __('local.local_district') }}</label>
                         <select id="addLocalModalDistrict" class="form-select" name="districts_id">
                             @foreach ($districts as $district)
                                 <option value="{{ $district->id }}">{{ $district->name }}</option>
@@ -48,7 +53,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="addLocalModalRegion" class="form-label">{{ __('local.region') }}</label>
+                        <label for="addLocalModalRegion" class="form-label">{{ __('local.local_region') }}</label>
                         <select id="addLocalModalRegion" class="form-select" name="regions_id">
                             @foreach ($regions as $region)
                                 <option value="{{ $region->id }}">{{ $region->name }}</option>

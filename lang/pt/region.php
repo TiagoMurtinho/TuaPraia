@@ -6,7 +6,7 @@ return [
     'created_at' => 'Criado em:',
     'updated_at' => 'Atualizado em:',
     'add_region' => 'Adicionar Região',
-    'region_name' => 'Nome da Região',
+    'region_name' => 'Nome*',
     'cancel' => 'Cancelar',
     'add' => 'Adicionar',
     'edit_region' => 'Editar Região',
@@ -19,4 +19,5 @@ return [
     'beach' => 'Praias',
     'fluvial' => 'Praias fluviais',
     'cascade' => 'Cascatas',
+    'description' => 'Campos obrigarórios assinalados com *.'
 ];

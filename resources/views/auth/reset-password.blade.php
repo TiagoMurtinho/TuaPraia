@@ -6,6 +6,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
+                <div class="mb-4 text-sm text-gray-600">
+                    {{ __('reset-password.description') }}
+                </div>
+
                 <div class="alert alert-danger d-none" id="resetPasswordModalGlobalError"></div>
                 <form class="ajax-form" id="resetPasswordForm" method="POST" action="{{ route('password.update') }}">
                     @csrf
