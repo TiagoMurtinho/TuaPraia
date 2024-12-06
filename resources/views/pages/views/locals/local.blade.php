@@ -4,13 +4,27 @@
 
 @section('content')
     <header class="custom-header text-center my-4">
-        <h1 class="julee-regular">{{ $local->name }}</h1>
+        <div class="name-with-flag">
+            <h1 class="julee-regular">{{ $local->name }}</h1>
+            <div id="flag-indicator" class="flag-indicator"></div>
+        </div>
     </header>
     <div class="custom-container">
 
+
+
         <!-- Distrito e País -->
-        <div class="icon-text-container">
-            <i class="ph ph-map-pin-area place_icon"></i><p>{{ $local->district->name }}, {{ __('local.portugal') }}</p>
+        <div class="icon-text-container" style="justify-content: space-between">
+            <div><i class="ph ph-map-pin-area place_icon"></i>{{ $local->district->name }}, {{ __('local.portugal') }}</div>
+
+            <div class="flag-selection-container my-4">
+                <h3 class="julee-regular">{{ __('Selecione a Bandeira') }}</h3>
+                <div class="flag-buttons">
+                    <button class="flag-button btn btn-danger" data-color="red">Vermelha</button>
+                    <button class="flag-button btn btn-warning" data-color="yellow">Amarela</button>
+                    <button class="flag-button btn btn-success" data-color="green">Verde</button>
+                </div>
+            </div>
         </div>
 
         <!-- Secção com imagem e ícones-->
@@ -223,3 +237,19 @@
         </div>
     </div>
 @endsection
+
+<script>
+    import Echo from "laravel-echo";
+
+    const echo = new Echo({
+        broadcaster: "pusher",
+        key: "ee7b90fa38376461a913",
+        cluster: "ap1",
+        forceTLS: true,
+    });
+
+    echo.channel('flags')
+        .listen('.flag-clicked', (event) => {
+            alert(`A bandeira ${event.color} foi selecionada 5 vezes!`);
+        });
+</script>

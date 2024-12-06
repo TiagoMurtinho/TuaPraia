@@ -3,6 +3,7 @@
 use App\Http\Controllers\{AttributeController,
     DistrictController,
     FeedbackController,
+    FlagController,
     HomeController,
     ProfileController,
     RegionController,
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/feedback/{id}', [FeedbackController::class, 'update'])->name('feedback.update');
     Route::delete('/feedback/{id}', [FeedbackController::class, 'destroy'])->name('feedback.destroy');
     Route::post('/local/{id}/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+    Route::post('/flag/click', [FlagController::class, 'click']);
 });
 
 // Rotas públicas para visualizar recursos individuais

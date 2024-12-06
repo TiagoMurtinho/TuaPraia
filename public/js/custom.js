@@ -516,3 +516,65 @@ $(document).ready(function() {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.flag-button');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function () {
+            const color = this.getAttribute('data-color');
+
+            // Enviar requisição AJAX para o servidor
+            fetch('/flag/click', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                },
+                body: JSON.stringify({ color }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        console.log(`Clicks atualizados para ${color}: ${data.clicks}`);
+                    }
+                })
+                .catch(error => console.error('Erro:', error));
+        });
+    });
+});
+
+let flagClickCount = {
+    red: 0,
+    yellow: 0,
+    green: 0
+};
+
+// Adicionar evento aos botões das bandeiras
+document.querySelectorAll('.flag-button').forEach(button => {
+    button.addEventListener('click', function () {
+        const color = this.getAttribute('data-color');
+        flagClickCount[color]++;
+
+        if (flagClickCount[color] === 5) {
+            updateFlagIndicator(color);
+        }
+    });
+});
+
+function updateFlagIndicator(color) {
+    const indicator = document.getElementById('flag-indicator');
+    const colorMap = {
+        red: '#FF0000',
+        yellow: '#FFFF00',
+        green: '#008000'
+    };
+
+    indicator.style.backgroundColor = 'rgba(255, 255, 255, 0)';
+
+    indicator.innerHTML = `
+        <i class="ph ph-flag" style="color: ${colorMap[color]}; font-size: 45px;"></i>
+    `;
+}
