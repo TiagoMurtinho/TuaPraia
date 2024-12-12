@@ -8,7 +8,7 @@ return [
     'district_region' => 'Região*',
     'created_at' => 'Criado em',
     'updated_at' => 'Atualizado em',
-    'add_district' => 'Adicionar distrito',
+    'add_district' => 'Adicionar Distrito',
     'cancel' => 'Cancelar',
     'add' => 'Adicionar',
     'edit_district' => 'Editar distrito',
