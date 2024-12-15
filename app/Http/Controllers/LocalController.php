@@ -20,7 +20,7 @@ class LocalController extends Controller
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
         $attributes = Attribute::all(); // Obtém todos os atributos do model "Attribute".
-        $locals = Local::with('media')->paginate(5); // Obtém todos os locals com as suas respectivas medias e paginação.
+        $locals = Local::with('media')->orderBy('id', 'desc')->paginate(5); // Obtém todos os locals com as suas respectivas medias e paginação.
         $modalData = $this->addLocalModalData();
 
         return view('pages.actions.locals.locals', [

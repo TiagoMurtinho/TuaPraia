@@ -16,7 +16,7 @@
 
     <!-- Exibe mensagem de sucesso se existir -->
     @if(session('success'))
-        <div class="alert alert-success global-success-messages mx-auto mt-2">
+        <div class="alert-success-custom alert alert-success global-success-messages mx-auto mt-2">
             {{ session('success') }}
         </div>
     @endif

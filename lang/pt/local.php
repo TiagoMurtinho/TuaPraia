@@ -45,5 +45,7 @@ return [
     'local_type' => 'Tipo*',
     'local_district' => 'Distrito*',
     'local_region' => 'Região*',
-    'modal_description' => 'Campos obrigatórios assinalados com *.'
+    'modal_description' => 'Campos obrigatórios assinalados com *.',
+    'sure_to_delete_comment' => 'Tem a certeza que pertende eliminar o comentário:',
+    'delete_comment' => 'Eliminar Comentário'
 ];

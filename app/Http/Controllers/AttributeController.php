@@ -17,7 +17,10 @@ class AttributeController extends Controller
      */
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
-        $attributes = DB::table('attributes')->paginate(5);
+        $attributes = DB::table('attributes')
+            ->orderBy('id', 'desc')
+            ->paginate(5);
+
         return view('pages.actions.attributes.attributes', compact('attributes'));
     }
 
