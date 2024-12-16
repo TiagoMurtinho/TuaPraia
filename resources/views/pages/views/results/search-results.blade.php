@@ -8,7 +8,7 @@
 
     @include('components.search-filters')
 
-    <div class="container custom-container">
+    <div class="container custom-container mt-6">
 
         <section class="districts-section">
             <div class="row">
